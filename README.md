@@ -1,8 +1,8 @@
-## CodeStack
+# CodeStack
 
 Online Learning Programming Languages Web Application
 
-# Getting started
+## Getting started
 
 **Clone the repo**
 
@@ -24,7 +24,7 @@ $ npm start
 ```
 This will initiate the project at `http://localhost:8080`.
 
-# Build Package for Production
+## Build Package for Production
 
 For building once for production (via minification).
 Builds into `public/` as `bundle.js`
