@@ -8,7 +8,7 @@ Online Learning Programming Languages Web Application
 
 ```
 $ git clone <repo>
-$ cd react-starter
+$ cd codestack
 ```
 
 **Install dependencies**
