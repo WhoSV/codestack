@@ -8,6 +8,10 @@
     "start": "webpack-dev-server",
     "build": "webpack --config webpack-production.config.js -p"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WhoSV/codestack.git"
+  },
   "author": "WhoSV",
   "license": "MIT",
   "dependencies": {
