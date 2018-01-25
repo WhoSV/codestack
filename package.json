@@ -1,5 +1,5 @@
 {
-  "name": "CodeStack",
+  "name": "codestack",
   "version": "1.0.0",
   "description": "Online Learning Programming Languages Web Application.",
   "main": "index.js",
@@ -7,10 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
     "build": "webpack --config webpack-production.config.js -p"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:WhoSV/codestack.git"
   },
   "author": "WhoSV",
   "license": "MIT",
