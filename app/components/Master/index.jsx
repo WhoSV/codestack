@@ -1,10 +1,22 @@
-import React from 'react';
-import style from './style';
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
-const Master = () => (
-    <div className={style.app}>
-        <h2>Hello World</h2>
-    </div>
-);
+// Import components
+import SignIn from '../SignIn'
 
-export default Master;
+// Component Style
+import style from './style.less'
+
+export default class Master extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <div className={style.master}>
+
+          <Route exact path="/signin" component={SignIn}/>
+
+        </div>
+      </BrowserRouter>
+    )
+  }
+}

@@ -1,0 +1,55 @@
+.signin {
+  padding-top: 5%;
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+
+  .title {
+    margin-bottom: 0;
+    background: linear-gradient(to right, #30CFD0 0%, #4A90E2 100%);
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+  }
+
+  .logoImg {
+    padding-top: 20px;
+    width: 100px;
+  }
+
+  .textField {
+    margin: auto;
+    display: block !important;
+  }
+
+  .bottomDiv {
+    height: 100px;
+    width: 100%;
+    margin-top: 80px;
+    padding-top: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+  }
+
+  @media only screen and (max-width: 374px) {
+    padding-top: 2%;
+    width: 300px;
+
+    .logoImg {
+      padding-top: 10px;
+      width: 50px;
+    }
+
+    .title {
+      margin-top: 5px;
+      font-size: 15px;
+    }
+
+    .bottomDiv {
+      height: 80px;
+      width: 100%;
+      padding-top: 20px;
+      margin-top: 10px;
+    }
+  }
+}
