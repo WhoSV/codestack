@@ -35,17 +35,19 @@ class Signin extends React.Component {
 	constructor(props) {
 		super();
 		this.state = {
-			username: "",
+			mail: "",
 			password: "",
 		}
-		this.handleUsernameChange = this.handleUsernameChange.bind(this);
+		this.handlemailChange = this.handlemailChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleForgotPassword = this.handleForgotPassword.bind(this);
+		this.handleRegister = this.handleRegister.bind(this);
   }
 
-	handleUsernameChange(event){
+	handlemailChange(event){
 		this.setState({
-			username: event.target.value
+			mail: event.target.value
 		})
 	}
 
@@ -60,7 +62,7 @@ class Signin extends React.Component {
 		// action of submitting the form.
 		event.preventDefault();
 
-		const username = this.state.username;
+		const mail = this.state.mail;
 		const password = this.state.password;
 
 		let validateForm = function(arr) {
@@ -72,19 +74,27 @@ class Signin extends React.Component {
 			return true
 		}
 
-		let reqInputs = [username, password];
+		let reqInputs = [mail, password];
 
 		if (validateForm(reqInputs)) {
 			let formData = {
-				username: username,
+				mail: mail,
 				password: password
 			}
 
 		} else {
 			this.setState({
-				inputError: "Username or password are incorect."
+				inputError: "mail or password are incorect."
 			})
 		}
+	}
+
+	handleForgotPassword(){
+		this.props.history.push('/reset')
+	}
+
+	handleRegister(){
+		console.log("register");
 	}
 
   render (){
@@ -97,15 +107,14 @@ class Signin extends React.Component {
 	  				<TextField
 							autoCorrect="none"
 							autoCapitalize="none"
-							hintText="mark2019"
+							hintText="mark2019@gmail.com"
 	  					type="text"
-	  					floatingLabelText="Username"
+	  					floatingLabelText="Email"
 	  				  errorText={this.state.inputError}
-	  					value={this.state.username}
+	  					value={this.state.mail}
 							className={style.textField}
-	  					onChange={this.handleUsernameChange}
+	  					onChange={this.handlemailChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-	  				 <br />
 
 	  				<TextField
 							autoCorrect="none"
@@ -133,11 +142,13 @@ class Signin extends React.Component {
 	  					type="submit"
 	  					label="Forgot password?"
 	  					style={muiStyle.submitButton}
+							onClick={this.handleForgotPassword}
 	  					labelStyle={muiStyle.buttonText}/>
 						<FlatButton
 	  					type="submit"
 	  					label="Register"
 	  					style={muiStyle.submitButton}
+							onClick={this.handleRegister}
 	  					labelStyle={muiStyle.buttonText}/>
 					</div>
 				</Paper>
