@@ -50,6 +50,10 @@ class ResetPassword extends React.Component {
 		// action of submitting the form.
 		event.preventDefault();
 
+    this.setState({
+			inputError: "",
+		})
+    
 		const mail = this.state.mail;
 
 		let validateForm = function(arr) {

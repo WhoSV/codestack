@@ -62,6 +62,10 @@ class Signin extends React.Component {
 		// action of submitting the form.
 		event.preventDefault();
 
+		this.setState({
+			inputError: "",
+		})
+
 		const mail = this.state.mail;
 		const password = this.state.password;
 
@@ -84,7 +88,7 @@ class Signin extends React.Component {
 
 		} else {
 			this.setState({
-				inputError: "mail or password are incorect."
+				inputError: "Email or password are incorect."
 			})
 		}
 	}
@@ -94,7 +98,7 @@ class Signin extends React.Component {
 	}
 
 	handleRegister(){
-		console.log("register");
+		this.props.history.push('/register')
 	}
 
   render (){
