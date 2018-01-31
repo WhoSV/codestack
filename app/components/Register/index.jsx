@@ -31,7 +31,9 @@ const muiStyle = {
 
 // Component Style
 import style from './style.less'
-import logo from './img/logo.png'
+
+// Import static Resources
+import { img } from '../../static'
 
 class Register extends React.Component {
 	constructor(props) {
@@ -139,7 +141,7 @@ class Register extends React.Component {
 		return (
 	  	<div className={style.register}>
 				<Paper zDepth={5}>
-  				<img className={style.logoImg} src={logo}/>
+  				<img className={style.logoImg} src={img.logo}/>
   				<h3 className={style.title}>Register New Account</h3>
 
           <form onSubmit={this.handleSubmit}>

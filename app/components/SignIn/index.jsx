@@ -28,8 +28,9 @@ const muiStyle = {
 
 // Component Style
 import style from './style.less'
-import backgroundImg from './img/bg.png'
-import logo from './img/logo.png'
+
+// Import static Resources
+import { img } from '../../static'
 
 class Signin extends React.Component {
 	constructor(props) {
@@ -105,7 +106,7 @@ class Signin extends React.Component {
 		return (
 	  	<div className={style.signin}>
 				<Paper zDepth={5}>
-					<img className={style.logoImg} src={logo}/>
+					<img className={style.logoImg} src={img.logo}/>
 					<h1 className={style.title}>CodeStack</h1>
 					<form onSubmit={this.handleSubmit}>
 	  				<TextField
@@ -141,7 +142,7 @@ class Signin extends React.Component {
 	  					labelStyle={muiStyle.submitButtonText}/>
 					</form>
 
-					<div className={style.bottomDiv} style={{backgroundImage: "url(" + backgroundImg + ")"}}>
+					<div className={style.bottomDiv} style={{backgroundImage: "url(" + img.backgroundImg + ")"}}>
 						<FlatButton
 	  					type="submit"
 	  					label="Forgot password?"

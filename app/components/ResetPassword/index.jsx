@@ -26,7 +26,9 @@ const muiStyle = {
 
 // Component Style
 import style from './style.less'
-import logo from './img/logo.png'
+
+// Import static Resources
+import { img } from '../../static'
 
 class ResetPassword extends React.Component {
 	constructor(props) {
@@ -53,7 +55,7 @@ class ResetPassword extends React.Component {
     this.setState({
 			inputError: "",
 		})
-    
+
 		const mail = this.state.mail;
 
 		let validateForm = function(arr) {
@@ -87,7 +89,7 @@ class ResetPassword extends React.Component {
 		return (
 	  	<div className={style.resetPassword}>
 				<Paper zDepth={5}>
-  				<img className={style.logoImg} src={logo}/>
+  				<img className={style.logoImg} src={img.logo}/>
   				<h1 className={style.title}>Reset Password</h1>
           <h5>Password will be sent to your email</h5>
 
