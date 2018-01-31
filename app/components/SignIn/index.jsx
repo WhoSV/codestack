@@ -86,6 +86,9 @@ class Signin extends React.Component {
 				mail: mail,
 				password: password
 			}
+			
+			// push to dashboard
+			this.props.history.push('/dashboard')
 
 		} else {
 			this.setState({
