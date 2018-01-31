@@ -1,6 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
+// Import components
+import Navbar from '../Navbar'
+
 // Material UI Styles
 const muiStyle = {
 }
@@ -18,7 +21,7 @@ class Dashboard extends React.Component {
   render (){
 		return (
 	  	<div className={style.dashboard}>
-        <p>Dashboard</p>
+        <Navbar />
 	  	</div>
 	  )
 	}
