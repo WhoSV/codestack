@@ -1,9 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-// Material UI imports
-import Paper from 'material-ui/Paper'
-
 // Material UI Styles
 const muiStyle = {
 }
@@ -20,9 +17,9 @@ class SelectedCourses extends React.Component {
 
   render (){
 		return (
-			<Paper zDepth={1} className={style.selectedCourses}>
+			<div className={style.selectedCourses}>
 	      <h3 className={style.title}>Selected Courses</h3>
-			</Paper>
+			</div>
 	  )
 	}
 }

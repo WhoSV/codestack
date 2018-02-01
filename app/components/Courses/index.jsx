@@ -1,9 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-// Material UI imports
-import Paper from 'material-ui/Paper'
-
 // Import components
 import SearchBar from './SearchBar'
 import CourseList from './CourseList'
@@ -24,10 +21,10 @@ class Courses extends React.Component {
 
   render (){
 		return (
-	  	<Paper zDepth={1} className={style.courses}>
+	  	<div className={style.courses}>
         <SearchBar />
         <CourseList />
-	  	</Paper>
+	  	</div>
 	  )
 	}
 }
