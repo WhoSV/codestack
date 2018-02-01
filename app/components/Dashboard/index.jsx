@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 
 // Import components
 import Navbar from '../Navbar'
+import Courses from '../Courses'
+import SelectedCourses from '../SelectedCourses'
 
 // Material UI Styles
 const muiStyle = {
@@ -21,7 +23,17 @@ class Dashboard extends React.Component {
   render (){
 		return (
 	  	<div className={style.dashboard}>
-        <Navbar />
+	      <Navbar />
+
+				<div className={style.container}>
+					<div className={style.coursesContainer}>
+						<Courses />
+					</div>
+
+					<div className={style.selectedCoursesContainer}>
+						<SelectedCourses />
+					</div>
+				</div>
 	  	</div>
 	  )
 	}

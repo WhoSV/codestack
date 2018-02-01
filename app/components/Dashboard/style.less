@@ -1,3 +1,30 @@
 .dashboard {
 
+  .container {
+    margin: 60px auto 0;
+    display: flex;
+    max-width: 1000px;
+
+    .coursesContainer {
+      margin: auto;
+      height: 1000px;
+      width: 70%;
+    }
+
+    .selectedCoursesContainer {
+      margin: auto;
+      height: 1000px;
+      width: 25%;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .coursesContainer {
+        width: 95%;
+      }
+
+      .selectedCoursesContainer {
+        display: none;
+      }
+    }
+  }
 }

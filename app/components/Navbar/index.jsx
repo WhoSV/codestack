@@ -12,11 +12,7 @@ import IconButton from 'material-ui/IconButton';
 // Material UI Styles
 const muiStyle = {
   appbar: {
-    position: 'fixed',
-    top: 0,
     backgroundColor: '#37BDD5',
-    textAlign: 'left',
-    zIndex: 999
   },
 }
 
@@ -35,27 +31,31 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <AppBar
-        style={muiStyle.appbar}
-        title="CodeStack"
-        iconElementLeft={
-          <img className={style.logoStyle} src={img.logo}/>
-        }
-        iconElementRight={
-          <IconMenu
-            iconButtonElement={
-              <IconButton>
-                <MenuIcon />
-              </IconButton>
-            }
-            targetOrigin={{horizontal: 'right', vertical: 'top'}}
-            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-            >
+      <div className={style.navbarContainer}>
+        <AppBar
+          zDepth={0}
+          className={style.appbar}
+          style={muiStyle.appbar}
+          title="CodeStack"
+          iconElementLeft={
+            <img className={style.logoStyle} src={img.logo}/>
+          }
+          iconElementRight={
+            <IconMenu
+              iconButtonElement={
+                <IconButton>
+                  <MenuIcon />
+                </IconButton>
+              }
+              targetOrigin={{horizontal: 'right', vertical: 'top'}}
+              anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+              >
 
-            <NavLink to="/signin" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
-          </IconMenu>
-        }
-      />
+              <NavLink to="/signin" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
+            </IconMenu>
+          }
+        />
+      </div>
     )
   }
 }
