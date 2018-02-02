@@ -1,3 +1,53 @@
 .courseList {
 
+  .listItem {
+    max-height: 165px;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    .listItemTitle {
+      padding: 0px 10px;
+      display: flex;
+
+      h3 {
+        margin: 15px auto 10px 0;
+      }
+
+      h5 {
+        color: #4A90E2;
+        margin: 15px 0 10px auto;
+      }
+
+      .upvoteIcon {
+        width: 20px !important;
+        height: 20px !important;
+        color: #4A90E2 !important;
+        vertical-align: bottom;
+        margin-right: 5px;
+      }
+    }
+
+    .listItemDate {
+      color: #ccc;
+      margin: 0;
+      padding-left: 10px;
+    }
+
+    .listItemDescription {
+      padding: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 500px) {
+    .listItem {
+      max-height: 160px;
+
+      .listItemTitle {
+        h3 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
 }

@@ -7,7 +7,7 @@ import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 
-import IconButton from 'material-ui/IconButton';
+import IconButton from 'material-ui/IconButton'
 
 // Material UI Styles
 const muiStyle = {
