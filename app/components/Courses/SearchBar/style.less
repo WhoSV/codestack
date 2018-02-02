@@ -1,13 +1,19 @@
 .searchBar {
-  height: 80px;
+  height: 67px;
   text-align: right;
+  border-bottom: 1px solid #30CFD0;
 
-  .title {
-    margin: 0;
-    padding: 20px;
-    background: linear-gradient(to right, #30CFD0 80%, #4A90E2 100%);
-  	-webkit-background-clip: text;
-  	-webkit-text-fill-color: transparent;
-    border-bottom: 1px solid #30CFD0;
+  .searchIconStyle {
+    text-align: center;
+    width: 40px !important;
+    height: 40px !important;
+    color: #4A90E2 !important;
+    vertical-align: bottom;
   }
+
+    @media only screen and (max-width: 330px) {
+      .textFieldStyle{
+        width: 230px !important;
+      }
+    }
 }

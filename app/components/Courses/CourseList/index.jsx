@@ -11,49 +11,49 @@ const muiStyle = {
 
 const courses = [
 	{
-		title: "C# Language",
+		title: "C#",
 		rating: "15",
 		date: "12/21/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Swift Language",
+		title: "Swift",
 		rating: "62",
 		date: "11/30/15",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Go Language",
+		title: "Go",
 		rating: "55",
 		date: "1/23/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "JavaScript Language",
+		title: "JavaScript",
 		rating: "85",
 		date: "11/11/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "C# Language",
+		title: "C#",
 		rating: "15",
 		date: "12/21/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Swift Language",
+		title: "Swift",
 		rating: "62",
 		date: "11/30/15",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Go Language",
+		title: "Go",
 		rating: "55",
 		date: "1/23/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "JavaScript Language",
+		title: "JavaScript",
 		rating: "85",
 		date: "11/11/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
@@ -78,7 +78,7 @@ class CourseList extends React.Component {
 						<Paper key={index} className={style.listItem}>
 							<div className={style.listItemTitle}>
 								<h3>{course.title}</h3>
-								<h5><ThumbUpIcon className={style.upvoteIcon} />{course.rating} Likes</h5>
+								<h5><ThumbUpIcon className={style.upvoteIconStyle} />{course.rating} Likes</h5>
 							</div>
 							<h5 className={style.listItemDate}>{course.date}</h5>
 							<p className={style.listItemDescription}>{course.description}</p>
