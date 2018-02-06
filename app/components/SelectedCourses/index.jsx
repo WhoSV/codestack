@@ -5,10 +5,6 @@ import ProgressIcon from 'material-ui/svg-icons/editor/show-chart'
 // Material UI imports
 import Paper from 'material-ui/Paper'
 
-// Material UI Styles
-const muiStyle = {
-}
-
 const courses = [
 	{
 		title: "C#",
