@@ -27,6 +27,9 @@ const courses = [
 // Component Style
 import style from './style.less'
 
+// Import static Resources
+import { img } from '../../static'
+
 class SelectedCourses extends React.Component {
 	constructor(props) {
 		super();
@@ -42,7 +45,7 @@ class SelectedCourses extends React.Component {
 					return (
 						<Paper key={index} className={style.selectedCourseContainer}>
 							<div className={style.selectedCourseItem}>
-								<h4>{course.title}</h4>
+								<h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
 								<h5><ProgressIcon className={style.progressIconStyle} />{course.status}%</h5>
 							</div>
 						</Paper>

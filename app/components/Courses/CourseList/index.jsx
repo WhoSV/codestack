@@ -59,6 +59,9 @@ const courses = [
 // Component Style
 import style from './style.less'
 
+// Import static Resources
+import { img } from '../../../static'
+
 class CourseList extends React.Component {
 	constructor(props) {
 		super();
@@ -73,7 +76,7 @@ class CourseList extends React.Component {
 					return (
 						<Paper key={index} className={style.listItem}>
 							<div className={style.listItemTitle}>
-								<h3>{course.title}</h3>
+								<h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
 								<h5><ThumbUpIcon className={style.upvoteIconStyle} />{course.rating} Likes</h5>
 							</div>
 							<h5 className={style.listItemDate}>{course.date}</h5>
