@@ -6,10 +6,6 @@ import Navbar from '../Navbar'
 import Courses from '../Courses'
 import SelectedCourses from '../SelectedCourses'
 
-// Material UI Styles
-const muiStyle = {
-}
-
 // Component Style
 import style from './style.less'
 

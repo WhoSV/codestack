@@ -5,10 +5,6 @@ import { Redirect } from 'react-router-dom'
 import Paper from 'material-ui/Paper'
 import ThumbUpIcon from 'material-ui/svg-icons/action/thumb-up'
 
-// Material UI Styles
-const muiStyle = {
-}
-
 const courses = [
 	{
 		title: "C#",
@@ -23,7 +19,7 @@ const courses = [
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Go",
+		title: "Ruby",
 		rating: "55",
 		date: "1/23/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
@@ -47,7 +43,7 @@ const courses = [
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",
 	},
 	{
-		title: "Go",
+		title: "Ruby",
 		rating: "55",
 		date: "1/23/18",
 		description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non augue quis dolor congue lacinia in pretium nunc. Pellentesque commodo vehicula leo, nec pretium libero consequat varius. Aliquam varius tellus quis magna dignissim, non molestie mauris rutrum. In viverra nunc odio, id gravida erat faucibus id.",

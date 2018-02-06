@@ -5,10 +5,6 @@ import { Redirect } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import CourseList from './CourseList'
 
-// Material UI Styles
-const muiStyle = {
-}
-
 // Component Style
 import style from './style.less'
 
