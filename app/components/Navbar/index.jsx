@@ -63,7 +63,7 @@ class Navbar extends React.Component {
 
               {/* All Users */}
               <NavLink to="/dashboard" style={{textDecoration: "none"}}><MenuItem primaryText="Account" /></NavLink>
-              <NavLink to="/signin" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
+              <NavLink to="/signout" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
             </IconMenu>
           }
         />
