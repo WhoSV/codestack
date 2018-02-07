@@ -82,7 +82,7 @@ class ResetPassword extends React.Component {
 	}
 
   handleBack(){
-    this.props.history.push('/signin')
+    this.props.history.push('/')
   }
 
   render (){
