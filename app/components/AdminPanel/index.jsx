@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 // Import components
 import Navbar from '../Navbar'
 import UserContainer from '../UserContainer'
+import ContentContainer from '../ContentContainer'
 
 class AdminPanel extends React.Component {
 	constructor(props) {
@@ -16,7 +17,8 @@ class AdminPanel extends React.Component {
 		return (
 	  	<div>
 				<Navbar />
-				<UserContainer/>
+				<UserContainer />
+				<ContentContainer />
 	  	</div>
 	  )
 	}
