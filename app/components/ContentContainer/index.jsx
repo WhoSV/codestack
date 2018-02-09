@@ -14,8 +14,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
 import Paper from 'material-ui/Paper'
 import ActionDelete from 'material-ui/svg-icons/action/delete'
-import ActionLock from 'material-ui/svg-icons/action/lock'
-import ActionUnlock from 'material-ui/svg-icons/action/lock-open'
+import ActionBlock from 'material-ui/svg-icons/content/block'
 
 // Material UI Styles
 const muiStyle = {
@@ -26,13 +25,13 @@ const muiStyle = {
     fontWeight: 'normal',
   },
   iconDeleteButton: {
-    color: '#FF1744',
+    color: '#424242',
   },
-  iconLockButton: {
-    color: '#3F51B5',
+  iconBlockButton: {
+    color: '#ff0000',
   },
-  iconUnlockButton: {
-    color: '#00C853',
+  iconUnblockButton: {
+    color: '#ccc',
   },
   iconButton: {
     zIndex: '9999 !important',
@@ -75,8 +74,8 @@ export default class ContentContainer extends React.Component {
     super(props)
     this.state = {
       dialogDelete: false,
-      dialogLock: false,
-      dialogUnlock: false,
+      dialogBlock: false,
+      dialogUnblock: false,
       deleteContent: {}
     }
   }
@@ -85,19 +84,19 @@ export default class ContentContainer extends React.Component {
     this.setState({dialogDelete: true})
   }
 
-  dialogLock() {
-    this.setState({dialogLock: true})
+  dialogBlock() {
+    this.setState({dialogBlock: true})
   }
 
-  dialogUnlock() {
-    this.setState({dialogUnlock: true})
+  dialogUnblock() {
+    this.setState({dialogUnblock: true})
   }
 
   dialogClose() {
     this.setState({
       dialogDelete: false,
-      dialogLock: false,
-      dialogUnlock: false,
+      dialogBlock: false,
+      dialogUnblock: false,
     })
   }
 
@@ -108,16 +107,16 @@ export default class ContentContainer extends React.Component {
     })
   }
 
-  handleLockContent(content) {
+  handleBlockContent(content) {
     this.setState({
-      dialogLock: true,
+      dialogBlock: true,
       deleteContent: content
     })
   }
 
-  handleUnlockContent(content) {
+  handleUnblockContent(content) {
     this.setState({
-      dialogUnlock: true,
+      dialogUnblock: true,
       deleteContent: content
     })
   }
@@ -126,11 +125,11 @@ export default class ContentContainer extends React.Component {
     console.log("confirm delete");
   }
 
-  confirmLockContent(){
+  confirmBlockContent(){
     console.log("confirm block");
   }
 
-  confirmUnlockContent(){
+  confirmUnblockContent(){
     console.log("confirm Unblock");
   }
 
@@ -151,7 +150,7 @@ export default class ContentContainer extends React.Component {
       />,
     ]
 
-    const lockActions = [
+    const blockActions = [
       <FlatButton
         label="Cancel"
         style={{color: "#747374"}}
@@ -162,11 +161,11 @@ export default class ContentContainer extends React.Component {
         label="Block"
         style={{color: "#ff0000"}}
         primary={true}
-        onTouchTap={this.confirmLockContent.bind(this)}
+        onTouchTap={this.confirmBlockContent.bind(this)}
       />,
     ]
 
-    const unlockActions = [
+    const unblockActions = [
       <FlatButton
         label="Cancel"
         style={{color: "#747374"}}
@@ -177,7 +176,7 @@ export default class ContentContainer extends React.Component {
         label="Unblock"
         style={{color: "#ff0000"}}
         primary={true}
-        onTouchTap={this.confirmUnlockContent.bind(this)}
+        onTouchTap={this.confirmUnblockContent.bind(this)}
       />,
     ]
 
@@ -210,21 +209,21 @@ export default class ContentContainer extends React.Component {
                          if (contentItem.status == "Active") {
                            return (
                            <IconButton
-                             onTouchTap={this.handleLockContent.bind(this, contentItem)}
+                             onTouchTap={this.handleBlockContent.bind(this, contentItem)}
                              style={muiStyle.iconButton}
-                             iconStyle={muiStyle.iconUnlockButton}
+                             iconStyle={muiStyle.iconUnblockButton}
                              touch={true}>
-                               <ActionUnlock/>
+                               <ActionBlock/>
                            </IconButton>
                            )
                          } else {
                            return (
                              <IconButton
-                               onTouchTap={this.handleUnlockContent.bind(this, contentItem)}
+                               onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
                                style={muiStyle.iconButton}
-                               iconStyle={muiStyle.iconLockButton}
+                               iconStyle={muiStyle.iconBlockButton}
                                touch={true}>
-                                <ActionLock/>
+                                <ActionBlock/>
                              </IconButton>
                            )
                          }
@@ -258,13 +257,13 @@ export default class ContentContainer extends React.Component {
             ?
           </Dialog>
 
-          {/* Unlock Content Dialog */}
+          {/* Unblock Content Dialog */}
           <Dialog
             className={style.dialog}
             title="Unblock Course"
-            actions={unlockActions}
+            actions={unblockActions}
             modal={false}
-            open={this.state.dialogUnlock}
+            open={this.state.dialogUnblock}
             onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to unblock
             <span className={style.highlight}>
@@ -273,13 +272,13 @@ export default class ContentContainer extends React.Component {
             ?
           </Dialog>
 
-          {/* Lock Content Dialog */}
+          {/* Block Content Dialog */}
           <Dialog
             className={style.dialog}
             title="Block Course"
-            actions={lockActions}
+            actions={blockActions}
             modal={false}
-            open={this.state.dialogLock}
+            open={this.state.dialogBlock}
             onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to block
             <span className={style.highlight}>

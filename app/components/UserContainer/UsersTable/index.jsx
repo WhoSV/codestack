@@ -20,7 +20,7 @@ const muiStyle = {
     fontWeight: 'normal',
   },
   iconDeleteButton: {
-    color: '#FF1744',
+    color: '#424242',
   },
   iconButton: {
     zIndex: '9999 !important',
