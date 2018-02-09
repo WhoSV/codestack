@@ -3,9 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 // Import components
 import Navbar from '../Navbar'
-
-// Component Style
-import style from './style.less'
+import UserContainer from '../UserContainer'
 
 class AdminPanel extends React.Component {
 	constructor(props) {
@@ -16,8 +14,9 @@ class AdminPanel extends React.Component {
 
   render (){
 		return (
-	  	<div className={style.adminPanel}>
+	  	<div>
 				<Navbar />
+				<UserContainer/>
 	  	</div>
 	  )
 	}

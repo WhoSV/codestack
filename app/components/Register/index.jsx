@@ -40,13 +40,13 @@ class Register extends React.Component {
 		super();
 		this.state = {
       name: "",
-      mail: "",
+      email: "",
       type: "",
       password: "",
       confPassword: "",
 		}
     this.handleNameChange = this.handleNameChange.bind(this);
-		this.handleMailChange = this.handleMailChange.bind(this);
+		this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this);
@@ -60,9 +60,9 @@ class Register extends React.Component {
 		})
 	}
 
-	handleMailChange(event){
+	handleEmailChange(event){
 		this.setState({
-			mail: event.target.value
+			email: event.target.value
 		})
 	}
 
@@ -95,7 +95,7 @@ class Register extends React.Component {
     })
 
     const name = this.state.name;
-		const mail = this.state.mail;
+		const email = this.state.email;
     const type = this.state.type;
     const password = this.state.password;
     const confPassword = this.state.confPassword;
@@ -115,12 +115,12 @@ class Register extends React.Component {
 			})
     }
 
-		let reqInputs = [name, mail, type, password];
+		let reqInputs = [name, email, type, password];
 
 		if (validateForm(reqInputs)) {
 			let formData = {
         name: name,
-				mail: mail,
+				email: email,
         type: type,
         password: password,
 			}
@@ -161,12 +161,12 @@ class Register extends React.Component {
               autoCorrect="none"
               autoCapitalize="none"
               hintText="mark2019@gmail.com"
-              type="text"
+              type="email"
               floatingLabelText="Email"
               errorText={this.state.inputError}
-              value={this.state.mail}
+              value={this.state.email}
               className={style.textField}
-              onChange={this.handleMailChange}
+              onChange={this.handleEmailChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
             <SelectField

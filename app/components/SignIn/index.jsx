@@ -36,19 +36,19 @@ class Signin extends React.Component {
 	constructor(props) {
 		super();
 		this.state = {
-			mail: "",
+			email: "",
 			password: "",
 		}
-		this.handlemailChange = this.handlemailChange.bind(this);
+		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleForgotPassword = this.handleForgotPassword.bind(this);
 		this.handleRegister = this.handleRegister.bind(this);
   }
 
-	handlemailChange(event){
+	handleEmailChange(event){
 		this.setState({
-			mail: event.target.value
+			email: event.target.value
 		})
 	}
 
@@ -67,7 +67,7 @@ class Signin extends React.Component {
 			inputError: "",
 		})
 
-		const mail = this.state.mail;
+		const email = this.state.email;
 		const password = this.state.password;
 
 		let validateForm = function(arr) {
@@ -79,14 +79,14 @@ class Signin extends React.Component {
 			return true
 		}
 
-		let reqInputs = [mail, password];
+		let reqInputs = [email, password];
 
 		if (validateForm(reqInputs)) {
 			let formData = {
-				mail: mail,
+				email: email,
 				password: password
 			}
-			
+
 			// push to dashboard
 			this.props.history.push('/dashboard')
 
@@ -116,12 +116,12 @@ class Signin extends React.Component {
 							autoCorrect="none"
 							autoCapitalize="none"
 							hintText="mark2019@gmail.com"
-	  					type="text"
+	  					type="email"
 	  					floatingLabelText="Email"
 	  				  errorText={this.state.inputError}
-	  					value={this.state.mail}
+	  					value={this.state.email}
 							className={style.textField}
-	  					onChange={this.handlemailChange}
+	  					onChange={this.handleEmailChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
 	  				<TextField

@@ -34,16 +34,16 @@ class ResetPassword extends React.Component {
 	constructor(props) {
 		super();
 		this.state = {
-      mail: "",
+      email: "",
 		}
-		this.handlemailChange = this.handlemailChange.bind(this);
+		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
     this.handleBack = this.handleBack.bind(this);
   }
 
-	handlemailChange(event){
+	handleEmailChange(event){
 		this.setState({
-			mail: event.target.value
+			email: event.target.value
 		})
 	}
 
@@ -56,7 +56,7 @@ class ResetPassword extends React.Component {
 			inputError: "",
 		})
 
-		const mail = this.state.mail;
+		const email = this.state.email;
 
 		let validateForm = function(arr) {
 			for (var i = 0; i < arr.length; i++) {
@@ -67,11 +67,11 @@ class ResetPassword extends React.Component {
 			return true
 		}
 
-		let reqInputs = [mail];
+		let reqInputs = [email];
 
 		if (validateForm(reqInputs)) {
 			let formData = {
-				mail: mail,
+				email: email,
 			}
 
 		} else {
@@ -98,12 +98,12 @@ class ResetPassword extends React.Component {
               autoCorrect="none"
               autoCapitalize="none"
               hintText="mark2019@gmail.com"
-              type="text"
+              type="email"
               floatingLabelText="Email"
               errorText={this.state.inputError}
-              value={this.state.mail}
+              value={this.state.email}
               className={style.textField}
-              onChange={this.handlemailChange}
+              onChange={this.handleEmailChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
             <br />
 
