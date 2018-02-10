@@ -12,7 +12,6 @@ import {
 import IconButton from 'material-ui/IconButton'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
-import Paper from 'material-ui/Paper'
 import ActionDelete from 'material-ui/svg-icons/action/delete'
 import ActionBlock from 'material-ui/svg-icons/content/block'
 
@@ -182,112 +181,112 @@ export default class ContentContainer extends React.Component {
 
     return (
       <div className={style.contentContainerStyle}>
-        <Paper zDepth={1} style={muiStyle.paper}>
-          <h3 className={style.title}>Content Table</h3>
-          <Table
-            selectable={false}>
-             <TableHeader
-               displaySelectAll={false}
-               adjustForCheckbox={false}>
-               <TableRow>
-                 <TableHeaderColumn>Name</TableHeaderColumn>
-                 <TableHeaderColumn>Teacher</TableHeaderColumn>
-                 <TableHeaderColumn>Status</TableHeaderColumn>
-                 <TableHeaderColumn>Options</TableHeaderColumn>
-               </TableRow>
-             </TableHeader>
-             <TableBody
-               displayRowCheckbox={false}>
-               {content.map((contentItem, index) => {
-                 return (
-                   <TableRow key={index}>
-                     <TableRowColumn>{contentItem.name}</TableRowColumn>
-                     <TableRowColumn>{contentItem.teacher}</TableRowColumn>
-                     <TableRowColumn>{contentItem.status}</TableRowColumn>
-                     <TableRowColumn>
-                       {(() => {
-                         if (contentItem.status == "Active") {
-                           return (
+        <h3 className={style.title}>Content Table</h3>
+        <Table
+          selectable={false}>
+           <TableHeader
+             displaySelectAll={false}
+             adjustForCheckbox={false}>
+             <TableRow>
+               <TableHeaderColumn>Name</TableHeaderColumn>
+               <TableHeaderColumn>Teacher</TableHeaderColumn>
+               <TableHeaderColumn>Status</TableHeaderColumn>
+               <TableHeaderColumn>Options</TableHeaderColumn>
+             </TableRow>
+           </TableHeader>
+           <TableBody
+             displayRowCheckbox={false}>
+             {content.map((contentItem, index) => {
+               return (
+                 <TableRow key={index}>
+                   <TableRowColumn>{contentItem.name}</TableRowColumn>
+                   <TableRowColumn>{contentItem.teacher}</TableRowColumn>
+                   <TableRowColumn>{contentItem.status}</TableRowColumn>
+                   <TableRowColumn>
+                     {(() => {
+                       if (contentItem.status == "Active") {
+                         return (
+                         <IconButton
+                           onTouchTap={this.handleBlockContent.bind(this, contentItem)}
+                           style={muiStyle.iconButton}
+                           className={style.iconButtonStyle}
+                           iconStyle={muiStyle.iconUnblockButton}
+                           touch={true}>
+                             <ActionBlock/>
+                         </IconButton>
+                         )
+                       } else {
+                         return (
                            <IconButton
-                             onTouchTap={this.handleBlockContent.bind(this, contentItem)}
+                             onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
                              style={muiStyle.iconButton}
-                             iconStyle={muiStyle.iconUnblockButton}
+                             className={style.iconButtonStyle}
+                             iconStyle={muiStyle.iconBlockButton}
                              touch={true}>
-                               <ActionBlock/>
+                              <ActionBlock/>
                            </IconButton>
-                           )
-                         } else {
-                           return (
-                             <IconButton
-                               onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
-                               style={muiStyle.iconButton}
-                               iconStyle={muiStyle.iconBlockButton}
-                               touch={true}>
-                                <ActionBlock/>
-                             </IconButton>
-                           )
-                         }
-                       })()}
-                       <IconButton
-                         onTouchTap={this.handleDeleteContent.bind(this, contentItem)}
-                         style={muiStyle.iconButton}
-                         iconStyle={muiStyle.iconDeleteButton}
-                         touch={true}>
-                           <ActionDelete/>
-                       </IconButton>
-                     </TableRowColumn>
-                   </TableRow>
-                 )
-               })}
-             </TableBody>
-          </Table>
+                         )
+                       }
+                     })()}
+                     <IconButton
+                       onTouchTap={this.handleDeleteContent.bind(this, contentItem)}
+                       style={muiStyle.iconButton}
+                       className={style.iconButtonStyle}
+                       iconStyle={muiStyle.iconDeleteButton}
+                       touch={true}>
+                         <ActionDelete/>
+                     </IconButton>
+                   </TableRowColumn>
+                 </TableRow>
+               )
+             })}
+           </TableBody>
+        </Table>
 
-          {/* Delete Content Dialog */}
-          <Dialog
-            className={style.dialog}
-            title="Delete Course"
-            actions={deleteActions}
-            modal={false}
-            open={this.state.dialogDelete}
-            onRequestClose={this.dialogClose.bind(this)}>
-            Do you realy want to delete
-            <span className={style.highlight}>
-               This Curse
-            </span>
-            ?
-          </Dialog>
+        {/* Delete Content Dialog */}
+        <Dialog
+          className={style.dialog}
+          title="Delete Course"
+          actions={deleteActions}
+          modal={false}
+          open={this.state.dialogDelete}
+          onRequestClose={this.dialogClose.bind(this)}>
+          Do you realy want to delete
+          <span className={style.highlight}>
+             This Curse
+          </span>
+          ?
+        </Dialog>
 
-          {/* Unblock Content Dialog */}
-          <Dialog
-            className={style.dialog}
-            title="Unblock Course"
-            actions={unblockActions}
-            modal={false}
-            open={this.state.dialogUnblock}
-            onRequestClose={this.dialogClose.bind(this)}>
-            Do you realy want to unblock
-            <span className={style.highlight}>
-               This Curse
-            </span>
-            ?
-          </Dialog>
+        {/* Unblock Content Dialog */}
+        <Dialog
+          className={style.dialog}
+          title="Unblock Course"
+          actions={unblockActions}
+          modal={false}
+          open={this.state.dialogUnblock}
+          onRequestClose={this.dialogClose.bind(this)}>
+          Do you realy want to unblock
+          <span className={style.highlight}>
+             This Curse
+          </span>
+          ?
+        </Dialog>
 
-          {/* Block Content Dialog */}
-          <Dialog
-            className={style.dialog}
-            title="Block Course"
-            actions={blockActions}
-            modal={false}
-            open={this.state.dialogBlock}
-            onRequestClose={this.dialogClose.bind(this)}>
-            Do you realy want to block
-            <span className={style.highlight}>
-               This Curse
-            </span>
-            ?
-          </Dialog>
-
-        </Paper>
+        {/* Block Content Dialog */}
+        <Dialog
+          className={style.dialog}
+          title="Block Course"
+          actions={blockActions}
+          modal={false}
+          open={this.state.dialogBlock}
+          onRequestClose={this.dialogClose.bind(this)}>
+          Do you realy want to block
+          <span className={style.highlight}>
+             This Curse
+          </span>
+          ?
+        </Dialog>
       </div>
     )
   }

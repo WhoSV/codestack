@@ -130,6 +130,7 @@ export default class UsersTable extends React.Component {
                      <IconButton
                        onTouchTap={this.handleDeleteUser.bind(this, user)}
                        style={muiStyle.iconButton}
+                       className={style.iconButtonStyle}
                        iconStyle={muiStyle.iconDeleteButton}
                        touch={true}>
                          <ActionDelete/>

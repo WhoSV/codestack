@@ -10,12 +10,38 @@
 
   table {
     overflow: hidden;
-    
+
     th, tr, td {
       text-align: center !important;
       }
     td {
       overflow: visible !important;
+    }
+  }
+
+  @media only screen and (max-width: 1040px) {
+    table {
+      th, td {
+        padding: 0px !important;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    table {
+      th:last-child, td:last-child {
+        width: 50px !important;
+      }
+
+      th:nth-child(2), td:nth-child(2) {
+        width: 115px !important;
+      }
+    }
+
+    .iconButtonStyle {
+      width: 30px !important;
+      height: 30px !important;
+      padding: 5px !important;
     }
   }
 }

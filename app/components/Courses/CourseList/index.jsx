@@ -2,7 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 // Material UI imports
-import Paper from 'material-ui/Paper'
 import ThumbUpIcon from 'material-ui/svg-icons/action/thumb-up'
 
 const courses = [
@@ -74,14 +73,14 @@ class CourseList extends React.Component {
 	  	<div className={style.courseList}>
 				{courses.map((course, index) => {
 					return (
-						<Paper key={index} className={style.listItem}>
+						<div key={index} className={style.listItem}>
 							<div className={style.listItemTitle}>
 								<h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
 								<h5><ThumbUpIcon className={style.upvoteIconStyle} />{course.rating} Likes</h5>
 							</div>
 							<h5 className={style.listItemDate}>{course.date}</h5>
 							<p className={style.listItemDescription}>{course.description}</p>
-						</Paper>
+						</div>
 					)
 				})}
 	  	</div>

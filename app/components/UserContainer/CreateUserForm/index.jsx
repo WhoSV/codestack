@@ -12,11 +12,8 @@ const muiStyle = {
   floatingLabelTextStyle: {
     fontWeight: 'normal',
   },
-  textFieldStyle: {
-    margin: '0px 20px 40px',
-  },
   createButtonStyle:{
-    margin: '0px 40px 20px',
+    margin: '20px 40px',
   },
   errorStyle: {
     textAlign: 'center',
@@ -120,7 +117,9 @@ export default class CreateUserForm extends React.Component {
           onSubmit={this.handleCreateUser.bind(this)}
           className={style.formStyle}
           >
-          <div>
+            {/* <div style={{display: 'inline-flex'}}> */}
+        {/* <div > */}
+          <div className={style.container}>
             <TextField
               autoCorrect="none"
               autoCapitalize="none"
@@ -131,7 +130,7 @@ export default class CreateUserForm extends React.Component {
               value={this.state.name}
               onChange={this.handleNameChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              style={muiStyle.textFieldStyle}
+              className={style.textFieldStyle}
             />
             <TextField
               value={this.state.email}
@@ -141,8 +140,10 @@ export default class CreateUserForm extends React.Component {
               floatingLabelText="Email"
               errorText={this.state.inputError}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              style={muiStyle.textFieldStyle}
+              className={style.textFieldStyle}
             />
+            </div>
+            <div className={style.container}>
             <TextField
               value={this.state.password}
               onChange={this.handlePasswordChange.bind(this)}
@@ -151,12 +152,12 @@ export default class CreateUserForm extends React.Component {
               floatingLabelText="Password"
               errorText={this.state.inputError}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              style={muiStyle.textFieldStyle}
+              className={style.textFieldStyle}
             />
             <SelectField
               floatingLabelText="Type"
               value={this.state.type}
-              className={style.selectField}
+              className={style.selectFieldStyle}
               errorText={this.state.inputError}
               errorStyle={muiStyle.errorStyle}
               onChange={this.handleTypeChange}
@@ -166,6 +167,7 @@ export default class CreateUserForm extends React.Component {
                 <MenuItem value={3} primaryText="Admin" />
             </SelectField>
           </div>
+        {/* </div> */}
           <RaisedButton
             type="submit"
             label="Create"
@@ -174,6 +176,7 @@ export default class CreateUserForm extends React.Component {
             backgroundColor="#37BDD5"
             style={muiStyle.createButtonStyle}
           />
+        {/* </div> */}
         </form>
       </div>
     )

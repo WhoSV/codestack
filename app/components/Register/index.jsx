@@ -153,7 +153,7 @@ class Register extends React.Component {
               floatingLabelText="Name & Surname"
               errorText={this.state.inputError}
               value={this.state.name}
-              className={style.textField}
+              className={style.textFieldStyle}
               onChange={this.handleNameChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
@@ -165,14 +165,14 @@ class Register extends React.Component {
               floatingLabelText="Email"
               errorText={this.state.inputError}
               value={this.state.email}
-              className={style.textField}
+              className={style.textFieldStyle}
               onChange={this.handleEmailChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
             <SelectField
               floatingLabelText="Type"
               value={this.state.type}
-              className={style.selectField}
+              className={style.selectFieldStyle}
               errorText={this.state.inputError}
               errorStyle={muiStyle.errorStyle}
               onChange={this.handleTypeChange}
@@ -189,7 +189,7 @@ class Register extends React.Component {
 	  					floatingLabelText="Password"
 	  					errorText={this.state.passwordError}
 	  					value={this.state.password}
-							className={style.textField}
+							className={style.textFieldStyle}
 	  					onChange={this.handlePasswordChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 

@@ -102,7 +102,7 @@ class ResetPassword extends React.Component {
               floatingLabelText="Email"
               errorText={this.state.inputError}
               value={this.state.email}
-              className={style.textField}
+              className={style.textFieldStyle}
               onChange={this.handleEmailChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
             <br />

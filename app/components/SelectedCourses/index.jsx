@@ -2,9 +2,6 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import ProgressIcon from 'material-ui/svg-icons/editor/show-chart'
 
-// Material UI imports
-import Paper from 'material-ui/Paper'
-
 const courses = [
 	{
 		title: "C#",
@@ -43,12 +40,12 @@ class SelectedCourses extends React.Component {
 	      <h3 className={style.title}>Selected Courses</h3>
 				{courses.map((course, index) => {
 					return (
-						<Paper key={index} className={style.selectedCourseContainer}>
+						<div key={index} className={style.selectedCourseContainer}>
 							<div className={style.selectedCourseItem}>
 								<h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
 								<h5><ProgressIcon className={style.progressIconStyle} />{course.status}%</h5>
 							</div>
-						</Paper>
+						</div>
 					)
 				})}
 			</div>
