@@ -36,7 +36,7 @@ class CourseBar extends React.Component {
 
   render (){
 		return (
-			<div className={style.selectedCourses}>
+			<div className={style.courseBar}>
 	      <h3 className={style.title}>Selected Courses</h3>
 				{courses.map((course, index) => {
 					return (
