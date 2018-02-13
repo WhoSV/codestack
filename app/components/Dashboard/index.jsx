@@ -1,10 +1,9 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 
 // Import components
 import Navbar from '../Navbar'
-import Courses from '../Courses'
-import CourseBar from '../CourseBar'
+import Courses from './Courses'
+import CourseBar from './CourseBar'
 
 // Component Style
 import style from './style.less'

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 
 // Material UI imports
 import ThumbUpIcon from 'material-ui/svg-icons/action/thumb-up'
@@ -59,7 +58,7 @@ const courses = [
 import style from './style.less'
 
 // Import static Resources
-import { img } from '../../../static'
+import { img } from '../../../../static'
 
 class CourseList extends React.Component {
 	constructor(props) {

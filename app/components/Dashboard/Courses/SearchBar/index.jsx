@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 
 // Material UI imports
 import SearchIcon from 'material-ui/svg-icons/action/search'

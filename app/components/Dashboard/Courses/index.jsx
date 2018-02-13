@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 
 // Import components
 import SearchBar from './SearchBar'

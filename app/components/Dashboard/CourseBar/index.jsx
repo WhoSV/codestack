@@ -1,5 +1,4 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
 import ProgressIcon from 'material-ui/svg-icons/editor/show-chart'
 
 const courses = [
@@ -25,7 +24,7 @@ const courses = [
 import style from './style.less'
 
 // Import static Resources
-import { img } from '../../static'
+import { img } from '../../../static'
 
 class CourseBar extends React.Component {
 	constructor(props) {
