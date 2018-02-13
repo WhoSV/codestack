@@ -18,19 +18,32 @@
       padding: 0px 10px;
       display: flex;
 
+      a {
+        text-decoration: none;
+      }
+
+      a:hover h3 {
+        cursor: pointer;
+        color: #30CFD0;
+      }
+
       h3 {
         color: #4A4A4A;
         margin: 15px auto 10px 0;
       }
 
+      .upVoteStyle {
+        margin: 10px 0 0px auto;
+      }
+
       h5 {
         font-weight: 100;
         color: #4A90E2;
-        margin: 15px 0 10px auto;
       }
 
-      p {
-        color: #4A4A4A;
+      .upVoteStyle:hover .upvoteIconStyle,
+      .upVoteStyle:hover h5 {
+        color: #30CFD0 !important;
       }
 
       .upvoteIconStyle {
@@ -47,11 +60,17 @@
       margin: 0;
       font-weight: 100;
       padding-left: 10px;
+      cursor: default;
     }
 
     .listItemDescription {
       padding: 10px;
+      cursor: default;
     }
+  }
+
+  .listItem:hover {
+    box-shadow: 0 0 10px #ccc;
   }
 
   @media only screen and (max-width: 500px) {
@@ -61,6 +80,10 @@
       .listItemTitle {
         h3 {
           font-size: 18px;
+        }
+
+        .upVoteStyle {
+          margin: 5px 0 0px auto;
         }
       }
     }

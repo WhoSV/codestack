@@ -1,5 +1,4 @@
 import React from 'react'
-import ProgressIcon from 'material-ui/svg-icons/editor/show-chart'
 
 const courses = [
 	{
@@ -28,10 +27,15 @@ import { img } from '../../../static'
 
 class CourseBar extends React.Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
 		}
+		this.navigateToCourse = this.navigateToCourse.bind(this)
   }
+
+	navigateToCourse(){
+		this.props.history.push(`${this.props.match.url}/selectedcourse`)
+	}
 
   render (){
 		return (
@@ -40,10 +44,12 @@ class CourseBar extends React.Component {
 				{courses.map((course, index) => {
 					return (
 						<div key={index} className={style.selectedCourseContainer}>
-							<div className={style.selectedCourseItem}>
-								<h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
-								<h5><ProgressIcon className={style.progressIconStyle} />{course.status}%</h5>
-							</div>
+							<a onClick={this.navigateToCourse}>
+								<div className={style.selectedCourseItem}>
+									<h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
+									<h4 className={style.courseStatusStyle}>{course.status}%</h4>
+								</div>
+							</a>
 						</div>
 					)
 				})}
