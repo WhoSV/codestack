@@ -27,7 +27,7 @@ import style from './style.less'
 // Import static Resources
 import { img } from '../../static'
 
-class SelectedCourses extends React.Component {
+class CourseBar extends React.Component {
 	constructor(props) {
 		super();
 		this.state = {
@@ -53,4 +53,4 @@ class SelectedCourses extends React.Component {
 	}
 }
 
-export default SelectedCourses
+export default CourseBar

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 // Import components
 import Navbar from '../Navbar'
 import Courses from '../Courses'
-import SelectedCourses from '../SelectedCourses'
+import CourseBar from '../CourseBar'
 
 // Component Style
 import style from './style.less'
@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
 					</div>
 
 					<div className={style.selectedCoursesContainer}>
-						<SelectedCourses />
+						<CourseBar />
 					</div>
 				</div>
 	  	</div>
