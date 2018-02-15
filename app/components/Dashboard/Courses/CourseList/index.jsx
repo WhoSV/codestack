@@ -66,10 +66,15 @@ class CourseList extends React.Component {
 		this.state = {
 		}
 		this.navigateToCourse = this.navigateToCourse.bind(this)
+		this.upVote = this.upVote.bind(this)
   }
 
 	navigateToCourse(){
 		this.props.history.push(`${this.props.match.url}/selectedcourse`)
+	}
+
+	upVote(){
+		console.log("up vote");
 	}
 
   render (){
@@ -82,7 +87,7 @@ class CourseList extends React.Component {
 								<a onClick={this.navigateToCourse}>
 									<h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
 								</a>
-								<a className={style.upVoteStyle}>
+								<a className={style.upVoteStyle} onClick={this.upVote}>
 									<h5><ThumbUpIcon className={style.upvoteIconStyle} />{course.rating} Likes</h5>
 								</a>
 							</div>

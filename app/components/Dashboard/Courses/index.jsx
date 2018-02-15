@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route, Link } from 'react-router-dom'
 
 // Import components
 import SearchBar from './SearchBar'
@@ -17,8 +18,17 @@ class Courses extends React.Component {
   render (){
 		return (
 	  	<div className={style.courses}>
-        <SearchBar />
-        <CourseList />
+
+				<Route exact path="/dashboard"
+          component={SearchBar}
+          history={this.props.history}
+        />
+
+				<Route exact path="/dashboard"
+          component={CourseList}
+          history={this.props.history}
+        />
+				
 	  	</div>
 	  )
 	}
