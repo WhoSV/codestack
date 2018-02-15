@@ -1,5 +1,9 @@
 import React from 'react'
 
+// Import components
+import Sidebar from './Sidebar'
+import ActiveChapter from './ActiveChapter'
+
 // Component Style
 import style from './style.less'
 
@@ -13,10 +17,15 @@ class SelectedCourse extends React.Component {
   render (){
 		return (
 			<div className={style.selectedCourse}>
-	      <h3 className={style.title}>Selected Courses</h3>
-				<h3 className={style.title}>Selected Courses</h3>
-				<h3 className={style.title}>Selected Courses</h3>
-				<h3 className={style.title}>Selected Courses</h3>
+				<div className={style.container}>
+					<div className={style.sidebar}>
+						<Sidebar />
+					</div>
+
+					<div className={style.activeChapter}>
+						<ActiveChapter />
+					</div>
+				</div>
 			</div>
 	  )
 	}

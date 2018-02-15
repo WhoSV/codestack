@@ -22,21 +22,22 @@ class Dashboard extends React.Component {
 	  	<div className={style.dashboard}>
 	      <Navbar {...this.props}/>
 
-				<div className={style.container}>
-					<div className={style.coursesContainer}>
-						<Route exact path={`${this.props.match.url}`}
-							component={Courses}
-							{...this.props}
-						/>
-					</div>
+				<Route
+					exact
+					path={`${this.props.match.url}`}
+					component={()=>(
+						<div className={style.container}>
+							<div className={style.coursesContainer}>
+								<Courses {...this.props}/>
+							</div>
 
-					<div className={style.courseBarContainer}>
-						<Route exact path={`${this.props.match.url}`}
-							component={CourseBar}
-							{...this.props}
-						/>
-					</div>
-				</div>
+							<div className={style.courseBarContainer}>
+								<CourseBar  {...this.props}/>
+							</div>
+						</div>
+					)}
+					{...this.props}
+				/>
 
 				<Route path={`${this.props.match.url}/selectedcourse`}
           component={SelectedCourse}
