@@ -6,7 +6,8 @@ import AppBar from 'material-ui/AppBar'
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
-
+import BackButton from 'material-ui/IconButton'
+import ActionHome from 'material-ui/svg-icons/action/home'
 import IconButton from 'material-ui/IconButton'
 
 // Material UI Styles
@@ -14,6 +15,10 @@ const muiStyle = {
   appbar: {
     backgroundColor: '#37BDD5',
   },
+  homeButtonStyle: {
+    padding: 0,
+    verticalAlign: 'text-top',
+  }
 }
 
 // Component Style
@@ -30,16 +35,32 @@ class Navbar extends React.Component {
   }
 
   render() {
+    let logo = (
+      <p className={style.title}><img className={style.logoStyle} src={img.logo}/>CodeStack</p>
+    )
+
+    let actionHome = (
+      <BackButton
+        style={muiStyle.homeButtonStyle}
+        tooltip="Home"
+        tooltipPosition="bottom-right"
+        touch={true}>
+          <NavLink to="/dashboard" style={{textDecoration: "none"}}><ActionHome className={style.homeButton}/></NavLink>
+      </BackButton>
+    )
+
+    if (this.props.history.location.pathname == "/dashboard" ) {
+      actionHome = <div></div>
+    }
+
     return (
       <div className={style.navbarContainer}>
         <AppBar
           zDepth={0}
           className={style.appbar}
           style={muiStyle.appbar}
-          title="CodeStack"
-          iconElementLeft={
-            <img className={style.logoStyle} src={img.logo}/>
-          }
+          title={logo}
+          iconElementLeft={actionHome}
           iconElementRight={
             <IconMenu
               iconButtonElement={
@@ -51,7 +72,7 @@ class Navbar extends React.Component {
               anchorOrigin={{horizontal: 'right', vertical: 'top'}}
               >
 
-              <NavLink to="/dashboard" style={{textDecoration: "none"}}><MenuItem primaryText="Dashboard" /></NavLink>
+              <NavLink to="/dashboard" style={{textDecoration: "none"}}><MenuItem primaryText="Home" /></NavLink>
 
               {/* Teacher Only */}
               <NavLink to="/dashboard" style={{textDecoration: "none"}}><MenuItem primaryText="Add Course" /></NavLink>
