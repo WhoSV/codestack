@@ -32,16 +32,15 @@ class Dashboard extends React.Component {
 							</div>
 
 							<div className={style.courseBarContainer}>
-								<CourseBar  {...this.props}/>
+								<CourseBar {...this.props}/>
 							</div>
 						</div>
 					)}
-					{...this.props}
 				/>
 
+														{/* change url to course name */}
 				<Route path={`${this.props.match.url}/selectedcourse`}
           component={SelectedCourse}
-					{...this.props}
         />
 	  	</div>
 	  )
