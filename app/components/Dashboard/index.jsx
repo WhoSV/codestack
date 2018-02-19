@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom'
 import Navbar from '../Navbar'
 import Courses from './Courses'
 import CourseBar from './CourseBar'
-import SelectedCourse from './SelectedCourse'
+import ActiveCourse from './ActiveCourse'
 
 // Component Style
 import style from './style.less'
@@ -39,8 +39,8 @@ class Dashboard extends React.Component {
 				/>
 
 														{/* change url to course name */}
-				<Route path={`${this.props.match.url}/selectedcourse`}
-          component={SelectedCourse}
+				<Route path={`${this.props.match.url}/activecourse`}
+          component={ActiveCourse}
         />
 	  	</div>
 	  )

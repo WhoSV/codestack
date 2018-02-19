@@ -34,13 +34,13 @@ class CourseBar extends React.Component {
   }
 
 	navigateToCourse(){
-		this.props.history.push(`${this.props.match.url}/selectedcourse`)
+		this.props.history.push(`${this.props.match.url}/activecourse`)
 	}
 
   render (){
 		return (
 			<div className={style.courseBar}>
-	      <h3 className={style.title}>Selected Courses</h3>
+	      <h3 className={style.title}>My Courses</h3>
 				{courses.map((course, index) => {
 					return (
 						<div key={index} className={style.selectedCourseContainer}>

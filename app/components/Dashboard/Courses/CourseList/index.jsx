@@ -70,7 +70,7 @@ class CourseList extends React.Component {
   }
 
 	navigateToCourse(){
-		this.props.history.push(`${this.props.match.url}/selectedcourse`)
+		this.props.history.push(`${this.props.match.url}/activecourse`)
 	}
 
 	upVote(){

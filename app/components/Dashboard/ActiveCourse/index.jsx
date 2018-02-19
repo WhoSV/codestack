@@ -7,7 +7,7 @@ import ActiveChapter from './ActiveChapter'
 // Component Style
 import style from './style.less'
 
-class SelectedCourse extends React.Component {
+class ActiveCourse extends React.Component {
 	constructor(props) {
 		super();
 		this.state = {
@@ -16,7 +16,7 @@ class SelectedCourse extends React.Component {
 
   render (){
 		return (
-			<div className={style.selectedCourse}>
+			<div className={style.activeCourse}>
 				<div className={style.container}>
 					<div className={style.sidebar}>
 						<Sidebar />
@@ -31,4 +31,4 @@ class SelectedCourse extends React.Component {
 	}
 }
 
-export default SelectedCourse
+export default ActiveCourse
