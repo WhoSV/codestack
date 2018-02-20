@@ -7,7 +7,7 @@ import ContentContainer from './ContentContainer'
 
 class AdminPanel extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 		}
   }

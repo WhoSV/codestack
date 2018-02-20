@@ -9,7 +9,7 @@ import style from './style.less'
 
 class ActiveCourse extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 		}
   }

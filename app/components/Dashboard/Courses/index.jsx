@@ -10,7 +10,7 @@ import style from './style.less'
 
 class Courses extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
   }
@@ -28,7 +28,7 @@ class Courses extends React.Component {
           component={CourseList}
           history={this.props.history}
         />
-				
+
 	  	</div>
 	  )
 	}

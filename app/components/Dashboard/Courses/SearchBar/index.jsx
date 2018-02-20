@@ -24,11 +24,11 @@ import style from './style.less'
 
 class SearchBar extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 			searchText: "",
 		}
-		this.handleSearchTextChange = this.handleSearchTextChange.bind(this);
+		this.handleSearchTextChange = this.handleSearchTextChange.bind(this)
   }
 
 	handleSearchTextChange(event){

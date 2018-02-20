@@ -33,10 +33,10 @@ export default class CreateUserForm extends React.Component {
       type: "",
       inputError: ""
     }
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
   }
 
   handleNameChange(event){

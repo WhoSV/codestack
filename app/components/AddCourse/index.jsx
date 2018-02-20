@@ -8,7 +8,7 @@ import style from './style.less'
 
 class AddCourse extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 		}
   }

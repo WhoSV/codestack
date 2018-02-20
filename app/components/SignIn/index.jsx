@@ -33,16 +33,16 @@ import { img } from '../../static'
 
 class Signin extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 			email: "",
 			password: "",
 		}
-		this.handleEmailChange = this.handleEmailChange.bind(this);
-		this.handlePasswordChange = this.handlePasswordChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleForgotPassword = this.handleForgotPassword.bind(this);
-		this.handleRegister = this.handleRegister.bind(this);
+		this.handleEmailChange = this.handleEmailChange.bind(this)
+		this.handlePasswordChange = this.handlePasswordChange.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
+		this.handleForgotPassword = this.handleForgotPassword.bind(this)
+		this.handleRegister = this.handleRegister.bind(this)
   }
 
 	handleEmailChange(event){
@@ -119,7 +119,7 @@ class Signin extends React.Component {
 	  					floatingLabelText="Email"
 	  				  errorText={this.state.inputError}
 	  					value={this.state.email}
-							className={style.textField}
+							className={style.textFieldStyle}
 	  					onChange={this.handleEmailChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
@@ -131,7 +131,7 @@ class Signin extends React.Component {
 	  					floatingLabelText="Password"
 	  					errorText={this.state.inputError}
 	  					value={this.state.password}
-							className={style.textField}
+							className={style.textFieldStyle}
 	  					onChange={this.handlePasswordChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 	  				<br />

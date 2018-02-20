@@ -5,7 +5,7 @@ import style from './style.less'
 
 class ActiveChapter extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 		}
   }

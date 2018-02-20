@@ -36,7 +36,7 @@ import { img } from '../../static'
 
 class Register extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
       name: "",
       email: "",
@@ -44,13 +44,13 @@ class Register extends React.Component {
       password: "",
       confPassword: "",
 		}
-    this.handleNameChange = this.handleNameChange.bind(this);
-		this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleBack = this.handleBack.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+		this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handlePasswordChange = this.handlePasswordChange.bind(this)
+    this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this)
+		this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleBack = this.handleBack.bind(this)
   }
 
   handleNameChange(event){
@@ -200,7 +200,7 @@ class Register extends React.Component {
 	  					floatingLabelText="Confirm Password"
 	  					errorText={this.state.passwordError}
 	  					value={this.state.confPassword}
-							className={style.textField}
+							className={style.textFieldStyle}
 	  					onChange={this.handleConfPasswordChange}
 	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
               <br />

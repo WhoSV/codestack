@@ -12,7 +12,7 @@ import style from './style.less'
 
 class Dashboard extends React.Component {
 	constructor(props) {
-		super();
+		super()
 		this.state = {
 		}
   }

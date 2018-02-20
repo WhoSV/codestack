@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 
 export default class SignOut extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
     }
   }

@@ -29,7 +29,7 @@ import { img } from '../../static'
 
 class Navbar extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
     }
   }
@@ -85,7 +85,7 @@ class Navbar extends React.Component {
               <NavLink to="/selected" style={{textDecoration: "none"}}><MenuItem primaryText="Selected Courses" /></NavLink>
 
               {/* All Users */}
-              <NavLink to="/account" style={{textDecoration: "none"}}><MenuItem primaryText="Account" /></NavLink>
+              <NavLink to="/account" style={{textDecoration: "none"}}><MenuItem primaryText="My Account" /></NavLink>
               <NavLink to="/signout" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
             </IconMenu>
           }

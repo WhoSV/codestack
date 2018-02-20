@@ -27,7 +27,7 @@ import { img } from '../../../static'
 
 class CourseBar extends React.Component {
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 		}
 		this.navigateToCourse = this.navigateToCourse.bind(this)
