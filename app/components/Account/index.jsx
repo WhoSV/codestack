@@ -3,6 +3,7 @@ import React from 'react'
 // Material UI imports
 import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
+import Dialog from 'material-ui/Dialog'
 
 // Import components
 import Navbar from '../Navbar'
@@ -12,9 +13,19 @@ const muiStyle = {
   floatingLabelTextStyle: {
     fontWeight: 'normal',
   },
-  // errorStyle: {
-  //   textAlign: 'center',
-  // }
+  uploadButtonStyle: {
+    verticalAlign: 'middle',
+  },
+  uploadInputStyle: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
 }
 
 // Component Style
@@ -27,9 +38,10 @@ class Account extends React.Component {
       password: "",
       confPassword: "",
       oldPassword: "",
+      dialogDelete: false,
 		}
-		this.deleteAction = this.deleteAction.bind(this)
-		this.changePasswordAction = this.changePasswordAction.bind(this)
+    this.changePasswordAction = this.changePasswordAction.bind(this)
+    this.handleDeleteAccount = this.handleDeleteAccount.bind(this)
     this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this)
     this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
     this.handleOldPassword = this.handleOldPassword.bind(this)
@@ -51,6 +63,26 @@ class Account extends React.Component {
     this.setState({
 			oldPassword: event.target.value
 		})
+  }
+
+  dialogDelete() {
+    this.setState({dialogDelete: true})
+  }
+
+  handleDeleteAccount() {
+    this.setState({
+      dialogDelete: true,
+    })
+  }
+
+  dialogClose() {
+    this.setState({
+      dialogDelete: false,
+    })
+  }
+
+  confirmDeleteAccount(){
+    console.log("confirm delete");
   }
 
 	changePasswordAction(event){
@@ -89,10 +121,7 @@ class Account extends React.Component {
 			})
     }
 
-    // if (oldPassword == "old password")
-    // {
-    //
-    // }
+    // here call current password validation
 
 		let reqInputs = [password];
 
@@ -110,57 +139,110 @@ class Account extends React.Component {
 		}
 	}
 
-	deleteAction(){
-		console.log("deleted");
-	}
-
   render (){
+    const deleteActions = [
+      <FlatButton
+        label="Cancel"
+        style={{color: "#747374"}}
+        primary={true}
+        onTouchTap={this.dialogClose.bind(this)}
+      />,
+      <FlatButton
+        label="Delete"
+        style={{color: "#ff0000"}}
+        primary={true}
+        onTouchTap={this.confirmDeleteAccount.bind(this)}
+      />,
+    ]
+
 		return (
 	  	<div className={style.account}>
 				<Navbar {...this.props}/>
 
-				<div className={style.container}>
+        <div className={style.container}>
+          <h3>Account Information</h3>
+
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="Jon Doe"
+            type="text"
+            floatingLabelText="Name & Surname"
+            errorText={this.state.inputError}
+            value={this.state.name}
+            className={style.textFieldStyle}
+            onChange={this.handleNameChange}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="mark2019@gmail.com"
+            type="email"
+            floatingLabelText="Email"
+            errorText={this.state.inputError}
+            value={this.state.email}
+            className={style.textFieldStyle}
+            onChange={this.handleEmailChange}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+
+          <div>
+            <FlatButton
+              label="Choose an Image"
+              labelPosition="before"
+              style={muiStyle.uploadButtonStyle}
+              containerElement="label">
+                <input type="file" style={muiStyle.uploadInputStyle} />
+            </FlatButton>
+          </div>
+
+          <FlatButton
+		        label="SAVE CHANGES"
+		        style={{color: "#fff", marginTop: "30px"}}
+						backgroundColor="#37BDD5"
+		        // onClick={this.changePasswordAction}
+		      />
+        </div>
+
+        <div className={style.container}>
 					<h3>Change Password</h3>
           <p>Please insert new password, confirmation and your current password.</p>
-          <div>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="********"
-              type="password"
-              floatingLabelText="New Password"
-              errorText={this.state.passwordError}
-              value={this.state.password}
-              className={style.textFieldStyle}
-              onChange={this.handleNewPasswordChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-          </div>
-          <div>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="********"
-              type="password"
-              floatingLabelText="Confirm New Password"
-              errorText={this.state.passwordError}
-              value={this.state.confPassword}
-              className={style.textFieldStyle}
-              onChange={this.handleNewConfPasswordChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-          </div>
-          <div>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="********"
-              type="password"
-              floatingLabelText="Current Password"
-              errorText={this.state.oldPasswordError}
-              value={this.state.oldPassword}
-              className={style.textFieldStyle}
-              onChange={this.handleOldPassword}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-          </div>
+
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="********"
+            type="password"
+            floatingLabelText="New Password"
+            errorText={this.state.passwordError}
+            value={this.state.password}
+            className={style.textFieldStyle}
+            onChange={this.handleNewPasswordChange}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="********"
+            type="password"
+            floatingLabelText="Confirm New Password"
+            errorText={this.state.passwordError}
+            value={this.state.confPassword}
+            className={style.textFieldStyle}
+            onChange={this.handleNewConfPasswordChange}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="********"
+            type="password"
+            floatingLabelText="Current Password"
+            errorText={this.state.oldPasswordError}
+            value={this.state.oldPassword}
+            className={style.textFieldStyle}
+            onChange={this.handleOldPassword}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
 					<FlatButton
 		        label="CHANGE PASSWORD"
@@ -177,9 +259,19 @@ class Account extends React.Component {
 		        label="I UNDERSTAND, DELETE MY ACCOUNT"
 		        style={{color: "#fff", marginTop: "20px"}}
 						backgroundColor="#f00"
-		        onClick={this.deleteAction}
-		      />
+		        onClick={this.handleDeleteAccount}/>
 				</div>
+
+        {/* Delete account dialog */}
+        <Dialog
+          className={style.dialog}
+          title="Delete Account"
+          actions={deleteActions}
+          modal={false}
+          open={this.state.dialogDelete}
+          onRequestClose={this.dialogClose.bind(this)}>
+            Do you realy want to delete your account?
+        </Dialog>
 	  	</div>
 	  )
 	}
