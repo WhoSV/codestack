@@ -187,6 +187,7 @@ class Account extends React.Component {
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
           <div>
+            <p>Profile Picture</p>
             <FlatButton
               label="Choose an Image"
               labelPosition="before"
@@ -248,8 +249,7 @@ class Account extends React.Component {
 		        label="CHANGE PASSWORD"
 		        style={{color: "#fff", marginTop: "30px"}}
 						backgroundColor="#37BDD5"
-		        onClick={this.changePasswordAction}
-		      />
+		        onClick={this.changePasswordAction}/>
 				</div>
 
 				<div className={style.container}>

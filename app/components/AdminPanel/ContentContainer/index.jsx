@@ -184,63 +184,63 @@ export default class ContentContainer extends React.Component {
         <h3 className={style.title}>Content Table</h3>
         <Table
           selectable={false}>
-           <TableHeader
-             displaySelectAll={false}
-             adjustForCheckbox={false}>
-             <TableRow>
-               <TableHeaderColumn>Name</TableHeaderColumn>
-               <TableHeaderColumn>Teacher</TableHeaderColumn>
-               <TableHeaderColumn>Status</TableHeaderColumn>
-               <TableHeaderColumn>Options</TableHeaderColumn>
-             </TableRow>
-           </TableHeader>
-           <TableBody
-             displayRowCheckbox={false}>
-             {content.map((contentItem, index) => {
-               return (
-                 <TableRow key={index}>
-                   <TableRowColumn>{contentItem.name}</TableRowColumn>
-                   <TableRowColumn>{contentItem.teacher}</TableRowColumn>
-                   <TableRowColumn>{contentItem.status}</TableRowColumn>
-                   <TableRowColumn>
-                     {(() => {
-                       if (contentItem.status == "Active") {
-                         return (
-                         <IconButton
-                           onTouchTap={this.handleBlockContent.bind(this, contentItem)}
-                           style={muiStyle.iconButton}
-                           className={style.iconButtonStyle}
-                           iconStyle={muiStyle.iconUnblockButton}
-                           touch={true}>
-                             <ActionBlock/>
-                         </IconButton>
-                         )
-                       } else {
-                         return (
-                           <IconButton
-                             onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
-                             style={muiStyle.iconButton}
-                             className={style.iconButtonStyle}
-                             iconStyle={muiStyle.iconBlockButton}
-                             touch={true}>
+          <TableHeader
+            displaySelectAll={false}
+            adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Teacher</TableHeaderColumn>
+              <TableHeaderColumn>Status</TableHeaderColumn>
+              <TableHeaderColumn>Options</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}>
+            {content.map((contentItem, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableRowColumn>{contentItem.name}</TableRowColumn>
+                  <TableRowColumn>{contentItem.teacher}</TableRowColumn>
+                  <TableRowColumn>{contentItem.status}</TableRowColumn>
+                  <TableRowColumn>
+                    {(() => {
+                      if (contentItem.status == "Active") {
+                        return (
+                          <IconButton
+                            onTouchTap={this.handleBlockContent.bind(this, contentItem)}
+                            style={muiStyle.iconButton}
+                            className={style.iconButtonStyle}
+                            iconStyle={muiStyle.iconUnblockButton}
+                            touch={true}>
                               <ActionBlock/>
-                           </IconButton>
-                         )
-                       }
-                     })()}
-                     <IconButton
-                       onTouchTap={this.handleDeleteContent.bind(this, contentItem)}
-                       style={muiStyle.iconButton}
-                       className={style.iconButtonStyle}
-                       iconStyle={muiStyle.iconDeleteButton}
-                       touch={true}>
-                         <ActionDelete/>
-                     </IconButton>
-                   </TableRowColumn>
-                 </TableRow>
-               )
-             })}
-           </TableBody>
+                          </IconButton>
+                        )
+                      } else {
+                        return (
+                          <IconButton
+                            onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
+                            style={muiStyle.iconButton}
+                            className={style.iconButtonStyle}
+                            iconStyle={muiStyle.iconBlockButton}
+                            touch={true}>
+                              <ActionBlock/>
+                          </IconButton>
+                        )
+                      }
+                    })()}
+                    <IconButton
+                      onTouchTap={this.handleDeleteContent.bind(this, contentItem)}
+                      style={muiStyle.iconButton}
+                      className={style.iconButtonStyle}
+                      iconStyle={muiStyle.iconDeleteButton}
+                      touch={true}>
+                        <ActionDelete/>
+                    </IconButton>
+                  </TableRowColumn>
+                </TableRow>
+              )
+            })}
+          </TableBody>
         </Table>
 
         {/* Delete Content Dialog */}
@@ -251,11 +251,11 @@ export default class ContentContainer extends React.Component {
           modal={false}
           open={this.state.dialogDelete}
           onRequestClose={this.dialogClose.bind(this)}>
-          Do you realy want to delete
-          <span className={style.highlight}>
-             This Curse
-          </span>
-          ?
+            Do you realy want to delete
+            <span className={style.highlight}>
+               This Curse
+            </span>
+            ?
         </Dialog>
 
         {/* Unblock Content Dialog */}
@@ -266,11 +266,11 @@ export default class ContentContainer extends React.Component {
           modal={false}
           open={this.state.dialogUnblock}
           onRequestClose={this.dialogClose.bind(this)}>
-          Do you realy want to unblock
-          <span className={style.highlight}>
-             This Curse
-          </span>
-          ?
+            Do you realy want to unblock
+            <span className={style.highlight}>
+               This Curse
+            </span>
+            ?
         </Dialog>
 
         {/* Block Content Dialog */}
@@ -281,11 +281,11 @@ export default class ContentContainer extends React.Component {
           modal={false}
           open={this.state.dialogBlock}
           onRequestClose={this.dialogClose.bind(this)}>
-          Do you realy want to block
-          <span className={style.highlight}>
-             This Curse
-          </span>
-          ?
+            Do you realy want to block
+            <span className={style.highlight}>
+               This Curse
+            </span>
+            ?
         </Dialog>
       </div>
     )

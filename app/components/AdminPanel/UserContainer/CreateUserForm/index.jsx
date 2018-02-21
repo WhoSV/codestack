@@ -115,10 +115,8 @@ export default class CreateUserForm extends React.Component {
         <form
           id="createUser"
           onSubmit={this.handleCreateUser.bind(this)}
-          className={style.formStyle}
-          >
-            {/* <div style={{display: 'inline-flex'}}> */}
-        {/* <div > */}
+          className={style.formStyle}>
+
           <div className={style.container}>
             <TextField
               autoCorrect="none"
@@ -130,8 +128,8 @@ export default class CreateUserForm extends React.Component {
               value={this.state.name}
               onChange={this.handleNameChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}
-            />
+              className={style.textFieldStyle}/>
+
             <TextField
               value={this.state.email}
               onChange={this.handleEmailChange.bind(this)}
@@ -140,10 +138,10 @@ export default class CreateUserForm extends React.Component {
               floatingLabelText="Email"
               errorText={this.state.inputError}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}
-            />
-            </div>
-            <div className={style.container}>
+              className={style.textFieldStyle}/>
+          </div>
+
+          <div className={style.container}>
             <TextField
               value={this.state.password}
               onChange={this.handlePasswordChange.bind(this)}
@@ -152,8 +150,8 @@ export default class CreateUserForm extends React.Component {
               floatingLabelText="Password"
               errorText={this.state.inputError}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}
-            />
+              className={style.textFieldStyle}/>
+
             <SelectField
               floatingLabelText="Type"
               value={this.state.type}
@@ -167,16 +165,14 @@ export default class CreateUserForm extends React.Component {
                 <MenuItem value={3} primaryText="Admin" />
             </SelectField>
           </div>
-        {/* </div> */}
+
           <RaisedButton
             type="submit"
             label="Create"
             icon={<ContentAdd/>}
             labelColor="#fff"
             backgroundColor="#37BDD5"
-            style={muiStyle.createButtonStyle}
-          />
-        {/* </div> */}
+            style={muiStyle.createButtonStyle}/>
         </form>
       </div>
     )

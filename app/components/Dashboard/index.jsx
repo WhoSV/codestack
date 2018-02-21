@@ -38,10 +38,8 @@ class Dashboard extends React.Component {
 					)}
 				/>
 
-														{/* change url to course name */}
-				<Route path={`${this.props.match.url}/activecourse`}
-          component={ActiveCourse}
-        />
+				{/* change url to course name */}
+				<Route path={`${this.props.match.url}/activecourse`} component={ActiveCourse} />
 	  	</div>
 	  )
 	}

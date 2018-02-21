@@ -49,15 +49,13 @@ class SearchBar extends React.Component {
 						value={this.state.searchText}
 						className={style.textFieldStyle}
 						underlineFocusStyle={muiStyle.underlineStyle}
-						onChange={this.handleSearchTextChange}
-					/>
+						onChange={this.handleSearchTextChange} />
 
 					<FlatButton
   					type="submit"
   					label={<SearchIcon className={style.searchIconStyle} />}
 						labelStyle={muiStyle.submitButtonLabelStyle}
-  					style={muiStyle.submitButton}
-					/>
+  					style={muiStyle.submitButton} />
 				</form>
 	  	</div>
 	  )

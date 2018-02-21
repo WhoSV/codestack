@@ -108,38 +108,38 @@ export default class UsersTable extends React.Component {
         <h3 className={style.title}>Users Table</h3>
         <Table
           selectable={false}>
-           <TableHeader
-             displaySelectAll={false}
-             adjustForCheckbox={false}>
-             <TableRow>
-               <TableHeaderColumn>Name</TableHeaderColumn>
-               <TableHeaderColumn>Email</TableHeaderColumn>
-               <TableHeaderColumn>Type</TableHeaderColumn>
-               <TableHeaderColumn>Options</TableHeaderColumn>
-             </TableRow>
-           </TableHeader>
-           <TableBody
-             displayRowCheckbox={false}>
-             {users.map((user, index) => {
-               return (
-                 <TableRow key={index}>
-                   <TableRowColumn>{user.name}</TableRowColumn>
-                   <TableRowColumn>{user.email}</TableRowColumn>
-                   <TableRowColumn>{user.type}</TableRowColumn>
-                   <TableRowColumn>
-                     <IconButton
-                       onTouchTap={this.handleDeleteUser.bind(this, user)}
-                       style={muiStyle.iconButton}
-                       className={style.iconButtonStyle}
-                       iconStyle={muiStyle.iconDeleteButton}
-                       touch={true}>
-                         <ActionDelete/>
-                     </IconButton>
-                   </TableRowColumn>
-                 </TableRow>
-               )
-             })}
-           </TableBody>
+          <TableHeader
+            displaySelectAll={false}
+            adjustForCheckbox={false}>
+            <TableRow>
+              <TableHeaderColumn>Name</TableHeaderColumn>
+              <TableHeaderColumn>Email</TableHeaderColumn>
+              <TableHeaderColumn>Type</TableHeaderColumn>
+              <TableHeaderColumn>Options</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody
+            displayRowCheckbox={false}>
+            {users.map((user, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableRowColumn>{user.name}</TableRowColumn>
+                  <TableRowColumn>{user.email}</TableRowColumn>
+                  <TableRowColumn>{user.type}</TableRowColumn>
+                  <TableRowColumn>
+                    <IconButton
+                      onTouchTap={this.handleDeleteUser.bind(this, user)}
+                      style={muiStyle.iconButton}
+                      className={style.iconButtonStyle}
+                      iconStyle={muiStyle.iconDeleteButton}
+                      touch={true}>
+                        <ActionDelete/>
+                    </IconButton>
+                  </TableRowColumn>
+                </TableRow>
+              )
+            })}
+          </TableBody>
         </Table>
 
         {/* Delete User Dialog */}
@@ -150,11 +150,11 @@ export default class UsersTable extends React.Component {
           modal={false}
           open={this.state.dialogAlert}
           onRequestClose={this.dialogClose.bind(this)}>
-          Do you realy want to delete
-          <span className={style.highlight}>
-            Vlad
-          </span>
-          ?
+            Do you realy want to delete
+            <span className={style.highlight}>
+              Vlad
+            </span>
+            ?
         </Dialog>
       </div>
     )
