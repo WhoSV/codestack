@@ -8,6 +8,9 @@ import Dialog from 'material-ui/Dialog'
 // Import components
 import Navbar from '../Navbar'
 
+// Import static icons
+import { img } from '../../static'
+
 // Material UI Styles
 const muiStyle = {
   floatingLabelTextStyle: {
@@ -26,6 +29,9 @@ const muiStyle = {
     width: '100%',
     opacity: 0,
   },
+  uploadButtonLabelStyle: {
+    color: '#4A4A4A',
+  }
 }
 
 // Component Style
@@ -66,7 +72,9 @@ class Account extends React.Component {
   }
 
   dialogDelete() {
-    this.setState({dialogDelete: true})
+    this.setState({
+      dialogDelete: true
+    })
   }
 
   handleDeleteAccount() {
@@ -186,12 +194,15 @@ class Account extends React.Component {
             onChange={this.handleEmailChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-          <div>
+          <div className={style.pictureContainer}>
             <p>Profile Picture</p>
+            <img className={style.pictureStyle} src={img.logo}/>
+
             <FlatButton
               label="Choose an Image"
               labelPosition="before"
               style={muiStyle.uploadButtonStyle}
+              labelStyle={muiStyle.uploadButtonLabelStyle}
               containerElement="label">
                 <input type="file" style={muiStyle.uploadInputStyle} />
             </FlatButton>
