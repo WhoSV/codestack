@@ -41,16 +41,33 @@ class Account extends React.Component {
 	constructor(props) {
 		super()
 		this.state = {
+      name: "",
+      email: "",
       password: "",
       confPassword: "",
       oldPassword: "",
       dialogDelete: false,
 		}
+    this.changeAccountInfo = this.changeAccountInfo.bind(this)
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleEmailChange = this.handleEmailChange.bind(this)
     this.changePasswordAction = this.changePasswordAction.bind(this)
     this.handleDeleteAccount = this.handleDeleteAccount.bind(this)
     this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this)
     this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
     this.handleOldPassword = this.handleOldPassword.bind(this)
+  }
+
+  handleNameChange(event){
+    this.setState({
+      name: event.target.value
+    })
+  }
+
+  handleEmailChange(event){
+    this.setState({
+      email: event.target.value
+    })
   }
 
   handleNewPasswordChange(event){
@@ -91,6 +108,40 @@ class Account extends React.Component {
 
   confirmDeleteAccount(){
     console.log("confirm delete");
+  }
+
+  changeAccountInfo(event){
+    event.preventDefault();
+
+    this.setState({
+      inputAccError: "",
+    })
+
+    const name = this.state.name;
+    const email = this.state.email;
+
+		let validateForm = function(arr) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] == null || arr[i] == "") {
+					return false
+				}
+			}
+			return true
+		}
+
+		let reqInputs = [name, email];
+
+		if (validateForm(reqInputs)) {
+			let formData = {
+        name: name,
+        email: email,
+			}
+
+		} else {
+			this.setState({
+				inputAccError: "All fields must be filled.",
+			})
+		}
   }
 
 	changePasswordAction(event){
@@ -176,7 +227,7 @@ class Account extends React.Component {
             hintText="Jon Doe"
             type="text"
             floatingLabelText="Name & Surname"
-            errorText={this.state.inputError}
+            errorText={this.state.inputAccError}
             value={this.state.name}
             className={style.textFieldStyle}
             onChange={this.handleNameChange}
@@ -188,7 +239,7 @@ class Account extends React.Component {
             hintText="mark2019@gmail.com"
             type="email"
             floatingLabelText="Email"
-            errorText={this.state.inputError}
+            errorText={this.state.inputAccError}
             value={this.state.email}
             className={style.textFieldStyle}
             onChange={this.handleEmailChange}
@@ -212,7 +263,7 @@ class Account extends React.Component {
 		        label="SAVE CHANGES"
 		        style={{color: "#fff", marginTop: "30px"}}
 						backgroundColor="#37BDD5"
-		        // onClick={this.changePasswordAction}
+		        onClick={this.changeAccountInfo}
 		      />
         </div>
 
