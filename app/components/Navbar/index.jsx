@@ -9,6 +9,7 @@ import MenuItem from 'material-ui/MenuItem'
 import BackButton from 'material-ui/IconButton'
 import ActionHome from 'material-ui/svg-icons/action/home'
 import IconButton from 'material-ui/IconButton'
+import Divider from 'material-ui/Divider'
 
 // Material UI Styles
 const muiStyle = {
@@ -72,7 +73,9 @@ class Navbar extends React.Component {
               anchorOrigin={{horizontal: 'right', vertical: 'top'}}
               >
 
-              <NavLink to="/dashboard" style={{textDecoration: "none"}}><MenuItem primaryText="Home" /></NavLink>
+              {/* All Users */}
+              <NavLink to="/profile" style={{textDecoration: "none"}}><MenuItem primaryText="View My Profile" /></NavLink>
+              <Divider />
 
               {/* Teacher Only */}
               <NavLink to="/addcourse" style={{textDecoration: "none"}}><MenuItem primaryText="Add Course" /></NavLink>
@@ -81,11 +84,8 @@ class Navbar extends React.Component {
               {/* Admin Only */}
               <NavLink to="/admin" style={{textDecoration: "none"}}><MenuItem primaryText="Admin Panel" /></NavLink>
 
-              {/* Student Only */}
-              <NavLink to="/profile" style={{textDecoration: "none"}}><MenuItem primaryText="My Profile" /></NavLink>
-
-              {/* All Users */}
               <NavLink to="/account" style={{textDecoration: "none"}}><MenuItem primaryText="My Account" /></NavLink>
+              <Divider />
               <NavLink to="/signout" style={{textDecoration: "none"}}><MenuItem primaryText="Log Out" /></NavLink>
             </IconMenu>
           }
