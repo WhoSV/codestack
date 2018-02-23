@@ -10,7 +10,7 @@ import Dashboard from '../Dashboard'
 import AdminPanel from '../AdminPanel'
 import AddCourse from '../AddCourse'
 import ManageCourses from '../ManageCourses'
-import SelectedCourses from '../SelectedCourses'
+import MyProfile from '../MyProfile'
 import Account from '../Account'
 
 // Component Style
@@ -34,6 +34,7 @@ export default class Master extends Component {
           <Route path="/reset" component={ResetPassword} />
           <Route path="/register" component={Register} />
           <Route path="/account" component={Account} />
+          <Route path="/profile" component={MyProfile} />
 
           {/* Teacher Only */}
           <Route path="/addcourse" component={AddCourse} />
@@ -41,9 +42,6 @@ export default class Master extends Component {
 
           {/* Admin Only */}
           <Route path="/admin" component={AdminPanel} />
-
-          {/* Student Only */}
-          <Route path="/selected" component={SelectedCourses} />
 
         </div>
       </BrowserRouter>

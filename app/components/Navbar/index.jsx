@@ -82,7 +82,7 @@ class Navbar extends React.Component {
               <NavLink to="/admin" style={{textDecoration: "none"}}><MenuItem primaryText="Admin Panel" /></NavLink>
 
               {/* Student Only */}
-              <NavLink to="/selected" style={{textDecoration: "none"}}><MenuItem primaryText="Selected Courses" /></NavLink>
+              <NavLink to="/profile" style={{textDecoration: "none"}}><MenuItem primaryText="My Profile" /></NavLink>
 
               {/* All Users */}
               <NavLink to="/account" style={{textDecoration: "none"}}><MenuItem primaryText="My Account" /></NavLink>

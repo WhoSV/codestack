@@ -6,7 +6,7 @@ import Navbar from '../Navbar'
 // Component Style
 import style from './style.less'
 
-class SelectedCourses extends React.Component {
+class MyProfile extends React.Component {
 	constructor(props) {
 		super()
 		this.state = {
@@ -15,18 +15,17 @@ class SelectedCourses extends React.Component {
 
   render (){
 		return (
-	  	<div className={style.selectedCourses}>
+	  	<div className={style.myProfile}>
 				<Navbar {...this.props}/>
 
-        <p>selected</p>
-        <p>selected</p>
-				<p>selected</p>
-				<p>selected</p>
-				<p>selected</p>
-				<p>selected</p>
+        <p>MyProfile</p>
+				<p>MyProfile</p>
+				<p>MyProfile</p>
+				<p>MyProfile</p>
+				<p>MyProfile</p>
 	  	</div>
 	  )
 	}
 }
 
-export default SelectedCourses
+export default MyProfile
