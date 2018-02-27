@@ -39,8 +39,6 @@ class Sidebar extends React.Component {
   render (){
 		return (
 			<div className={style.sidebar}>
-	      <h4 className={style.title}>Learn C#</h4>
-
 				{chapterList.map((chapter, index) => {
 					return (
 						<a key={index} className={style.chapterContainer} onClick={this.navigateToChapter}>
