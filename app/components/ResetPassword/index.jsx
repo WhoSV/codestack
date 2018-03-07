@@ -86,44 +86,46 @@ class ResetPassword extends React.Component {
 
   render (){
 		return (
-	  	<div className={style.resetPassword}>
-				<Paper zDepth={5}>
-  				<img className={style.logoImg} src={img.logo}/>
-  				<h1 className={style.title}>Reset Password</h1>
-          <h5>Password will be sent to your email</h5>
+      <div className={style.bgStyle}>
+  	  	<div className={style.resetPassword}>
+  				<Paper zDepth={5}>
+    				<img className={style.logoImg} src={img.logo}/>
+    				<h1 className={style.title}>Reset Password</h1>
+            <h5>Password will be sent to your email</h5>
 
-          <form onSubmit={this.handleSubmit}>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="mark2019@gmail.com"
-              type="email"
-              floatingLabelText="Email"
-              errorText={this.state.inputError}
-              value={this.state.email}
-              className={style.textFieldStyle}
-              onChange={this.handleEmailChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-            <br />
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="mark2019@gmail.com"
+                type="email"
+                floatingLabelText="Email"
+                errorText={this.state.inputError}
+                value={this.state.email}
+                className={style.textFieldStyle}
+                onChange={this.handleEmailChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <br />
 
-            <FlatButton
-	  					type="submit"
-	  					label="Send"
-							backgroundColor="#F3F3F3"
-	  					style={muiStyle.submitButton}
-	  					labelStyle={muiStyle.submitButtonText}/>
-          </form>
+              <FlatButton
+  	  					type="submit"
+  	  					label="Send"
+  							backgroundColor="#F3F3F3"
+  	  					style={muiStyle.submitButton}
+  	  					labelStyle={muiStyle.submitButtonText}/>
+            </form>
 
-          <div className={style.backContainer}>
-            <FlatButton
-              type="submit"
-              label="Back"
-              style={muiStyle.backButton}
-              onClick={this.handleBack}
-              labelStyle={muiStyle.backButtonText}/>
-          </div>
-				</Paper>
-	  	</div>
+            <div className={style.backContainer}>
+              <FlatButton
+                type="submit"
+                label="Back"
+                style={muiStyle.backButton}
+                onClick={this.handleBack}
+                labelStyle={muiStyle.backButtonText}/>
+            </div>
+  				</Paper>
+  	  	</div>
+      </div>
 	  )
 	}
 }

@@ -138,91 +138,93 @@ class Register extends React.Component {
 
   render (){
 		return (
-	  	<div className={style.register}>
-				<Paper zDepth={5}>
-  				<img className={style.logoImg} src={img.logo}/>
-  				<h3 className={style.title}>Register New Account</h3>
+      <div className={style.bgStyle}>
+  	  	<div className={style.register}>
+  				<Paper zDepth={5}>
+    				<img className={style.logoImg} src={img.logo}/>
+    				<h3 className={style.title}>Register New Account</h3>
 
-          <form onSubmit={this.handleSubmit}>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="Jon Doe"
-              type="text"
-              floatingLabelText="Name & Surname"
-              errorText={this.state.inputError}
-              value={this.state.name}
-              className={style.textFieldStyle}
-              onChange={this.handleNameChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="Jon Doe"
+                type="text"
+                floatingLabelText="Name & Surname"
+                errorText={this.state.inputError}
+                value={this.state.name}
+                className={style.textFieldStyle}
+                onChange={this.handleNameChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="mark2019@gmail.com"
-              type="email"
-              floatingLabelText="Email"
-              errorText={this.state.inputError}
-              value={this.state.email}
-              className={style.textFieldStyle}
-              onChange={this.handleEmailChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="mark2019@gmail.com"
+                type="email"
+                floatingLabelText="Email"
+                errorText={this.state.inputError}
+                value={this.state.email}
+                className={style.textFieldStyle}
+                onChange={this.handleEmailChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <SelectField
-              floatingLabelText="Type"
-              value={this.state.type}
-              className={style.selectFieldStyle}
-              errorText={this.state.inputError}
-              errorStyle={muiStyle.errorStyle}
-              onChange={this.handleTypeChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                <MenuItem value={1} primaryText="Student" />
-                <MenuItem value={2} primaryText="Teacher" />
-            </SelectField>
+              <SelectField
+                floatingLabelText="Type"
+                value={this.state.type}
+                className={style.selectFieldStyle}
+                errorText={this.state.inputError}
+                errorStyle={muiStyle.errorStyle}
+                onChange={this.handleTypeChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
+                  <MenuItem value={1} primaryText="Student" />
+                  <MenuItem value={2} primaryText="Teacher" />
+              </SelectField>
 
-            <TextField
-							autoCorrect="none"
-							autoCapitalize="none"
-	  					hintText="********"
-	  					type="password"
-	  					floatingLabelText="Password"
-	  					errorText={this.state.passwordError}
-	  					value={this.state.password}
-							className={style.textFieldStyle}
-	  					onChange={this.handlePasswordChange}
-	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <TextField
+  							autoCorrect="none"
+  							autoCapitalize="none"
+  	  					hintText="********"
+  	  					type="password"
+  	  					floatingLabelText="Password"
+  	  					errorText={this.state.passwordError}
+  	  					value={this.state.password}
+  							className={style.textFieldStyle}
+  	  					onChange={this.handlePasswordChange}
+  	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <TextField
-							autoCorrect="none"
-							autoCapitalize="none"
-	  					hintText="********"
-	  					type="password"
-	  					floatingLabelText="Confirm Password"
-	  					errorText={this.state.passwordError}
-	  					value={this.state.confPassword}
-							className={style.textFieldStyle}
-	  					onChange={this.handleConfPasswordChange}
-	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-              <br />
+              <TextField
+  							autoCorrect="none"
+  							autoCapitalize="none"
+  	  					hintText="********"
+  	  					type="password"
+  	  					floatingLabelText="Confirm Password"
+  	  					errorText={this.state.passwordError}
+  	  					value={this.state.confPassword}
+  							className={style.textFieldStyle}
+  	  					onChange={this.handleConfPasswordChange}
+  	  					floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+                <br />
 
-            <FlatButton
-	  					type="submit"
-	  					label="Register"
-							backgroundColor="#F3F3F3"
-	  					style={muiStyle.submitButton}
-	  					labelStyle={muiStyle.submitButtonText}/>
-          </form>
+              <FlatButton
+  	  					type="submit"
+  	  					label="Register"
+  							backgroundColor="#F3F3F3"
+  	  					style={muiStyle.submitButton}
+  	  					labelStyle={muiStyle.submitButtonText}/>
+            </form>
 
-          <div className={style.backContainer}>
-            <FlatButton
-              type="submit"
-              label="Back"
-              style={muiStyle.backButton}
-              onClick={this.handleBack}
-              labelStyle={muiStyle.backButtonText}/>
-          </div>
-				</Paper>
-	  	</div>
+            <div className={style.backContainer}>
+              <FlatButton
+                type="submit"
+                label="Back"
+                style={muiStyle.backButton}
+                onClick={this.handleBack}
+                labelStyle={muiStyle.backButtonText}/>
+            </div>
+  				</Paper>
+  	  	</div>
+      </div>
 	  )
 	}
 }
