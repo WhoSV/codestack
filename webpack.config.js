@@ -52,7 +52,12 @@ module.exports = {
                 use: ['style-loader', 'css-loader?modules', 'less-loader']
             }, {
                 test: /\.(jpg|png|gif)$/,
-                use: 'file-loader'
+                use: {
+                  loader: 'file-loader',
+                  options: {
+                    publicPath: '/'
+                  }
+                }
             }, {
                 test: /\.(woff|woff2|eot|ttf|svg)$/,
                 use: {

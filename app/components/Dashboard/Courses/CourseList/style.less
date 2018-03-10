@@ -1,0 +1,96 @@
+.courseList {
+  margin-top: 15px;
+
+  .listItem {
+    background-color: #fff;
+    border-radius: 5px;
+    max-height: 165px;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    .defaultIconStyle {
+      margin-right: 10px;
+      width: 25px;
+      vertical-align: top;
+    }
+
+    .listItemTitle {
+      padding: 0px 10px;
+      display: flex;
+
+      a {
+        text-decoration: none;
+      }
+
+      a:hover h3 {
+        cursor: pointer;
+        color: #30CFD0;
+      }
+
+      h3 {
+        color: #4A4A4A;
+        margin: 15px auto 10px 0;
+      }
+
+      .upVoteStyle {
+        margin: 10px 0 0px auto;
+      }
+
+      h5 {
+        font-weight: 100;
+        color: #4A90E2;
+      }
+
+      .upVoteStyle:hover .upvoteIconStyle,
+      .upVoteStyle:hover h5 {
+        color: #30CFD0 !important;
+      }
+
+      .upvoteIconStyle {
+        width: 20px !important;
+        height: 20px !important;
+        color: #4A90E2 !important;
+        vertical-align: bottom;
+        margin-right: 5px;
+      }
+    }
+
+    .listItemDate {
+      color: #ccc;
+      margin: 0;
+      font-weight: 100;
+      padding-left: 10px;
+      cursor: default;
+    }
+
+    .listItemDescription {
+      padding: 10px;
+      cursor: default;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .listItem:hover {
+    box-shadow: 0 0 10px #ccc;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .listItem {
+      max-height: 160px;
+
+      .listItemTitle {
+        h3 {
+          font-size: 18px;
+        }
+
+        .upVoteStyle {
+          margin: 5px 0 0px auto;
+        }
+      }
+    }
+  }
+}

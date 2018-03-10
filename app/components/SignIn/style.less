@@ -1,0 +1,117 @@
+.bgStyle {
+  background: linear-gradient(to right bottom, #30CFD0 0%, #4A90E2 100%);
+  height: 100vh;
+  display: flex;
+
+  .signinContainer {
+    display: flex;
+    margin: auto;
+  }
+
+  .intro {
+    color: #fff;
+    margin: auto 0px;
+
+    h1 {
+      font-size: 80px;
+      font-weight: 100;
+      text-transform: capitalize;
+      margin: 0;
+    }
+
+    h3 {
+      font-weight: 100;
+      margin: 0;
+    }
+  }
+
+  @media only screen and (max-width: 1140px) {
+    .signinContainer {
+      margin: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 1030px) {
+    .intro {
+      h1 {
+        font-size: 60px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 894px) {
+    .intro {
+      h1 {
+        font-size: 40px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .signinContainer {
+      display: block;
+      margin: auto;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 30px;
+
+      h1 {
+        margin-bottom: 10px;
+      }
+    }
+
+    .signin {
+      margin: auto;
+    }
+  }
+}
+
+.signin {
+  max-width: 350px;
+  margin: auto auto auto 50px;
+  text-align: center;
+
+  .title {
+    margin-bottom: 0;
+    background: linear-gradient(to right, #30CFD0 0%, #4A90E2 100%);
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+  }
+
+  .logoImg {
+    padding-top: 20px;
+    width: 100px;
+  }
+
+  .textFieldStyle {
+    margin: auto;
+    display: block !important;
+  }
+
+  .bottomDiv {
+    height: 100px;
+    width: 100%;
+    margin-top: 80px;
+    padding-top: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+  }
+
+  @media only screen and (max-width: 374px) {
+    width: 300px;
+
+    .bottomDiv {
+      height: 80px;
+      width: 100%;
+      padding-top: 20px;
+      margin-top: 10px;
+    }
+  }
+}

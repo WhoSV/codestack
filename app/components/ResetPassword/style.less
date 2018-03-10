@@ -1,0 +1,46 @@
+.bgStyle {
+  background: linear-gradient(to right bottom, #30CFD0 0%, #4A90E2 100%);
+  height: 100vh;
+  display: flex;
+}
+
+.resetPassword {
+  max-width: 350px;
+  margin: auto;
+  text-align: center;
+
+  .logoImg {
+    padding-top: 20px;
+    width: 100px;
+  }
+
+  .textFieldStyle {
+    margin: auto;
+    display: block !important;
+  }
+
+  .title, h5 {
+    margin-bottom: 0;
+    background: linear-gradient(to right, #30CFD0 0%, #4A90E2 100%);
+  	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+  }
+
+  .title {
+    margin: 20px 40px;
+  }
+
+  .backContainer {
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
+  @media only screen and (max-width: 374px) {
+    width: 300px;
+    
+    .title {
+      margin-top: 5px;
+      font-size: 30px;
+    }
+  }
+}

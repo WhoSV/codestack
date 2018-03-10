@@ -1,0 +1,55 @@
+.usersTabble {
+  margin-top: 40px;
+
+  .title {
+    text-align: center;
+    background: linear-gradient(to right, #30CFD0 0%, #4A90E2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  table {
+    overflow: hidden;
+
+    th, tr, td {
+      text-align: center !important;
+      }
+    td {
+      overflow: visible !important;
+    }
+  }
+
+  @media only screen and (max-width: 1040px) {
+    table {
+      th, td {
+        padding: 0px !important;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    table {
+      th:last-child, td:last-child {
+        width: 50px !important;
+      }
+
+      th:nth-child(2), td:nth-child(2) {
+        width: 115px !important;
+      }
+    }
+
+    .iconButtonStyle {
+      width: 30px !important;
+      height: 30px !important;
+      padding: 5px !important;
+    }
+  }
+}
+
+.dialog {
+  .highlight {
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #FF1744;
+  }
+}

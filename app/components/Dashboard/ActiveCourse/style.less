@@ -1,0 +1,27 @@
+.activeCourse {
+  .container {
+    margin: 64px auto 0;
+    display: flex;
+    max-width: 1000px;
+
+    .sidebar {
+      margin: 20px auto;
+      width: 20%;
+    }
+
+    .activeChapter {
+      margin: 20px auto;
+      width: 75%;
+    }
+
+    @media only screen and (max-width: 767px) {
+      .sidebar {
+        display: none;
+      }
+
+      .activeChapter {
+        width: 95%;
+      }
+    }
+  }
+}
