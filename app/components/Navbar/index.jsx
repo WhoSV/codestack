@@ -37,56 +37,85 @@ class Navbar extends React.Component {
   render() {
     let logo = (<p className={style.title}><img className={style.logoStyle} src={img.logo}/>CodeStack</p>)
 
-    let actionHome = (<BackButton style={muiStyle.homeButtonStyle} tooltip="Home" tooltipPosition="bottom-right" touch={true}>
-      <NavLink to="/dashboard" style={{
-          textDecoration: "none"
-        }}><ActionHome className={style.homeButton}/></NavLink>
-    </BackButton>)
+    let actionHome = (
+      <BackButton
+        style={muiStyle.homeButtonStyle}
+        tooltip="Home"
+        tooltipPosition="bottom-right"
+        touch={true}>
+          <NavLink
+            to="/dashboard"
+            style={{textDecoration: "none"}}>
+              <ActionHome className={style.homeButton}/>
+          </NavLink>
+      </BackButton>
+    )
 
     if (this.props.history.location.pathname == "/dashboard") {
       actionHome = <div></div>
     }
 
-    return (<div className={style.navbarContainer}>
-      <AppBar zDepth={0} className={style.appbar} style={muiStyle.appbar} title={logo} iconElementLeft={actionHome} iconElementRight={<IconMenu
-        iconButtonElement = {
-          <IconButton>
-              <MenuIcon/>
-            </IconButton>
-        }
-        targetOrigin = {{horizontal: 'right', vertical: 'top'}}
-        anchorOrigin = {{horizontal: 'right', vertical: 'top'}} > {/* All Users */
-        }
-        <NavLink to="/profile" style={{
-              textDecoration: "none"
-            }}><MenuItem primaryText="View My Profile"/></NavLink>
-          <Divider/>
+    return (
+      <div className={style.navbarContainer}>
+        <AppBar
+          zDepth={0}
+          className={style.appbar}
+          style={muiStyle.appbar}
+          title={logo}
+          iconElementLeft={actionHome}
+          iconElementRight={
+            <IconMenu
+              iconButtonElement = {
+                <IconButton>
+                    <MenuIcon/>
+                </IconButton>
+              }
+              targetOrigin = {{horizontal: 'right', vertical: 'top'}}
+              anchorOrigin = {{horizontal: 'right', vertical: 'top'}}
+              >
+              {/* All Users */}
+              <NavLink
+                to="/profile"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="View My Profile"/>
+              </NavLink>
+              <Divider/>
 
-          {/* Teacher Only */
-        }
-        <NavLink to="/addcourse" style={{
-              textDecoration: "none"
-            }}><MenuItem primaryText="Add Course"/></NavLink>
-          <NavLink to="/manage" style={{
-              textDecoration: "none"
-            }}><MenuItem primaryText="Manage Courses"/></NavLink>
+              {/* Teacher Only */}
+              <NavLink
+                to="/addcourse"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="Add Course"/></NavLink>
+              <NavLink
+                to="/manage"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="Manage Courses"/>
+              </NavLink>
 
-          {/* Admin Only */
-        }
-        <NavLink to="/admin" style={{
-            textDecoration: "none"
-          }}><MenuItem primaryText="Admin Panel"/></NavLink>
+              {/* Admin Only */}
+              <NavLink
+                to="/admin"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="Admin Panel"/>
+                </NavLink>
 
-        <NavLink to="/account" style={{
-            textDecoration: "none"
-          }}><MenuItem primaryText="My Account"/></NavLink>
-        <Divider/>
-        <NavLink to="/signout" style={{
-            textDecoration: "none"
-          }}><MenuItem primaryText="Log Out"/></NavLink>
-      </IconMenu>
-}/>
-    </div>)
+              <NavLink
+                to="/account"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="My Account"/>
+              </NavLink>
+              <Divider/>
+
+              <NavLink
+                to="/signout"
+                style={{textDecoration: "none"}}>
+                  <MenuItem primaryText="Log Out"/>
+              </NavLink>
+            </IconMenu>
+          }
+        />
+      </div>
+    )
   }
 }
 

@@ -31,15 +31,19 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    return (<div className={style.sidebar}>
-      {
-        chapterList.map((chapter, index) => {
-          return (<a key={index} className={style.chapterContainer} onClick={this.navigateToChapter}>
-            {chapter.title}
-          </a>)
-        })
-      }
-    </div>)
+    return (
+      <div className={style.sidebar}>
+        {
+          chapterList.map((chapter, index) => {
+            return (
+              <a key={index} className={style.chapterContainer} onClick={this.navigateToChapter}>
+                {chapter.title}
+              </a>
+            )
+          })
+        }
+      </div>
+    )
   }
 }
 

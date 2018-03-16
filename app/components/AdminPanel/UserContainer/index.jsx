@@ -29,14 +29,18 @@ export default class UserContainer extends React.Component {
 
   updateUsers() {
     getUsers((data) => {
-      this.setState({users: data});
+      this.setState({
+        users: data
+      });
     })
   }
 
   render() {
-    return (<div className={style.userContainerStyle}>
-      <CreateUserForm/>
-      <UsersTable users={this.state.users}/>
-    </div>)
+    return (
+      <div className={style.userContainerStyle}>
+        <CreateUserForm/>
+        <UsersTable users={this.state.users}/>
+      </div>
+    )
   }
 }

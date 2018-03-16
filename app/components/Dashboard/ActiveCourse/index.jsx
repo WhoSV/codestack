@@ -14,17 +14,19 @@ class ActiveCourse extends React.Component {
   }
 
   render() {
-    return (<div className={style.activeCourse}>
-      <div className={style.container}>
-        <div className={style.sidebar}>
-          <Sidebar/>
-        </div>
+    return (
+      <div className={style.activeCourse}>
+        <div className={style.container}>
+          <div className={style.sidebar}>
+            <Sidebar/>
+          </div>
 
-        <div className={style.activeChapter}>
-          <ActiveChapter/>
+          <div className={style.activeChapter}>
+            <ActiveChapter/>
+          </div>
         </div>
       </div>
-    </div>)
+    )
   }
 }
 

@@ -32,19 +32,33 @@ class SearchBar extends React.Component {
   }
 
   handleSearchTextChange(event) {
-    this.setState({searchText: event.target.value})
+    this.setState({
+      searchText: event.target.value
+    })
   }
 
   render() {
-    return (<div className={style.searchBar}>
-      <form onSubmit={this.handleSubmit}>
-        <TextField autoCorrect="none" autoCapitalize="none" hintText="Search.." type="text" value={this.state.searchText} className={style.textFieldStyle} underlineFocusStyle={muiStyle.underlineStyle} onChange={this.handleSearchTextChange}/>
+    return (
+      <div className={style.searchBar}>
+        <form onSubmit={this.handleSubmit}>
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            hintText="Search.."
+            type="text"
+            value={this.state.searchText}
+            className={style.textFieldStyle}
+            underlineFocusStyle={muiStyle.underlineStyle}
+            onChange={this.handleSearchTextChange}/>
 
-        <FlatButton type="submit" label={<SearchIcon className = {
-            style.searchIconStyle
-          } />} labelStyle={muiStyle.submitButtonLabelStyle} style={muiStyle.submitButton}/>
-      </form>
-    </div>)
+          <FlatButton
+            type="submit"
+            label={<SearchIcon className={style.searchIconStyle} />}
+            labelStyle={muiStyle.submitButtonLabelStyle}
+            style={muiStyle.submitButton}/>
+        </form>
+      </div>
+    )
   }
 }
 

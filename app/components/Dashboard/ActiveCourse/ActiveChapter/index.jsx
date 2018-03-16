@@ -25,33 +25,47 @@ class ActiveChapter extends React.Component {
   }
 
   render() {
-    return (<div className={style.activeChapter}>
+    return (
+      <div className={style.activeChapter}>
+        <div className={style.header}>
+          <FlatButton
+            label="Previous"
+            labelStyle={muiStyle.labelStylePreviousButton}
+            className={style.previousButton}
+            icon={<LeftIcon className={style.leftIconStyle} />}
+          />
 
-      <div className={style.header}>
-        <FlatButton label="Previous" labelStyle={muiStyle.labelStylePreviousButton} className={style.previousButton} icon={<LeftIcon className = {
-            style.leftIconStyle
-          } />}/>
+          <FlatButton
+            label="Next"
+            labelStyle={muiStyle.labelStyleNextButton}
+            className={style.nextButton}
+            labelPosition="before"
+            icon={<RightIcon className={style.rightIconStyle} />}
+          />
+        </div>
 
-        <FlatButton label="Next" labelStyle={muiStyle.labelStyleNextButton} className={style.nextButton} labelPosition="before" icon={<RightIcon className = {
-            style.rightIconStyle
-          } />}/>
+        <div className={style.contentContainer}>
+          <h3>Course Title</h3>
+        </div>
+
+        <div className={style.footer}>
+          <FlatButton
+            label="Previous"
+            labelStyle={muiStyle.labelStylePreviousButton}
+            className={style.previousButton}
+            icon={<LeftIcon className={style.leftIconStyle} />}
+          />
+
+          <FlatButton
+            label="Next"
+            labelStyle={muiStyle.labelStyleNextButton}
+            className={style.nextButton}
+            labelPosition="before"
+            icon={<RightIcon className={style.rightIconStyle} />}
+          />
+        </div>
       </div>
-
-      <div className={style.contentContainer}>
-        <h3>Course Title</h3>
-      </div>
-
-      <div className={style.footer}>
-        <FlatButton label="Previous" labelStyle={muiStyle.labelStylePreviousButton} className={style.previousButton} icon={<LeftIcon className = {
-            style.leftIconStyle
-          } />}/>
-
-        <FlatButton label="Next" labelStyle={muiStyle.labelStyleNextButton} className={style.nextButton} labelPosition="before" icon={<RightIcon className = {
-            style.rightIconStyle
-          } />}/>
-      </div>
-
-    </div>)
+    )
   }
 }
 

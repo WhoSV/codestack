@@ -46,11 +46,15 @@ class Signin extends React.Component {
   }
 
   handleEmailChange(event) {
-    this.setState({email: event.target.value})
+    this.setState({
+      email: event.target.value
+    })
   }
 
   handlePasswordChange(event) {
-    this.setState({password: event.target.value})
+    this.setState({
+      password: event.target.value
+    })
   }
 
   handleSubmit(event) {
@@ -58,7 +62,9 @@ class Signin extends React.Component {
     // action of submitting the form.
     event.preventDefault();
 
-    this.setState({inputError: ""})
+    this.setState({
+      inputError: ""
+    })
 
     const email = this.state.email;
     const password = this.state.password;
@@ -84,7 +90,9 @@ class Signin extends React.Component {
       this.props.history.push('/dashboard')
 
     } else {
-      this.setState({inputError: "Email or password are incorect."})
+      this.setState({
+        inputError: "Email or password are incorect."
+      })
     }
   }
 
@@ -97,36 +105,73 @@ class Signin extends React.Component {
   }
 
   render() {
-    return (<div className={style.bgStyle}>
-      <div className={style.signinContainer}>
-        <div className={style.intro}>
-          <h1>Learn to code</h1>
-          <h3>Interactive platform for online learning programming languages.</h3>
-        </div>
+    return (
+      <div className={style.bgStyle}>
+        <div className={style.signinContainer}>
+          <div className={style.intro}>
+            <h1>Learn to code</h1>
+            <h3>Interactive platform for online learning programming languages.</h3>
+          </div>
 
-        <div className={style.signin}>
-          <Paper zDepth={5}>
-            <img className={style.logoImg} src={img.logo}/>
-            <h1 className={style.title}>CodeStack</h1>
-            <form onSubmit={this.handleSubmit}>
-              <TextField autoCorrect="none" autoCapitalize="none" hintText="mark2019@gmail.com" type="email" floatingLabelText="Email" errorText={this.state.inputError} value={this.state.email} className={style.textFieldStyle} onChange={this.handleEmailChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+          <div className={style.signin}>
+            <Paper zDepth={5}>
+              <img className={style.logoImg} src={img.logo}/>
+              <h1 className={style.title}>CodeStack</h1>
+              <form onSubmit={this.handleSubmit}>
+                <TextField
+                  autoCorrect="none"
+                  autoCapitalize="none"
+                  hintText="mark2019@gmail.com"
+                  type="email"
+                  floatingLabelText="Email"
+                  errorText={this.state.inputError}
+                  value={this.state.email}
+                  className={style.textFieldStyle}
+                  onChange={this.handleEmailChange}
+                  floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-              <TextField autoCorrect="none" autoCapitalize="none" hintText="********" type="password" floatingLabelText="Password" errorText={this.state.inputError} value={this.state.password} className={style.textFieldStyle} onChange={this.handlePasswordChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-              <br/>
+                <TextField
+                  autoCorrect="none"
+                  autoCapitalize="none"
+                  hintText="********"
+                  type="password"
+                  floatingLabelText="Password"
+                  errorText={this.state.inputError}
+                  value={this.state.password}
+                  className={style.textFieldStyle}
+                  onChange={this.handlePasswordChange}
+                  floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+                <br/>
 
-              <FlatButton type="submit" label="LogIn" backgroundColor="#F3F3F3" style={muiStyle.submitButton} labelStyle={muiStyle.submitButtonText}/>
-            </form>
+                <FlatButton
+                  type="submit"
+                  label="LogIn"
+                  backgroundColor="#F3F3F3"
+                  style={muiStyle.submitButton}
+                  labelStyle={muiStyle.submitButtonText}/>
+              </form>
 
-            <div className={style.bottomDiv} style={{
-                backgroundImage: "url(" + img.backgroundImg + ")"
-              }}>
-              <FlatButton type="submit" label="Forgot password?" style={muiStyle.submitButton} onClick={this.handleForgotPassword} labelStyle={muiStyle.buttonText}/>
-              <FlatButton type="submit" label="Register" style={muiStyle.submitButton} onClick={this.handleRegister} labelStyle={muiStyle.buttonText}/>
-            </div>
-          </Paper>
+              <div className={style.bottomDiv}
+                style={{backgroundImage: "url(" + img.backgroundImg + ")"}}>
+                <FlatButton
+                  type="submit"
+                  label="Forgot password?"
+                  style={muiStyle.submitButton}
+                  onClick={this.handleForgotPassword}
+                  labelStyle={muiStyle.buttonText}/>
+
+                <FlatButton
+                  type="submit"
+                  label="Register"
+                  style={muiStyle.submitButton}
+                  onClick={this.handleRegister}
+                  labelStyle={muiStyle.buttonText}/>
+              </div>
+            </Paper>
+          </div>
         </div>
       </div>
-    </div>)
+    )
   }
 }
 

@@ -70,25 +70,26 @@ class CourseList extends React.Component {
   }
 
   render() {
-    return (<div className={style.courseList}>
-      {
-        courses.map((course, index) => {
-          return (<div key={index} className={style.listItem}>
-            <div className={style.listItemTitle}>
-              <a onClick={this.navigateToCourse}>
-                <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
-              </a>
-              <a className={style.upVoteStyle} onClick={this.upVote}>
-                <h5><ThumbUpIcon className={style.upvoteIconStyle}/>{course.rating}
-                  Likes</h5>
-              </a>
-            </div>
-            <h5 className={style.listItemDate}>{course.date}</h5>
-            <p className={style.listItemDescription}>{course.description}</p>
-          </div>)
-        })
-      }
-    </div>)
+    return (
+      <div className={style.courseList}>
+        {
+          courses.map((course, index) => {
+            return (<div key={index} className={style.listItem}>
+              <div className={style.listItemTitle}>
+                <a onClick={this.navigateToCourse}>
+                  <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
+                </a>
+                <a className={style.upVoteStyle} onClick={this.upVote}>
+                  <h5><ThumbUpIcon className={style.upvoteIconStyle}/>{course.rating}Likes</h5>
+                </a>
+              </div>
+              <h5 className={style.listItemDate}>{course.date}</h5>
+              <p className={style.listItemDescription}>{course.description}</p>
+            </div>)
+          })
+        }
+      </div>
+    )
   }
 }
 

@@ -15,12 +15,12 @@ class Courses extends React.Component {
   }
 
   render() {
-    return (<div className={style.courses}>
-
-      <Route exact="exact" path="/dashboard" component={SearchBar} history={this.props.history}/>
-      <Route exact="exact" path="/dashboard" component={CourseList} history={this.props.history}/>
-
-    </div>)
+    return (
+      <div className={style.courses}>
+        <Route exact path="/dashboard" component={SearchBar} history={this.props.history}/>
+        <Route exact path="/dashboard" component={CourseList} history={this.props.history}/>
+      </div>
+    )
   }
 }
 

@@ -13,16 +13,18 @@ class ManageCourses extends React.Component {
   }
 
   render() {
-    return (<div className={style.manageCourses}>
-      <Navbar {...this.props}/>
+    return (
+      <div className={style.manageCourses}>
+        <Navbar {...this.props}/>
 
-      <p>manage</p>
-      <p>manage</p>
-      <p>manage</p>
-      <p>manage</p>
-      <p>manage</p>
-      <p>manage</p>
-    </div>)
+        <p>manage</p>
+        <p>manage</p>
+        <p>manage</p>
+        <p>manage</p>
+        <p>manage</p>
+        <p>manage</p>
+      </div>
+    )
   }
 }
 

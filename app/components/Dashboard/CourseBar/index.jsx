@@ -34,21 +34,25 @@ class CourseBar extends React.Component {
   }
 
   render() {
-    return (<div className={style.courseBar}>
-      <h3 className={style.title}>My Courses</h3>
-      {
-        courses.map((course, index) => {
-          return (<div key={index} className={style.selectedCourseContainer}>
-            <a onClick={this.navigateToCourse}>
-              <div className={style.selectedCourseItem}>
-                <h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
-                <h4 className={style.courseStatusStyle}>{course.status}%</h4>
+    return (
+      <div className={style.courseBar}>
+        <h3 className={style.title}>My Courses</h3>
+        {
+          courses.map((course, index) => {
+            return (
+              <div key={index} className={style.selectedCourseContainer}>
+                <a onClick={this.navigateToCourse}>
+                  <div className={style.selectedCourseItem}>
+                    <h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
+                    <h4 className={style.courseStatusStyle}>{course.status}%</h4>
+                  </div>
+                </a>
               </div>
-            </a>
-          </div>)
-        })
-      }
-    </div>)
+            )
+          })
+        }
+      </div>
+    )
   }
 }
 

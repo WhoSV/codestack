@@ -13,15 +13,17 @@ class MyProfile extends React.Component {
   }
 
   render() {
-    return (<div className={style.myProfile}>
-      <Navbar {...this.props}/>
+    return (
+      <div className={style.myProfile}>
+        <Navbar {...this.props}/>
 
-      <p>MyProfile</p>
-      <p>MyProfile</p>
-      <p>MyProfile</p>
-      <p>MyProfile</p>
-      <p>MyProfile</p>
-    </div>)
+        <p>MyProfile</p>
+        <p>MyProfile</p>
+        <p>MyProfile</p>
+        <p>MyProfile</p>
+        <p>MyProfile</p>
+      </div>
+    )
   }
 }
 

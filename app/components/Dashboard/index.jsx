@@ -17,20 +17,30 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    return (<div className={style.dashboard}>
-      <Navbar {...this.props}/>
+    return (
+      <div className={style.dashboard}>
+        <Navbar {...this.props}/>
 
-      <Route exact="exact" path={`${this.props.match.url}`} component={() => (<div className={style.container}>
-          <div className={style.coursesContainer}>
-            <Courses {...this.props}/>
-          </div>
+        <Route
+          exact
+          path={`${this.props.match.url}`}
+          component={() => (
+            <div className={style.container}>
+              <div className={style.coursesContainer}>
+                <Courses {...this.props}/>
+              </div>
 
-          <div className={style.courseBarContainer}>
-            <CourseBar {...this.props}/>
-          </div>
-        </div>)}/> {/* change url to course name */}
-      <Route path={`${this.props.match.url}/activecourse`} component={ActiveCourse}/>
-    </div>)
+              <div className={style.courseBarContainer}>
+                <CourseBar {...this.props}/>
+              </div>
+            </div>
+          )}
+        /> 
+
+        {/* change url to course name */}
+        <Route path={`${this.props.match.url}/activecourse`} component={ActiveCourse}/>
+      </div>
+    )
   }
 }
 

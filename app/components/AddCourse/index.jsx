@@ -33,9 +33,6 @@ const muiStyle = {
   uploadButtonLabelStyle: {
     color: '#4A4A4A'
   }
-  // errorStyle: {
-  //   textAlign: 'center',
-  // }
 }
 
 // Component Style
@@ -51,39 +48,57 @@ class AddCourse extends React.Component {
   }
 
   handleCourseNameChange(event) {
-    this.setState({courseName: event.target.value})
+    this.setState({
+      courseName: event.target.value
+    })
   }
 
   render() {
-    return (<div className={style.addCourse}>
-      <Navbar {...this.props}/>
+    return (
+      <div className={style.addCourse}>
+        <Navbar {...this.props}/>
 
-      <div className={style.container}>
-        <h3>Add Course</h3>
+        <div className={style.container}>
+          <h3>Add Course</h3>
 
-        <TextField autoCorrect="none" autoCapitalize="none" type="text" floatingLabelText="Course Name" floatingLabelFixed={true}
-          // errorText={this.state.inputError}
-          value={this.state.courseName} onChange={this.handleCourseNameChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle} className={style.textFieldStyle}/>
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            type="text"
+            floatingLabelText="Course Name"
+            floatingLabelFixed={true}
+            value={this.state.courseName}
+            onChange={this.handleCourseNameChange}
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            className={style.textFieldStyle}/>
 
-        <div className={style.pictureContainer}>
-          <p>Course Picture</p>
-          <img className={style.pictureStyle} src={img.logo}/>
+          <div className={style.pictureContainer}>
+            <p>Course Picture</p>
+            <img className={style.pictureStyle} src={img.logo}/>
 
-          <FlatButton label="Choose an Image" labelPosition="before" style={muiStyle.uploadButtonStyle} labelStyle={muiStyle.uploadButtonLabelStyle} containerElement="label">
-            <input type="file" style={muiStyle.uploadInputStyle}/>
-          </FlatButton>
+            <FlatButton
+              label="Choose an Image"
+              labelPosition="before"
+              style={muiStyle.uploadButtonStyle}
+              labelStyle={muiStyle.uploadButtonLabelStyle}
+              containerElement="label">
+                <input type="file" style={muiStyle.uploadInputStyle}/>
+            </FlatButton>
+          </div>
+
+          <p>Description</p>
+          <textarea name="message" className={style.description}/>
+
+          <FlatButton
+            // type="submit"
+            label="Add Chapter"
+            labelStyle={muiStyle.addChapterButton}
+            icon={<ContentAdd/>}
+            // style={muiStyle.createButtonStyle}
+          />
         </div>
-
-        <p>Description</p>
-        <textarea name="message" className={style.description}/>
-
-        <FlatButton
-          // type="submit"
-          label="Add Chapter" labelStyle={muiStyle.addChapterButton} icon={<ContentAdd/>}
-          // style={muiStyle.createButtonStyle}
-        />
       </div>
-    </div>)
+    )
   }
 }
 

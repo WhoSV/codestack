@@ -54,23 +54,33 @@ class Register extends React.Component {
   }
 
   handleNameChange(event) {
-    this.setState({name: event.target.value})
+    this.setState({
+      name: event.target.value
+    })
   }
 
   handleEmailChange(event) {
-    this.setState({email: event.target.value})
+    this.setState({
+      email: event.target.value
+    })
   }
 
   handleTypeChange(event, index, value) {
-    this.setState({type: value})
+    this.setState({
+      type: value
+    })
   }
 
   handlePasswordChange(event) {
-    this.setState({password: event.target.value})
+    this.setState({
+      password: event.target.value
+    })
   }
 
   handleConfPasswordChange(event) {
-    this.setState({confPassword: event.target.value})
+    this.setState({
+      confPassword: event.target.value
+    })
   }
 
   handleSubmit(event) {
@@ -78,7 +88,9 @@ class Register extends React.Component {
     // action of submitting the form.
     event.preventDefault();
 
-    this.setState({inputError: "", passwordError: ""})
+    this.setState({
+      inputError: "", passwordError: ""
+    })
 
     const name = this.state.name;
     const email = this.state.email;
@@ -96,7 +108,9 @@ class Register extends React.Component {
     }
 
     if (password != confPassword) {
-      this.setState({passwordError: "Passwords are not identical"})
+      this.setState({
+        passwordError: "Passwords are not identical"
+      })
     }
 
     let reqInputs = [name, email, type, password];
@@ -110,7 +124,10 @@ class Register extends React.Component {
       }
 
     } else {
-      this.setState({inputError: "All fields must be filled.", passwordError: "All fields must be filled."})
+      this.setState({
+        inputError: "All fields must be filled.",
+        passwordError: "All fields must be filled."
+      })
     }
   }
 
@@ -119,36 +136,95 @@ class Register extends React.Component {
   }
 
   render() {
-    return (<div className={style.bgStyle}>
-      <div className={style.register}>
-        <Paper zDepth={5}>
-          <img className={style.logoImg} src={img.logo}/>
-          <h3 className={style.title}>Register New Account</h3>
+    return (
+      <div className={style.bgStyle}>
+        <div className={style.register}>
+          <Paper zDepth={5}>
+            <img className={style.logoImg} src={img.logo}/>
+            <h3 className={style.title}>Register New Account</h3>
 
-          <form onSubmit={this.handleSubmit}>
-            <TextField autoCorrect="none" autoCapitalize="none" hintText="Jon Doe" type="text" floatingLabelText="Name & Surname" errorText={this.state.inputError} value={this.state.name} className={style.textFieldStyle} onChange={this.handleNameChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            <form onSubmit={this.handleSubmit}>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="Jon Doe"
+                type="text"
+                floatingLabelText="Name & Surname"
+                errorText={this.state.inputError}
+                value={this.state.name}
+                className={style.textFieldStyle}
+                onChange={this.handleNameChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <TextField autoCorrect="none" autoCapitalize="none" hintText="mark2019@gmail.com" type="email" floatingLabelText="Email" errorText={this.state.inputError} value={this.state.email} className={style.textFieldStyle} onChange={this.handleEmailChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="mark2019@gmail.com"
+                type="email"
+                floatingLabelText="Email"
+                errorText={this.state.inputError}
+                value={this.state.email}
+                className={style.textFieldStyle}
+                onChange={this.handleEmailChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <SelectField floatingLabelText="Type" value={this.state.type} className={style.selectFieldStyle} errorText={this.state.inputError} errorStyle={muiStyle.errorStyle} onChange={this.handleTypeChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-              <MenuItem value={1} primaryText="Student"/>
-              <MenuItem value={2} primaryText="Teacher"/>
-            </SelectField>
+              <SelectField
+                floatingLabelText="Type"
+                value={this.state.type}
+                className={style.selectFieldStyle}
+                errorText={this.state.inputError}
+                errorStyle={muiStyle.errorStyle}
+                onChange={this.handleTypeChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
+                  <MenuItem value={1} primaryText="Student"/>
+                  <MenuItem value={2} primaryText="Teacher"/>
+              </SelectField>
 
-            <TextField autoCorrect="none" autoCapitalize="none" hintText="********" type="password" floatingLabelText="Password" errorText={this.state.passwordError} value={this.state.password} className={style.textFieldStyle} onChange={this.handlePasswordChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="********"
+                type="password"
+                floatingLabelText="Password"
+                errorText={this.state.passwordError}
+                value={this.state.password}
+                className={style.textFieldStyle}
+                onChange={this.handlePasswordChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-            <TextField autoCorrect="none" autoCapitalize="none" hintText="********" type="password" floatingLabelText="Confirm Password" errorText={this.state.passwordError} value={this.state.confPassword} className={style.textFieldStyle} onChange={this.handleConfPasswordChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-            <br/>
+              <TextField
+                autoCorrect="none"
+                autoCapitalize="none"
+                hintText="********"
+                type="password"
+                floatingLabelText="Confirm Password"
+                errorText={this.state.passwordError}
+                value={this.state.confPassword}
+                className={style.textFieldStyle}
+                onChange={this.handleConfPasswordChange}
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              <br/>
 
-            <FlatButton type="submit" label="Register" backgroundColor="#F3F3F3" style={muiStyle.submitButton} labelStyle={muiStyle.submitButtonText}/>
-          </form>
+              <FlatButton
+                type="submit"
+                label="Register"
+                backgroundColor="#F3F3F3"
+                style={muiStyle.submitButton}
+                labelStyle={muiStyle.submitButtonText}/>
+            </form>
 
-          <div className={style.backContainer}>
-            <FlatButton type="submit" label="Back" style={muiStyle.backButton} onClick={this.handleBack} labelStyle={muiStyle.backButtonText}/>
-          </div>
-        </Paper>
+            <div className={style.backContainer}>
+              <FlatButton
+                type="submit"
+                label="Back"
+                style={muiStyle.backButton}
+                onClick={this.handleBack}
+                labelStyle={muiStyle.backButtonText}/>
+            </div>
+          </Paper>
+        </div>
       </div>
-    </div>)
+    )
   }
 }
 

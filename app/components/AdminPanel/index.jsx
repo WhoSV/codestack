@@ -12,11 +12,13 @@ class AdminPanel extends React.Component {
   }
 
   render() {
-    return (<div>
-      <Navbar {...this.props}/>
-      <UserContainer/>
-      <ContentContainer/>
-    </div>)
+    return (
+      <div>
+        <Navbar {...this.props}/>
+        <UserContainer/>
+        <ContentContainer/>
+      </div>
+    )
   }
 }
 

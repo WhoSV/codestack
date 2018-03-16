@@ -35,30 +35,42 @@ export default function requiresAuth(Component, allowedRoles) {
 
         isAuthenticated((data) => {
           console.log("authenticated");
-          that.setState({loading: false, user, token})
+          that.setState({
+            loading: false, user, token
+          })
         }, (error) => {
           console.log("auth error");
-          that.setState({loading: false})
+          that.setState({
+            loading: false
+          })
         })
 
       } catch (error) {
-        that.setState({loading: false})
+        that.setState({
+          loading: false
+        })
       }
     }
 
     render() {
       const {loading, user, token} = this.state
       if (loading) {
-        return (<LinearProgress mode="indeterminate"/>)
+        return (
+          <LinearProgress mode="indeterminate"/>
+        )
       } else if (token && allowedRoles.includes(user.role)) {
-        return (<Component {...this.props}/>)
+        return (
+          <Component {...this.props}/>
+        )
       } else {
-        return (<Redirect to={{
-            pathname: '/signout',
+        return (
+          <Redirect
+            to={{pathname: '/signout',
             state: {
               from: this.props.location
             }
-          }}/>)
+          }}/>
+        )
       }
     }
   }
