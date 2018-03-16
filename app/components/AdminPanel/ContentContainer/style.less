@@ -1,8 +1,8 @@
 .contentContainerStyle {
   background-color: #fff;
   max-width: 1000px;
-  margin: 0px auto 50px;
-  padding: 0px 50px 50px;
+  margin: 0 auto 50px;
+  padding: 0 50px 50px;
   border-radius: 10px;
 
   .title {
@@ -16,28 +16,33 @@
   table {
     overflow: hidden;
 
-    th, tr, td {
+    td,
+    th,
+    tr {
       text-align: center !important;
-      }
+    }
+
     td {
       overflow: visible !important;
     }
   }
 
   @media only screen and (max-width: 1040px) {
-    margin: 0px 20px 50px;
-    padding: 0px 20px 50px;
+    margin: 0 20px 50px;
+    padding: 0 20px 50px;
 
     table {
-      th, td {
-        padding: 0px !important;
+      td,
+      th {
+        padding: 0 !important;
       }
     }
   }
 
   @media only screen and (max-width: 450px) {
     table {
-      th:last-child, td:last-child {
+      td:last-child,
+      th:last-child {
         width: 60px !important;
       }
     }

@@ -10,13 +10,13 @@ import ContentAdd from 'material-ui/svg-icons/content/add'
 // Material UI Styles
 const muiStyle = {
   floatingLabelTextStyle: {
-    fontWeight: 'normal',
+    fontWeight: 'normal'
   },
-  createButtonStyle:{
-    margin: '20px 40px',
+  createButtonStyle: {
+    margin: '20px 40px'
   },
   errorStyle: {
-    textAlign: 'center',
+    textAlign: 'center'
   }
 }
 
@@ -39,31 +39,23 @@ export default class CreateUserForm extends React.Component {
     this.handleTypeChange = this.handleTypeChange.bind(this)
   }
 
-  handleNameChange(event){
-    this.setState({
-      name: event.target.value
-    })
+  handleNameChange(event) {
+    this.setState({name: event.target.value})
   }
 
-  handleEmailChange(event){
-    this.setState({
-      email: event.target.value
-    })
+  handleEmailChange(event) {
+    this.setState({email: event.target.value})
   }
 
-  handlePasswordChange(event){
-    this.setState({
-      password: event.target.value
-    })
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value})
   }
 
-  handleTypeChange(event, index, value){
-    this.setState({
-			type: value
-		})
+  handleTypeChange(event, index, value) {
+    this.setState({type: value})
   }
 
-  handleCreateUser(event){
+  handleCreateUser(event) {
     // Call preventDefault() on the event to prevent the browser's default
     // action of submitting the form.
     event.preventDefault();
@@ -75,9 +67,9 @@ export default class CreateUserForm extends React.Component {
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-    		if (arr[i] == null || arr[i] == "") {
+        if (arr[i] == null || arr[i] == "") {
           return false
-    		}
+        }
       }
       return true
     }
@@ -89,92 +81,46 @@ export default class CreateUserForm extends React.Component {
         name: name,
         email: email,
         password: password,
-        type: type,
+        type: type
       }
 
-    // createUser(formData, (res) => {
-    //   this.setState({
-    //     email: "",
-    //     password: "",
-    //     inputError: ""
-    //   })
-    //   this.props.userCreated(res);
-    // })
+      // createUser(formData, (res) => {
+      //   this.setState({
+      //     email: "",
+      //     password: "",
+      //     inputError: ""
+      //   })
+      //   this.props.userCreated(res);
+      // })
 
     } else {
-      this.setState({
-        inputError: "All fields must be filled."
-      })
+      this.setState({inputError: "All fields must be filled."})
     }
   }
 
   render() {
-    return (
-      <div className={style.createUserStyle}>
-        <h3 className={style.title}>Create User</h3>
-        <form
-          id="createUser"
-          onSubmit={this.handleCreateUser.bind(this)}
-          className={style.formStyle}>
+    return (<div className={style.createUserStyle}>
+      <h3 className={style.title}>Create User</h3>
+      <form id="createUser" onSubmit={this.handleCreateUser.bind(this)} className={style.formStyle}>
 
-          <div className={style.container}>
-            <TextField
-              autoCorrect="none"
-              autoCapitalize="none"
-              hintText="Jon Doe"
-              type="text"
-              floatingLabelText="Name & Surname"
-              errorText={this.state.inputError}
-              value={this.state.name}
-              onChange={this.handleNameChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
+        <div className={style.container}>
+          <TextField autoCorrect="none" autoCapitalize="none" hintText="Jon Doe" type="text" floatingLabelText="Name & Surname" errorText={this.state.inputError} value={this.state.name} onChange={this.handleNameChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle} className={style.textFieldStyle}/>
 
-            <TextField
-              value={this.state.email}
-              onChange={this.handleEmailChange.bind(this)}
-              type="email"
-              hintText="email@example.com"
-              floatingLabelText="Email"
-              errorText={this.state.inputError}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
-          </div>
+          <TextField value={this.state.email} onChange={this.handleEmailChange.bind(this)} type="email" hintText="email@example.com" floatingLabelText="Email" errorText={this.state.inputError} floatingLabelStyle={muiStyle.floatingLabelTextStyle} className={style.textFieldStyle}/>
+        </div>
 
-          <div className={style.container}>
-            <TextField
-              value={this.state.password}
-              onChange={this.handlePasswordChange.bind(this)}
-              type="password"
-              hintText="Set a password"
-              floatingLabelText="Password"
-              errorText={this.state.inputError}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
+        <div className={style.container}>
+          <TextField value={this.state.password} onChange={this.handlePasswordChange.bind(this)} type="password" hintText="Set a password" floatingLabelText="Password" errorText={this.state.inputError} floatingLabelStyle={muiStyle.floatingLabelTextStyle} className={style.textFieldStyle}/>
 
-            <SelectField
-              floatingLabelText="Type"
-              value={this.state.type}
-              className={style.selectFieldStyle}
-              errorText={this.state.inputError}
-              errorStyle={muiStyle.errorStyle}
-              onChange={this.handleTypeChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                <MenuItem value={1} primaryText="Student" />
-                <MenuItem value={2} primaryText="Teacher" />
-                <MenuItem value={3} primaryText="Admin" />
-            </SelectField>
-          </div>
+          <SelectField floatingLabelText="Type" value={this.state.type} className={style.selectFieldStyle} errorText={this.state.inputError} errorStyle={muiStyle.errorStyle} onChange={this.handleTypeChange} floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
+            <MenuItem value={1} primaryText="Student"/>
+            <MenuItem value={2} primaryText="Teacher"/>
+            <MenuItem value={3} primaryText="Admin"/>
+          </SelectField>
+        </div>
 
-          <RaisedButton
-            type="submit"
-            label="Create"
-            icon={<ContentAdd/>}
-            labelColor="#fff"
-            backgroundColor="#37BDD5"
-            style={muiStyle.createButtonStyle}/>
-        </form>
-      </div>
-    )
+        <RaisedButton type="submit" label="Create" icon={<ContentAdd/>} labelColor="#fff" backgroundColor="#37BDD5" style={muiStyle.createButtonStyle}/>
+      </form>
+    </div>)
   }
 }

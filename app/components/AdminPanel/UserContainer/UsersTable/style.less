@@ -11,9 +11,12 @@
   table {
     overflow: hidden;
 
-    th, tr, td {
+    td,
+    th,
+    tr {
       text-align: center !important;
-      }
+    }
+
     td {
       overflow: visible !important;
     }
@@ -21,19 +24,22 @@
 
   @media only screen and (max-width: 1040px) {
     table {
-      th, td {
-        padding: 0px !important;
+      td,
+      th {
+        padding: 0 !important;
       }
     }
   }
 
   @media only screen and (max-width: 450px) {
     table {
-      th:last-child, td:last-child {
+      td:last-child,
+      th:last-child {
         width: 50px !important;
       }
 
-      th:nth-child(2), td:nth-child(2) {
+      td:nth-child(2),
+      th:nth-child(2) {
         width: 115px !important;
       }
     }

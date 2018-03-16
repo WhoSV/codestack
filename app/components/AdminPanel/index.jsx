@@ -6,21 +6,18 @@ import UserContainer from './UserContainer'
 import ContentContainer from './ContentContainer'
 
 class AdminPanel extends React.Component {
-	constructor(props) {
-		super()
-		this.state = {
-		}
+  constructor(props) {
+    super()
+    this.state = {}
   }
 
-  render (){
-		return (
-	  	<div>
-				<Navbar {...this.props}/>
-				<UserContainer />
-				<ContentContainer />
-	  	</div>
-	  )
-	}
+  render() {
+    return (<div>
+      <Navbar {...this.props}/>
+      <UserContainer/>
+      <ContentContainer/>
+    </div>)
+  }
 }
 
 export default AdminPanel

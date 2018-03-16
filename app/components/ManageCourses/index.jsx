@@ -7,26 +7,23 @@ import Navbar from '../Navbar'
 import style from './style.less'
 
 class ManageCourses extends React.Component {
-	constructor(props) {
-		super()
-		this.state = {
-		}
+  constructor(props) {
+    super()
+    this.state = {}
   }
 
-  render (){
-		return (
-	  	<div className={style.manageCourses}>
-				<Navbar {...this.props}/>
+  render() {
+    return (<div className={style.manageCourses}>
+      <Navbar {...this.props}/>
 
-        <p>manage</p>
-        <p>manage</p>
-				<p>manage</p>
-				<p>manage</p>
-				<p>manage</p>
-				<p>manage</p>
-	  	</div>
-	  )
-	}
+      <p>manage</p>
+      <p>manage</p>
+      <p>manage</p>
+      <p>manage</p>
+      <p>manage</p>
+      <p>manage</p>
+    </div>)
+  }
 }
 
 export default ManageCourses

@@ -7,25 +7,22 @@ import Navbar from '../Navbar'
 import style from './style.less'
 
 class MyProfile extends React.Component {
-	constructor(props) {
-		super()
-		this.state = {
-		}
+  constructor(props) {
+    super()
+    this.state = {}
   }
 
-  render (){
-		return (
-	  	<div className={style.myProfile}>
-				<Navbar {...this.props}/>
+  render() {
+    return (<div className={style.myProfile}>
+      <Navbar {...this.props}/>
 
-        <p>MyProfile</p>
-				<p>MyProfile</p>
-				<p>MyProfile</p>
-				<p>MyProfile</p>
-				<p>MyProfile</p>
-	  	</div>
-	  )
-	}
+      <p>MyProfile</p>
+      <p>MyProfile</p>
+      <p>MyProfile</p>
+      <p>MyProfile</p>
+      <p>MyProfile</p>
+    </div>)
+  }
 }
 
 export default MyProfile

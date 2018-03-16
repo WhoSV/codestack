@@ -11,14 +11,10 @@ injectTapEventPlugin();
 // Import components
 import Master from './components/Master'
 
-const App = () => (
-  <div>
-    <MuiThemeProvider>
-      <Master />
-    </MuiThemeProvider>
-  </div>
-)
+const App = () => (<div>
+  <MuiThemeProvider>
+    <Master/>
+  </MuiThemeProvider>
+</div>)
 
-ReactDOM.render(
-  <App />, document.getElementById('root')
-);
+ReactDOM.render(<App/>, document.getElementById('root'));

@@ -6,22 +6,17 @@ Online Learning Programming Languages Web Application
 
 **Clone the repo**
 
-```
-$ git clone <repo>
-$ cd codestack
-```
+    `$ git clone <repo>`
+    `$ cd codestack`
 
 **Install dependencies**
 
-```
-$ npm install
-```
+    `$ npm install`
 
 **Start Run**
 
-```
-$ npm start
-```
+  `$ npm start`
+
 This will initiate the project at `http://localhost:8080`.
 
 ## Build Package for Production
@@ -29,6 +24,4 @@ This will initiate the project at `http://localhost:8080`.
 For building once for production (via minification).
 Builds into `public/` as `bundle.js`
 
-```
-$ npm run build
-```
+    `$ npm run build`
