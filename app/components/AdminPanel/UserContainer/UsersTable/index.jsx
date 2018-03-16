@@ -27,6 +27,9 @@ const muiStyle = {
   }
 }
 
+// Component Actions
+import {deleteUser} from './actions'
+
 // Component Style
 import style from './style'
 
@@ -60,7 +63,14 @@ export default class UsersTable extends React.Component {
   }
 
   confirmDeleteUser() {
-    console.log("confirmed");
+    deleteUser(this.state.deleteUser.id, (res) => {
+
+      this.setState({
+        dialogAlert: false,
+        deleteUser: {}
+      })
+      // this.props.changeOnUserList()
+    })
   }
 
   render() {
@@ -130,7 +140,7 @@ export default class UsersTable extends React.Component {
           onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to delete
             <span className={style.highlight}>
-              Vlad
+              {this.state.deleteUser.full_name}
             </span>
             ?
         </Dialog>
