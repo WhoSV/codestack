@@ -28,6 +28,9 @@ const muiStyle = {
   }
 }
 
+// Component Actions
+import {createUser} from './actions'
+
 // Component Style
 import style from './style.less'
 
@@ -38,36 +41,36 @@ class Register extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      name: "",
-      email: "",
-      type: "",
+      full_name: "",
+      mail: "",
+      role: "",
       password: "",
       confPassword: ""
     }
     this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleMailChange = this.handleMailChange.bind(this)
+    this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCreateUser = this.handleCreateUser.bind(this)
     this.handleBack = this.handleBack.bind(this)
   }
 
   handleNameChange(event) {
     this.setState({
-      name: event.target.value
+      full_name: event.target.value
     })
   }
 
-  handleEmailChange(event) {
+  handleMailChange(event) {
     this.setState({
-      email: event.target.value
+      mail: event.target.value
     })
   }
 
-  handleTypeChange(event, index, value) {
+  handleRoleChange(event, index, value) {
     this.setState({
-      type: value
+      role: value
     })
   }
 
@@ -83,18 +86,19 @@ class Register extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  handleCreateUser(event) {
     // Call preventDefault() on the event to prevent the browser's default
     // action of submitting the form.
     event.preventDefault();
 
     this.setState({
-      inputError: "", passwordError: ""
+      inputError: "",
+      passwordError: ""
     })
 
-    const name = this.state.name;
-    const email = this.state.email;
-    const type = this.state.type;
+    const full_name = this.state.full_name;
+    const mail = this.state.mail;
+    const role = this.state.role;
     const password = this.state.password;
     const confPassword = this.state.confPassword;
 
@@ -107,26 +111,36 @@ class Register extends React.Component {
       return true
     }
 
-    if (password != confPassword) {
-      this.setState({
-        passwordError: "Passwords are not identical"
-      })
-    }
+    if (password == confPassword) {
+      let reqInputs = [full_name, mail, role, password];
 
-    let reqInputs = [name, email, type, password];
+      if (validateForm(reqInputs)) {
+        let formData = {
+          full_name: full_name,
+          mail: mail,
+          role: role,
+          password: password
+        }
 
-    if (validateForm(reqInputs)) {
-      let formData = {
-        name: name,
-        email: email,
-        type: type,
-        password: password
+        createUser(formData, () => {
+          this.setState({
+            full_name: "",
+            mail: "",
+            role: "",
+            password: "",
+            confPassword: ""
+          })
+        })
+
+      } else {
+        this.setState({
+          inputError: "All fields must be filled.",
+          passwordError: "All fields must be filled."
+        })
       }
-
     } else {
       this.setState({
-        inputError: "All fields must be filled.",
-        passwordError: "All fields must be filled."
+        passwordError: "Passwords are not identical"
       })
     }
   }
@@ -143,7 +157,7 @@ class Register extends React.Component {
             <img className={style.logoImg} src={img.logo}/>
             <h3 className={style.title}>Register New Account</h3>
 
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleCreateUser}>
               <TextField
                 autoCorrect="none"
                 autoCapitalize="none"
@@ -151,7 +165,7 @@ class Register extends React.Component {
                 type="text"
                 floatingLabelText="Name & Surname"
                 errorText={this.state.inputError}
-                value={this.state.name}
+                value={this.state.full_name}
                 className={style.textFieldStyle}
                 onChange={this.handleNameChange}
                 floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
@@ -160,24 +174,24 @@ class Register extends React.Component {
                 autoCorrect="none"
                 autoCapitalize="none"
                 hintText="mark2019@gmail.com"
-                type="email"
+                type="mail"
                 floatingLabelText="Email"
                 errorText={this.state.inputError}
-                value={this.state.email}
+                value={this.state.mail}
                 className={style.textFieldStyle}
-                onChange={this.handleEmailChange}
+                onChange={this.handleMailChange}
                 floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
               <SelectField
-                floatingLabelText="Type"
-                value={this.state.type}
+                floatingLabelText="Role"
+                value={this.state.role}
                 className={style.selectFieldStyle}
                 errorText={this.state.inputError}
                 errorStyle={muiStyle.errorStyle}
-                onChange={this.handleTypeChange}
+                onChange={this.handleRoleChange}
                 floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                  <MenuItem value={1} primaryText="Student"/>
-                  <MenuItem value={2} primaryText="Teacher"/>
+                  <MenuItem value="STUDENT" primaryText="Student"/>
+                  <MenuItem value="TEACHER" primaryText="Teacher"/>
               </SelectField>
 
               <TextField

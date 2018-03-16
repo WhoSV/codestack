@@ -20,34 +20,43 @@ const muiStyle = {
   }
 }
 
+// Component Actions
+import {createUser} from './actions'
+
 // Component Style
 import style from './style'
 
 export default class CreateUserForm extends React.Component {
   constructor(props) {
-    super(props)
+    super()
     this.state = {
-      name: "",
-      email: "",
+      full_name: "",
+      mail: "",
+      role: "",
       password: "",
-      type: "",
-      inputError: ""
     }
     this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleMailChange = this.handleMailChange.bind(this)
+    this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleCreateUser = this.handleCreateUser.bind(this)
   }
 
   handleNameChange(event) {
     this.setState({
-      name: event.target.value
+      full_name: event.target.value
     })
   }
 
-  handleEmailChange(event) {
+  handleMailChange(event) {
     this.setState({
-      email: event.target.value
+      mail: event.target.value
+    })
+  }
+
+  handleRoleChange(event, index, value) {
+    this.setState({
+      role: value
     })
   }
 
@@ -57,21 +66,19 @@ export default class CreateUserForm extends React.Component {
     })
   }
 
-  handleTypeChange(event, index, value) {
-    this.setState({
-      type: value
-    })
-  }
-
   handleCreateUser(event) {
     // Call preventDefault() on the event to prevent the browser's default
     // action of submitting the form.
     event.preventDefault();
 
-    let name = this.state.name;
-    let email = this.state.email;
-    let password = this.state.password;
-    let type = this.state.type;
+    this.setState({
+      inputError: ""
+    })
+
+    const full_name = this.state.full_name;
+    const mail = this.state.mail;
+    const role = this.state.role;
+    const password = this.state.password;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -82,24 +89,24 @@ export default class CreateUserForm extends React.Component {
       return true
     }
 
-    let reqInputs = [name, email, password, type];
+    let reqInputs = [full_name, mail, password, role];
 
     if (validateForm(reqInputs)) {
       let formData = {
-        name: name,
-        email: email,
-        password: password,
-        type: type
+        full_name: full_name,
+        mail: mail,
+        role: role,
+        password: password
       }
 
-      // createUser(formData, (res) => {
-      //   this.setState({
-      //     email: "",
-      //     password: "",
-      //     inputError: ""
-      //   })
-      //   this.props.userCreated(res);
-      // })
+      createUser(formData, () => {
+        this.setState({
+          full_name: "",
+          mail: "",
+          role: "",
+          password: ""
+        })
+      })
 
     } else {
       this.setState({
@@ -113,8 +120,7 @@ export default class CreateUserForm extends React.Component {
       <div className={style.createUserStyle}>
         <h3 className={style.title}>Create User</h3>
         <form
-          id="createUser"
-          onSubmit={this.handleCreateUser.bind(this)}
+          onSubmit={this.handleCreateUser}
           className={style.formStyle}>
 
           <div className={style.container}>
@@ -125,43 +131,48 @@ export default class CreateUserForm extends React.Component {
               type="text"
               floatingLabelText="Name & Surname"
               errorText={this.state.inputError}
-              value={this.state.name}
+              value={this.state.full_name}
+              className={style.textFieldStyle}
               onChange={this.handleNameChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
             <TextField
-              value={this.state.email}
-              onChange={this.handleEmailChange.bind(this)}
-              type="email" hintText="email@example.com"
+              autoCorrect="none"
+              autoCapitalize="none"
+              hintText="mail@example.com"
+              type="mail"
               floatingLabelText="Email"
               errorText={this.state.inputError}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
+              value={this.state.mail}
+              className={style.textFieldStyle}
+              onChange={this.handleMailChange}
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
           </div>
 
           <div className={style.container}>
             <TextField
-              value={this.state.password}
-              onChange={this.handlePasswordChange.bind(this)}
+              autoCorrect="none"
+              autoCapitalize="none"
+              hintText="********"
               type="password"
-              hintText="Set a password"
               floatingLabelText="Password"
               errorText={this.state.inputError}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-              className={style.textFieldStyle}/>
+              value={this.state.password}
+              className={style.textFieldStyle}
+              onChange={this.handlePasswordChange}
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
             <SelectField
-              floatingLabelText="Type"
-              value={this.state.type}
+              floatingLabelText="Role"
+              value={this.state.role}
               className={style.selectFieldStyle}
               errorText={this.state.inputError}
               errorStyle={muiStyle.errorStyle}
-              onChange={this.handleTypeChange}
+              onChange={this.handleRoleChange}
               floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                <MenuItem value={1} primaryText="Student"/>
-                <MenuItem value={2} primaryText="Teacher"/>
-                <MenuItem value={3} primaryText="Admin"/>
+                <MenuItem value="STUDENT" primaryText="Student"/>
+                <MenuItem value="TEACHER" primaryText="Teacher"/>
+                <MenuItem value="ADMIN" primaryText="Admin"/>
             </SelectField>
           </div>
 
