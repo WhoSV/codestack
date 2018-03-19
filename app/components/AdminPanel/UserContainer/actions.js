@@ -11,11 +11,13 @@ export function getUsers(scc, err) {
     // headers: {Authorization: "Bearer " + getToken()},
     responseType: 'json',
     url: USERS_URL
-  }).then(function(res) {
+  })
+  .then(function (res) {
     if (res.status < 400) {
       scc(res.data)
     }
-  }).catch(function(error) {
+  })
+  .catch(function (error) {
     err(error)
   })
 }

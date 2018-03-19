@@ -13,12 +13,12 @@ export function createUser(userData, scc, err) {
     url: USERS_URL,
     data: userData
   })
-  .then(function (res){
+  .then(function (res) {
     if (res.status < 400) {
       scc(res.data)
     }
   })
-  .catch(function (err){
-    err(err)
+  .catch(function (error) {
+    err(error)
   })
 }

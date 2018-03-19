@@ -28,7 +28,7 @@ import style from './style'
 
 export default class CreateUserForm extends React.Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       full_name: "",
       mail: "",
@@ -99,13 +99,14 @@ export default class CreateUserForm extends React.Component {
         password: password
       }
 
-      createUser(formData, () => {
+      createUser(formData, (res) => {
         this.setState({
           full_name: "",
           mail: "",
           role: "",
           password: ""
         })
+        this.props.changeOnUserList();
       })
 
     } else {

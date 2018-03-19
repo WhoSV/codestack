@@ -38,8 +38,12 @@ export default class UserContainer extends React.Component {
   render() {
     return (
       <div className={style.userContainerStyle}>
-        <CreateUserForm/>
-        <UsersTable users={this.state.users}/>
+        <CreateUserForm
+          changeOnUserList={this.changeOnUserList.bind(this)}/>
+
+        <UsersTable
+          users={this.state.users}
+          changeOnUserList={this.changeOnUserList.bind(this)}/>
       </div>
     )
   }

@@ -69,7 +69,7 @@ export default class UsersTable extends React.Component {
         dialogAlert: false,
         deleteUser: {}
       })
-      // this.props.changeOnUserList()
+      this.props.changeOnUserList()
     })
   }
 
@@ -90,7 +90,7 @@ export default class UsersTable extends React.Component {
     ]
 
     return (
-      <div className={style.usersTabble}>
+      <div className={style.usersTable}>
         <h3 className={style.title}>Users Table</h3>
         <Table selectable={false}>
           <TableHeader
