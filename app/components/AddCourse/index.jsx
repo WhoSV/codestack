@@ -72,20 +72,6 @@ class AddCourse extends React.Component {
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
             className={style.textFieldStyle}/>
 
-          <div className={style.pictureContainer}>
-            <p>Course Picture</p>
-            <img className={style.pictureStyle} src={img.logo}/>
-
-            <FlatButton
-              label="Choose an Image"
-              labelPosition="before"
-              style={muiStyle.uploadButtonStyle}
-              labelStyle={muiStyle.uploadButtonLabelStyle}
-              containerElement="label">
-                <input type="file" style={muiStyle.uploadInputStyle}/>
-            </FlatButton>
-          </div>
-
           <p>Description</p>
           <textarea name="message" className={style.description}/>
 
