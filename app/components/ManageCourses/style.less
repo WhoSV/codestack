@@ -1,1 +1,86 @@
-.manageCourses {}
+.manageCourses {
+  padding-top: 60px;
+
+  .coursesContainer {
+    padding: 20px 0;
+
+    h2 {
+      margin: 30px 0 50px;
+      text-align: center;
+    }
+
+    .courses {
+      max-width: 800px;
+      margin: auto;
+
+      .selectedCourseContainer {
+        background-color: #fff;
+        border-radius: 5px;
+        margin: 10px 0 0;
+
+        .defaultIconStyle {
+          margin-right: 10px;
+          width: 20px;
+          vertical-align: top;
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+        a:hover .selectedCourseItem {
+          cursor: pointer;
+          box-shadow: 0 0 10px #ccc;
+        }
+
+        .selectedCourseItem {
+          padding: 0 10px;
+          border-radius: 5px;
+          border: 1px solid #F2F4F6;
+          display: flex;
+
+          .courseNameStyle {
+            width: 25%;
+          }
+
+          h4 {
+            color: #4A4A4A;
+            margin: 20px 0;
+          }
+
+          .progressStyle {
+            margin: auto 10px !important;
+            max-width: 50% !important;
+          }
+
+          .arrowButton,
+          .editButton {
+            color: #37BDD5 !important;
+            margin: auto 0 auto auto;
+
+          }
+
+          .courseStatusStyle {
+            font-weight: 100;
+            color: #4A90E2;
+            margin: 20px 0;
+          }
+
+          @media only screen and (max-width: 767px) {
+            .courseNameStyle {
+              width: 80%;
+            }
+
+            .progressStyle {
+              display: none !important;
+            }
+          }
+        }
+      }
+    }
+
+    @media only screen and (max-width: 820px) {
+      margin: 0 20px;
+    }
+  }
+}
