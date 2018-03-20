@@ -3,16 +3,16 @@ import React from 'react'
 const courses = [
   {
     title: "C#",
-    status: "54"
+    status: 54
   }, {
     title: "Swift",
-    status: "25"
+    status: 25
   }, {
     title: "Ruby",
-    status: "74"
+    status: 74
   }, {
     title: "JavaScript",
-    status: "12"
+    status: 12
   }
 ]
 
