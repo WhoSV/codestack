@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Paper from 'material-ui/Paper'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import Dialog from 'material-ui/Dialog'
 
 // Material UI Styles
 const muiStyle = {
@@ -25,6 +26,9 @@ const muiStyle = {
   },
   errorStyle: {
     textAlign: 'center'
+  },
+  dialogTitleStyle: {
+    color: '#4CAF50',
   }
 }
 
@@ -45,7 +49,8 @@ class Register extends React.Component {
       mail: "",
       role: "",
       password: "",
-      confPassword: ""
+      confPassword: "",
+      dialogAlert: false
     }
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleMailChange = this.handleMailChange.bind(this)
@@ -128,9 +133,12 @@ class Register extends React.Component {
             mail: "",
             role: "",
             password: "",
-            confPassword: ""
+            confPassword: "",
+            dialogAlert: true
           })
         })
+
+        // HERE send to success
 
       } else {
         this.setState({
@@ -149,7 +157,22 @@ class Register extends React.Component {
     this.props.history.push('/')
   }
 
+  dialogAlert() {
+    this.setState({
+      dialogAlert: true
+    })
+  }
+
   render() {
+    const alertActions = [
+      <FlatButton
+        label="Continue"
+        style={{color: "#4CAF50"}}
+        primary={true}
+        onTouchTap={this.handleBack}
+      />
+    ]
+
     return (
       <div className={style.bgStyle}>
         <div className={style.register}>
@@ -237,6 +260,16 @@ class Register extends React.Component {
             </div>
           </Paper>
         </div>
+
+        {/* Created User Dialog */}
+        <Dialog
+          title="Success"
+          titleStyle={muiStyle.dialogTitleStyle}
+          actions={alertActions}
+          modal={false}
+          open={this.state.dialogAlert}>
+            User created successfully, please login to continue!.
+        </Dialog>
       </div>
     )
   }
