@@ -17,9 +17,6 @@ const muiStyle = {
     fontWeight: '100',
     color: '#4a4a4a'
   },
-  createButtonStyle: {
-    margin: '20px 40px'
-  },
   uploadInputStyle: {
     cursor: 'pointer',
     position: 'absolute',
@@ -29,9 +26,6 @@ const muiStyle = {
     left: 0,
     width: '100%',
     opacity: 0
-  },
-  uploadButtonLabelStyle: {
-    color: '#4A4A4A'
   }
 }
 
@@ -76,12 +70,12 @@ class AddCourse extends React.Component {
           <textarea name="message" className={style.description}/>
 
           <FlatButton
-            // type="submit"
-            label="Add Chapter"
-            labelStyle={muiStyle.addChapterButton}
+            label="Add Chapters"
+            style={muiStyle.uploadButtonStyle}
             icon={<ContentAdd/>}
-            // style={muiStyle.createButtonStyle}
-          />
+            containerElement="label">
+              <input type="file" style={muiStyle.uploadInputStyle}/>
+          </FlatButton>
         </div>
       </div>
     )
