@@ -1,14 +1,14 @@
 import axios from 'axios'
 import {USERS_URL} from '../../../../config/consts'
 
-// function getToken() {
-//   return localStorage.token
-// }
+function getToken() {
+  return localStorage.token
+}
 
 export function createUser(userData, scc, err) {
   axios({
     method: 'POST',
-    // headers: {Authorization: "Bearer " + getToken()},
+    headers: {Authorization: "Bearer " + getToken()},
     responseType: 'json',
     url: USERS_URL,
     data: userData

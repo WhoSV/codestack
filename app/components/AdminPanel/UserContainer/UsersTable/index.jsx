@@ -111,7 +111,7 @@ export default class UsersTable extends React.Component {
                 return (
                   <TableRow key={index}>
                     <TableRowColumn>{user.full_name}</TableRowColumn>
-                    <TableRowColumn>{user.mail}</TableRowColumn>
+                    <TableRowColumn>{user.email}</TableRowColumn>
                     <TableRowColumn>{user.role}</TableRowColumn>
                     <TableRowColumn>
                       <IconButton

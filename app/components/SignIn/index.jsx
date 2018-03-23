@@ -31,6 +31,9 @@ import style from './style.less'
 // Import static Resources
 import {img} from '../../static'
 
+// Component Actions
+import {authUser, isSignedIn} from './actions'
+
 class Signin extends React.Component {
   constructor(props) {
     super()
@@ -86,12 +89,16 @@ class Signin extends React.Component {
         password: password
       }
 
-      // push to dashboard
-      this.props.history.push('/dashboard')
-
+      authUser(email, password, () => {
+  				this.props.history.push('/dashboard')
+  		}, (err) => {
+  				this.setState({
+  					inputError: "Email or password are incorect."
+  				})
+  		})
     } else {
       this.setState({
-        inputError: "Email or password are incorect."
+        inputError: "All fileds must be filled"
       })
     }
   }

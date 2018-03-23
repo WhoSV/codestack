@@ -122,7 +122,7 @@ class Register extends React.Component {
       if (validateForm(reqInputs)) {
         let formData = {
           full_name: full_name,
-          mail: mail,
+          email: mail,
           role: role,
           password: password
         }
