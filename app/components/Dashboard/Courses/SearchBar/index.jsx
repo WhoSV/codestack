@@ -26,21 +26,22 @@ class SearchBar extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      searchText: ""
+      // searchText: ""
     }
-    this.handleSearchTextChange = this.handleSearchTextChange.bind(this)
+    // this.handleSearchTextChange = this.handleSearchTextChange.bind(this)
   }
 
-  handleSearchTextChange(event) {
-    this.setState({
-      searchText: event.target.value
-    })
-  }
+  // handleSearchTextChange(event) {
+  //   this.setState({
+  //     searchText: event.target.value
+  //   })
+  // }
 
   render() {
     return (
       <div className={style.searchBar}>
-        <form onSubmit={this.handleSubmit}>
+        <h3>Available Courses</h3>
+        {/* <form onSubmit={this.handleSubmit}>
           <TextField
             autoCorrect="none"
             autoCapitalize="none"
@@ -56,7 +57,7 @@ class SearchBar extends React.Component {
             label={<SearchIcon className={style.searchIconStyle} />}
             labelStyle={muiStyle.submitButtonLabelStyle}
             style={muiStyle.submitButton}/>
-        </form>
+        </form> */}
       </div>
     )
   }

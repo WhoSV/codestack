@@ -245,7 +245,7 @@ class Account extends React.Component {
             onChange={this.handleEmailChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-          <div className={style.pictureContainer}>
+          {/* <div className={style.pictureContainer}>
             <p>Profile Picture</p>
             <img className={style.pictureStyle} src={img.logo}/>
 
@@ -257,7 +257,7 @@ class Account extends React.Component {
               containerElement="label">
                 <input type="file" style={muiStyle.uploadInputStyle}/>
             </FlatButton>
-          </div>
+          </div> */}
 
           <FlatButton
             label="SAVE CHANGES"

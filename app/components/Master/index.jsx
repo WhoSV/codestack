@@ -8,6 +8,7 @@ import {
 // Import components
 import SignIn from '../SignIn'
 import SignOut from '../SignOut'
+import ResetPassword from '../ResetPassword'
 import Register from '../Register'
 import Dashboard from '../Dashboard'
 import AdminPanel from '../AdminPanel'
@@ -34,6 +35,7 @@ export default class Master extends Component {
 
           {/* All Users */}
           <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/reset" component={ResetPassword}/>
           <Route path="/register" component={Register}/>
           <Route path="/account" component={Account}/>
           <Route path="/profile" component={MyProfile}/>
