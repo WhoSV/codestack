@@ -4,7 +4,6 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import Paper from 'material-ui/Paper'
-import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import Dialog from 'material-ui/Dialog'
 
@@ -47,14 +46,13 @@ class Register extends React.Component {
     this.state = {
       full_name: "",
       mail: "",
-      role: "",
+      role: "STUDENT",
       password: "",
       confPassword: "",
       dialogAlert: false
     }
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handleMailChange = this.handleMailChange.bind(this)
-    this.handleRoleChange = this.handleRoleChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this)
     this.handleCreateUser = this.handleCreateUser.bind(this)
@@ -70,12 +68,6 @@ class Register extends React.Component {
   handleMailChange(event) {
     this.setState({
       mail: event.target.value
-    })
-  }
-
-  handleRoleChange(event, index, value) {
-    this.setState({
-      role: value
     })
   }
 
@@ -131,14 +123,11 @@ class Register extends React.Component {
           this.setState({
             full_name: "",
             mail: "",
-            role: "",
             password: "",
             confPassword: "",
             dialogAlert: true
           })
         })
-
-        // HERE send to success
 
       } else {
         this.setState({
@@ -205,18 +194,6 @@ class Register extends React.Component {
                 onChange={this.handleMailChange}
                 floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
 
-              <SelectField
-                floatingLabelText="Role"
-                value={this.state.role}
-                className={style.selectFieldStyle}
-                errorText={this.state.inputError}
-                errorStyle={muiStyle.errorStyle}
-                onChange={this.handleRoleChange}
-                floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                  <MenuItem value="STUDENT" primaryText="Student"/>
-                  <MenuItem value="TEACHER" primaryText="Teacher"/>
-              </SelectField>
-
               <TextField
                 autoCorrect="none"
                 autoCapitalize="none"
@@ -250,6 +227,8 @@ class Register extends React.Component {
                 labelStyle={muiStyle.submitButtonText}/>
             </form>
 
+            <h6>If you want to register as a Teacher, please contact <br/><a href="mailto:someone@example.com" target="_top">Support Team</a></h6>
+
             <div className={style.backContainer}>
               <FlatButton
                 type="submit"
@@ -258,6 +237,7 @@ class Register extends React.Component {
                 onClick={this.handleBack}
                 labelStyle={muiStyle.backButtonText}/>
             </div>
+
           </Paper>
         </div>
 
