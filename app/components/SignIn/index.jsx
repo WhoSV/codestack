@@ -11,7 +11,11 @@ const muiStyle = {
     fontWeight: 'normal'
   },
   submitButton: {
-    marginTop: 20,
+    marginTop: 25,
+    width: 260
+  },
+  submitButtonRegister: {
+    margin: "auto",
     width: 260
   },
   submitButtonText: {
@@ -44,7 +48,6 @@ class Signin extends React.Component {
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleForgotPassword = this.handleForgotPassword.bind(this)
     this.handleRegister = this.handleRegister.bind(this)
   }
 
@@ -103,10 +106,6 @@ class Signin extends React.Component {
     }
   }
 
-  handleForgotPassword() {
-    this.props.history.push('/reset')
-  }
-
   handleRegister() {
     this.props.history.push('/register')
   }
@@ -160,17 +159,17 @@ class Signin extends React.Component {
 
               <div className={style.bottomDiv}
                 style={{backgroundImage: "url(" + img.backgroundImg + ")"}}>
-                <FlatButton
+                {/* <FlatButton
                   type="submit"
                   label="Forgot password?"
                   style={muiStyle.submitButton}
                   onClick={this.handleForgotPassword}
-                  labelStyle={muiStyle.buttonText}/>
+                  labelStyle={muiStyle.buttonText}/> */}
 
                 <FlatButton
                   type="submit"
                   label="Register"
-                  style={muiStyle.submitButton}
+                  style={muiStyle.submitButtonRegister}
                   onClick={this.handleRegister}
                   labelStyle={muiStyle.buttonText}/>
               </div>
