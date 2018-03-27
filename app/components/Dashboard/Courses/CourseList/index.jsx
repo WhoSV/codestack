@@ -2,6 +2,7 @@ import React from 'react'
 
 // Material UI imports
 import ThumbUpIcon from 'material-ui/svg-icons/action/thumb-up'
+import ThumbDownIcon from 'material-ui/svg-icons/action/thumb-down'
 
 const courses = [
   {
@@ -67,6 +68,7 @@ class CourseList extends React.Component {
     this.state = {}
     this.navigateToCourse = this.navigateToCourse.bind(this)
     this.upVote = this.upVote.bind(this)
+    this.downVote = this.downVote.bind(this)
   }
 
   navigateToCourse() {
@@ -77,6 +79,10 @@ class CourseList extends React.Component {
     console.log("up vote");
   }
 
+  downVote() {
+    console.log("down vote");
+  }
+
   render() {
     return (
       <div className={style.courseList}>
@@ -85,12 +91,16 @@ class CourseList extends React.Component {
             return (
               <div key={index} className={style.listItem}>
                 <div className={style.listItemTitle}>
-                  <a onClick={this.navigateToCourse}>
+                  <a className={style.courseTitle} onClick={this.navigateToCourse}>
                     <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h3>
                   </a>
-                  <a className={style.upVoteStyle} onClick={this.upVote}>
-                    <h5><ThumbUpIcon className={style.upvoteIconStyle}/>{course.rating} Likes</h5>
-                  </a>
+
+                  <div className={style.votesContainer}>
+                    <a className={style.voteStyle} onClick={this.upVote}><ThumbUpIcon className={style.voteIconStyle}/></a>
+                    <a className={style.voteStyle} onClick={this.downVote}><ThumbDownIcon className={style.voteIconStyle}/></a>
+                    <h5>{course.rating} Likes</h5>
+                  </div>
+
                 </div>
                 <h5 className={style.listItemTeacher}>by: {course.teacher}</h5>
                 <h5 className={style.listItemDate}>{course.date}</h5>
