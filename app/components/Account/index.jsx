@@ -37,16 +37,21 @@ const muiStyle = {
 // Component Style
 import style from './style.less'
 
+// Component Actions
+import {deleteUser} from './actions'
+
 class Account extends React.Component {
   constructor(props) {
     super()
     this.state = {
+      id: "",
       name: "",
       email: "",
       password: "",
       confPassword: "",
       oldPassword: "",
-      dialogDelete: false
+      dialogDelete: false,
+      deleteUser: {}
     }
     this.changeAccountInfo = this.changeAccountInfo.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
@@ -57,6 +62,19 @@ class Account extends React.Component {
     this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
     this.handleOldPassword = this.handleOldPassword.bind(this)
   }
+  // 
+  // componentWillMount() {
+  //   this.activeUser()
+  // }
+  //
+  // activeUser() {
+  //   let user = JSON.parse(localStorage.activeUser)
+  //   this.setState({
+  //     id: user.id,
+  //     name: user.full_name,
+  //     email: user.email
+  //   });
+  // }
 
   handleNameChange(event) {
     this.setState({
@@ -107,7 +125,14 @@ class Account extends React.Component {
   }
 
   confirmDeleteAccount() {
-    console.log("confirm delete");
+    deleteUser(this.state.id, (res) => {
+
+      this.setState({
+        dialogAlert: false,
+        deleteUser: {}
+      })
+      this.props.history.push('/')
+    })
   }
 
   changeAccountInfo(event) {
