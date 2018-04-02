@@ -114,14 +114,20 @@ export default class UsersTable extends React.Component {
                     <TableRowColumn>{user.email}</TableRowColumn>
                     <TableRowColumn>{user.role}</TableRowColumn>
                     <TableRowColumn>
-                      <IconButton
-                        onTouchTap={this.handleDeleteUser.bind(this, user)}
-                        style={muiStyle.iconButton}
-                        className={style.iconButtonStyle}
-                        iconStyle={muiStyle.iconDeleteButton}
-                        touch={true}>
-                          <ActionDelete/>
-                      </IconButton>
+                      {(() => {
+                        if (this.props.activeUser.id != user.id) {
+                          return (
+                            <IconButton
+                              onTouchTap={this.handleDeleteUser.bind(this, user)}
+                              style={muiStyle.iconButton}
+                              className={style.iconButtonStyle}
+                              iconStyle={muiStyle.iconDeleteButton}
+                              touch={true}>
+                                <ActionDelete/>
+                            </IconButton>
+                          )
+                        }
+                      })()}
                     </TableRowColumn>
                   </TableRow>
                 )

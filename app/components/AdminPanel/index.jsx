@@ -8,14 +8,28 @@ import ContentContainer from './ContentContainer'
 class AdminPanel extends React.Component {
   constructor(props) {
     super()
-    this.state = {}
+    this.state = {
+      activeUser: []
+    }
+  }
+
+  componentWillMount() {
+    this.activeUser()
+  }
+
+  activeUser() {
+    let user = JSON.parse(localStorage.activeUser)
+    this.setState({
+      activeUser: user
+    });
   }
 
   render() {
     return (
       <div>
         <Navbar {...this.props}/>
-        <UserContainer/>
+        <UserContainer
+          activeUser = {this.state.activeUser}/>
         <ContentContainer/>
       </div>
     )
