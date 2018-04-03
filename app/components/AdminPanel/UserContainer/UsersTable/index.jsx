@@ -43,12 +43,6 @@ export default class UsersTable extends React.Component {
     }
   }
 
-  dialogAlert() {
-    this.setState({
-      dialogAlert: true
-    })
-  }
-
   dialogClose() {
     this.setState({
       dialogAlert: false
