@@ -1,3 +1,129 @@
 .courses {
   height: 1000px;
+
+  .titleBar h3 {
+    margin: 0 0 15px;
+    padding: 20px 0;
+    background: linear-gradient(to right, #30CFD0 0%, #4A90E2 30%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border-bottom: 1px solid #30CFD0;
+  }
+
+  .courseList {
+    margin-top: 15px;
+
+    .listItem {
+      background-color: #fff;
+      border-radius: 5px;
+      max-height: 190px;
+      overflow: hidden;
+      margin-bottom: 15px;
+
+      .defaultIconStyle {
+        margin-right: 10px;
+        width: 25px;
+        vertical-align: top;
+      }
+
+      .courseTitle {
+        width: 50%;
+      }
+
+      .votesContainer {
+        text-align: right;
+        width: 50%;
+        margin-top: 5px;
+
+        h5 {
+          display: inline;
+        }
+
+        .voteStyle:hover .voteIconStyle,
+        .voteStyle:hover h5 {
+          color: #30CFD0 !important;
+        }
+
+        .voteIconStyle {
+          width: 20px !important;
+          height: 20px !important;
+          color: #4A90E2 !important;
+          vertical-align: bottom;
+          margin-right: 5px;
+        }
+      }
+
+      .listItemTitle {
+        padding: 0 10px;
+        display: flex;
+
+        a {
+          text-decoration: none;
+        }
+
+        a:hover h3 {
+          cursor: pointer;
+          color: #30CFD0;
+        }
+
+        h3 {
+          color: #4A4A4A;
+          margin: 15px auto 10px 0;
+        }
+
+        h5 {
+          font-weight: 100;
+          color: #4A90E2;
+          vertical-align: sub;
+        }
+
+      }
+
+      .listItemTeacher {
+        color: #ccc;
+        margin: 0 0 10px;
+        font-weight: 100;
+        padding-left: 10px;
+        cursor: default;
+      }
+
+      .listItemDate {
+        color: #ccc;
+        margin: 0;
+        font-weight: 100;
+        padding-left: 10px;
+        cursor: default;
+      }
+
+      .listItemDescription {
+        padding: 10px;
+        cursor: default;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .listItem:hover {
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    @media only screen and (max-width: 500px) {
+      .listItem {
+        max-height: 160px;
+
+        .listItemTitle {
+          h3 {
+            font-size: 18px;
+          }
+
+          .voteStyle {
+            margin: 5px 0 0 auto;
+          }
+        }
+      }
+    }
+  }
 }

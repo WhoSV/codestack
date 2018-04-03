@@ -22,9 +22,6 @@ const muiStyle = {
     color: '#fff',
     textTransform: 'normal',
     fontSize: '12px'
-  },
-  buttonTextDisabled: {
-    opacity: "0"
   }
 }
 
@@ -165,11 +162,10 @@ class Signin extends React.Component {
                 style={{backgroundImage: "url(" + img.backgroundImg + ")"}}>
                 <FlatButton
                   type="submit"
-                  label="."
-                  disabled={true}
+                  label="Forgot Password?"
                   style={muiStyle.submitButton}
                   onClick={this.handleForgotPassword}
-                  labelStyle={muiStyle.buttonTextDisabled}/>
+                  labelStyle={muiStyle.buttonText}/>
 
                 <FlatButton
                   type="submit"
