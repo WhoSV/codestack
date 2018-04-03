@@ -115,7 +115,7 @@ export default class UsersTable extends React.Component {
                     <TableRowColumn>{user.role}</TableRowColumn>
                     <TableRowColumn>
                       {(() => {
-                        if (this.props.activeUser.id != user.id) {
+                        if (localStorage.id != user.id) {
                           return (
                             <IconButton
                               onTouchTap={this.handleDeleteUser.bind(this, user)}

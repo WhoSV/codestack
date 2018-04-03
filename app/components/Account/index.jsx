@@ -38,7 +38,7 @@ const muiStyle = {
 import style from './style.less'
 
 // Component Actions
-import {deleteUser} from './actions'
+import {deleteUser, updateUser, getUser} from './actions'
 
 class Account extends React.Component {
   constructor(props) {
@@ -62,19 +62,21 @@ class Account extends React.Component {
     this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
     this.handleOldPassword = this.handleOldPassword.bind(this)
   }
-  // 
-  // componentWillMount() {
-  //   this.activeUser()
-  // }
-  //
-  // activeUser() {
-  //   let user = JSON.parse(localStorage.activeUser)
-  //   this.setState({
-  //     id: user.id,
-  //     name: user.full_name,
-  //     email: user.email
-  //   });
-  // }
+
+  componentWillMount() {
+    this.state.id = localStorage.id
+    this.activeUser()
+  }
+
+  activeUser() {
+    getUser(this.state.id, (data) => {
+      this.setState({
+        id: data.id,
+        name: data.full_name,
+        email: data.email
+      });
+    })
+  }
 
   handleNameChange(event) {
     this.setState({
@@ -106,12 +108,6 @@ class Account extends React.Component {
     })
   }
 
-  dialogDelete() {
-    this.setState({
-      dialogDelete: true
-    })
-  }
-
   handleDeleteAccount() {
     this.setState({
       dialogDelete: true
@@ -126,7 +122,6 @@ class Account extends React.Component {
 
   confirmDeleteAccount() {
     deleteUser(this.state.id, (res) => {
-
       this.setState({
         dialogAlert: false,
         deleteUser: {}
@@ -142,6 +137,7 @@ class Account extends React.Component {
       inputAccError: ""
     })
 
+    const id = this.state.id;
     const name = this.state.name;
     const email = this.state.email;
 
@@ -154,13 +150,16 @@ class Account extends React.Component {
       return true
     }
 
-    let reqInputs = [name, email];
+    let reqInputs = [id, name, email];
 
     if (validateForm(reqInputs)) {
       let formData = {
-        name: name,
+        id: id,
+        full_name: name,
         email: email
       }
+
+    updateUser(formData, () => {})
 
     } else {
       this.setState({

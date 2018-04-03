@@ -42,7 +42,6 @@ export default class UserContainer extends React.Component {
           changeOnUserList={this.changeOnUserList.bind(this)}/>
 
         <UsersTable
-          activeUser={this.props.activeUser}
           users={this.state.users}
           changeOnUserList={this.changeOnUserList.bind(this)}/>
       </div>
