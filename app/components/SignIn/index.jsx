@@ -92,10 +92,11 @@ class Signin extends React.Component {
       authUser(email, password, () => {
   				this.props.history.push('/dashboard')
   		}, (err) => {
-  				this.setState({
-  					inputError: "Email or password are incorect."
-  				})
+				this.setState({
+					inputError: "Email or password are incorect."
+				})
   		})
+
     } else {
       this.setState({
         inputError: "All fileds must be filled"

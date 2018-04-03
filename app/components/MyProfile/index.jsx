@@ -14,6 +14,9 @@ import style from './style.less'
 // Import static icons
 import {img} from '../../static'
 
+// Component Actions
+import {getUser} from './actions'
+
 const courses = [
   {
     title: "C#",
@@ -33,9 +36,28 @@ const courses = [
 class MyProfile extends React.Component {
   constructor(props) {
     super()
-    this.state = {}
+    this.state = {
+      id: "",
+      name: "",
+      role: ""
+    }
     this.navigateToCourse = this.navigateToCourse.bind(this)
     this.navigateToEditCourse = this.navigateToEditCourse.bind(this)
+  }
+
+  componentWillMount() {
+    this.state.id = localStorage.id
+    this.activeUser()
+  }
+
+  activeUser() {
+    getUser(this.state.id, (data) => {
+      this.setState({
+        id: data.id,
+        name: data.full_name,
+        role: data.role
+      });
+    })
   }
 
   navigateToCourse() {
@@ -52,9 +74,9 @@ class MyProfile extends React.Component {
         <Navbar {...this.props}/>
 
         <div className={style.headerStyle}>
-          <img className={style.imgStyle} src={img.defaultIcon}/>
-          <h2>Jon Doe</h2>
-          <h4>Admin</h4>
+          <img className={style.imgStyle} src={img.defaultUser}/>
+          <h2>{this.state.name}</h2>
+          <h4>{this.state.role}</h4>
         </div>
 
         {/* Only student can see this container */}
