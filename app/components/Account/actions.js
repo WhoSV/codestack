@@ -40,6 +40,24 @@ export function updateUser(userData, scc, err) {
   })
 }
 
+export function updateUserPassword(userData, scc, err) {
+  axios({
+    method: 'PATCH',
+    headers: {Authorization: "Bearer " + getToken()},
+    responseType: 'json',
+    url: USERS_URL + "/" + userData.id + "/update",
+    data: userData
+  })
+  .then(function (res) {
+    if (res.status < 400) {
+      scc(res.data)
+    }
+  })
+  .catch(function (error) {
+    err(error)
+  })
+}
+
 export function getUser(id, scc, err) {
   axios({
     method: 'get',

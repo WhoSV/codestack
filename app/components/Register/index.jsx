@@ -146,12 +146,6 @@ class Register extends React.Component {
     this.props.history.push('/')
   }
 
-  dialogAlert() {
-    this.setState({
-      dialogAlert: true
-    })
-  }
-
   render() {
     const alertActions = [
       <FlatButton

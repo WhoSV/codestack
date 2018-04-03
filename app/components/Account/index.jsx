@@ -38,7 +38,7 @@ const muiStyle = {
 import style from './style.less'
 
 // Component Actions
-import {deleteUser, updateUser, getUser} from './actions'
+import {deleteUser, updateUser, getUser, updateUserPassword} from './actions'
 
 class Account extends React.Component {
   constructor(props) {
@@ -51,7 +51,8 @@ class Account extends React.Component {
       confPassword: "",
       oldPassword: "",
       dialogDelete: false,
-      deleteUser: {}
+      deleteUser: {},
+      dialogSuccess: false
     }
     this.changeAccountInfo = this.changeAccountInfo.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
@@ -61,6 +62,7 @@ class Account extends React.Component {
     this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this)
     this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
     this.handleOldPassword = this.handleOldPassword.bind(this)
+    this.handleSignOut = this.handleSignOut.bind(this)
   }
 
   componentWillMount() {
@@ -123,10 +125,9 @@ class Account extends React.Component {
   confirmDeleteAccount() {
     deleteUser(this.state.id, (res) => {
       this.setState({
-        dialogAlert: false,
         deleteUser: {}
       })
-      this.props.history.push('/')
+      this.props.history.push('/signout')
     })
   }
 
@@ -179,6 +180,7 @@ class Account extends React.Component {
       oldPasswordError: ""
     })
 
+    const id = this.state.id;
     const password = this.state.password;
     const confPassword = this.state.confPassword;
     const oldPassword = this.state.oldPassword;
@@ -204,14 +206,20 @@ class Account extends React.Component {
       })
     }
 
-    // here call current password validation
-
-    let reqInputs = [password];
+    let reqInputs = [id, oldPassword, password];
 
     if (validateForm(reqInputs)) {
       let formData = {
-        password: password
+        id: id,
+        new_password: password,
+        password: oldPassword
       }
+
+      updateUserPassword(formData, () => {
+        this.setState({
+          dialogSuccess: true
+        })
+      })
 
     } else {
       this.setState({
@@ -220,6 +228,10 @@ class Account extends React.Component {
         oldPasswordError: "All fields must be filled."
       })
     }
+  }
+
+  handleSignOut() {
+    this.props.history.push('/signout')
   }
 
   render() {
@@ -235,6 +247,15 @@ class Account extends React.Component {
         style={{color: "#ff0000"}}
         primary={true}
         onTouchTap={this.confirmDeleteAccount.bind(this)}
+      />
+    ]
+
+    const successActions = [
+      <FlatButton
+        label="Continue"
+        style={{color: "#4CAF50"}}
+        primary={true}
+        onTouchTap={this.handleSignOut}
       />
     ]
 
@@ -342,6 +363,16 @@ class Account extends React.Component {
           open={this.state.dialogDelete}
           onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to delete your account?
+        </Dialog>
+
+        {/* Updated User Password Dialog */}
+        <Dialog
+          title="Success"
+          titleStyle={muiStyle.dialogTitleStyle}
+          actions={successActions}
+          modal={false}
+          open={this.state.dialogSuccess}>
+            Your password has been updated successfully, please login to continue!.
         </Dialog>
       </div>
     )
