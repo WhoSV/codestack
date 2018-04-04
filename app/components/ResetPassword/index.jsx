@@ -23,6 +23,9 @@ const muiStyle = {
   }
 }
 
+// Component Actions
+import {resetPassword} from './actions'
+
 // Component Style
 import style from './style.less'
 
@@ -56,6 +59,7 @@ class ResetPassword extends React.Component {
     })
 
     const email = this.state.email;
+    const that = this;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -72,6 +76,13 @@ class ResetPassword extends React.Component {
       let formData = {
         email: email
       }
+
+    resetPassword(formData, () => {
+    }, (error) => {
+      that.setState({
+        inputError: "Please enter correct email."
+      })
+    })
 
     } else {
       this.setState({
