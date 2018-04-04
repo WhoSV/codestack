@@ -4,6 +4,7 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import Paper from 'material-ui/Paper'
+import Dialog from 'material-ui/Dialog'
 
 // Material UI Styles
 const muiStyle = {
@@ -20,6 +21,9 @@ const muiStyle = {
   },
   backButtonText: {
     color: '#30CFD0'
+  },
+  dialogTitleStyle: {
+    color: '#4A90E2',
   }
 }
 
@@ -36,7 +40,8 @@ class ResetPassword extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      email: ""
+      email: "",
+      dialogAlert: false
     }
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -78,6 +83,9 @@ class ResetPassword extends React.Component {
       }
 
     resetPassword(formData, () => {
+      this.setState({
+        dialogAlert: true
+      })
     }, (error) => {
       that.setState({
         inputError: "Please enter correct email."
@@ -96,6 +104,15 @@ class ResetPassword extends React.Component {
   }
 
   render() {
+    const alertActions = [
+      <FlatButton
+        label="Continue"
+        style={{color: "#4A90E2"}}
+        primary={true}
+        onTouchTap={this.handleBack}
+      />
+    ]
+
     return (
       <div className={style.bgStyle}>
         <div className={style.resetPassword}>
@@ -136,6 +153,16 @@ class ResetPassword extends React.Component {
             </div>
           </Paper>
         </div>
+
+        {/* Reset Password Dialog */}
+        <Dialog
+          title="Success"
+          titleStyle={muiStyle.dialogTitleStyle}
+          actions={alertActions}
+          modal={false}
+          open={this.state.dialogAlert}>
+            The password has been sent to your email!
+        </Dialog>
       </div>
     )
   }
