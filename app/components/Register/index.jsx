@@ -90,7 +90,8 @@ class Register extends React.Component {
 
     this.setState({
       inputError: "",
-      passwordError: ""
+      passwordError: "",
+      emailInputError: ""
     })
 
     const full_name = this.state.full_name;
@@ -98,6 +99,7 @@ class Register extends React.Component {
     const role = this.state.role;
     const password = this.state.password;
     const confPassword = this.state.confPassword;
+    const that = this;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -127,12 +129,17 @@ class Register extends React.Component {
             confPassword: "",
             dialogAlert: true
           })
-        })
+        }, (error) => {
+  				that.setState({
+  					emailInputError: "Email must be unique."
+  				})
+    		})
 
       } else {
         this.setState({
           inputError: "All fields must be filled.",
-          passwordError: "All fields must be filled."
+          passwordError: "All fields must be filled.",
+          emailInputError: "All fields must be filled."
         })
       }
     } else {
@@ -182,7 +189,7 @@ class Register extends React.Component {
                 hintText="mark2019@gmail.com"
                 type="mail"
                 floatingLabelText="Email"
-                errorText={this.state.inputError}
+                errorText={this.state.emailInputError}
                 value={this.state.mail}
                 className={style.textFieldStyle}
                 onChange={this.handleMailChange}

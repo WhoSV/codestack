@@ -135,12 +135,14 @@ class Account extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputAccError: ""
+      inputAccError: "",
+      emailInputError: ""
     })
 
     const id = this.state.id;
     const name = this.state.name;
     const email = this.state.email;
+    const that = this;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -160,11 +162,18 @@ class Account extends React.Component {
         email: email
       }
 
-    updateUser(formData, () => {})
+    updateUser(formData, () => {
+
+    }, (error) => {
+      that.setState({
+        emailInputError: "Email must be unique."
+      })
+    })
 
     } else {
       this.setState({
-        inputAccError: "All fields must be filled."
+        inputAccError: "All fields must be filled.",
+        emailInputError: "All fields must be filled."
       })
     }
   }
@@ -284,7 +293,7 @@ class Account extends React.Component {
             hintText="mark2019@gmail.com"
             type="email"
             floatingLabelText="Email"
-            errorText={this.state.inputAccError}
+            errorText={this.state.emailInputError}
             value={this.state.email}
             className={style.textFieldStyle}
             onChange={this.handleEmailChange}

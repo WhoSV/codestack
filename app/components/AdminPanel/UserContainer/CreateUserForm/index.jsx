@@ -72,13 +72,15 @@ export default class CreateUserForm extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputError: ""
+      inputError: "",
+      emailInputError: ""
     })
 
     const full_name = this.state.full_name;
     const mail = this.state.mail;
     const role = this.state.role;
     const password = this.state.password;
+    const that = this;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -107,11 +109,16 @@ export default class CreateUserForm extends React.Component {
           password: ""
         })
         this.props.changeOnUserList();
-      })
+      }, (error) => {
+				that.setState({
+					emailInputError: "Email must be unique."
+				})
+  		})
 
     } else {
       this.setState({
-        inputError: "All fields must be filled."
+        inputError: "All fields must be filled.",
+        emailInputError: "All fields must be filled."
       })
     }
   }
@@ -143,7 +150,7 @@ export default class CreateUserForm extends React.Component {
               hintText="mail@example.com"
               type="mail"
               floatingLabelText="Email"
-              errorText={this.state.inputError}
+              errorText={this.state.emailInputError}
               value={this.state.mail}
               className={style.textFieldStyle}
               onChange={this.handleMailChange}

@@ -100,7 +100,7 @@ class Signin extends React.Component {
 
     } else {
       this.setState({
-        inputError: "All fileds must be filled"
+        inputError: "All fileds must be filled."
       })
     }
   }

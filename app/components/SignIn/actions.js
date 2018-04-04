@@ -15,11 +15,11 @@ export function authUser(email, password, scc, err) {
   .then(function (res){
     localStorage.token = res.data.token;
     localStorage.id = res.data.id;
-    scc();
+    scc()
   })
   .catch(function (error) {
-    err(error);
-  });
+    err(error)
+  })
 }
 
 export function getToken() {
