@@ -17,8 +17,8 @@ export function authUser(email, password, scc, err) {
     localStorage.id = res.data.id;
     scc();
   })
-  .catch(function (err) {
-    err(err);
+  .catch(function (error) {
+    err(error);
   });
 }
 
