@@ -228,7 +228,7 @@ class Register extends React.Component {
                 labelStyle={muiStyle.submitButtonText}/>
             </form>
 
-            <h6>If you want to register as a Teacher, please contact <br/><a href="mailto:someone@example.com" target="_top">Support Team</a></h6>
+            <h6>If you want to register as a Teacher, please contact <br/><a href="mailto:codeestacks@gmail.com" target="_top">Support Team</a></h6>
 
             <div className={style.backContainer}>
               <FlatButton
