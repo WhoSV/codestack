@@ -1,20 +1,8 @@
 import React from 'react'
 
-const courses = [
-  {
-    title: "C#",
-    status: 54
-  }, {
-    title: "Swift",
-    status: 25
-  }, {
-    title: "Ruby",
-    status: 74
-  }, {
-    title: "JavaScript",
-    status: 12
-  }
-]
+// Material UI imports
+import IconButton from 'material-ui/IconButton'
+import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 
 // Component Style
 import style from './style.less'
@@ -30,21 +18,30 @@ class CourseBar extends React.Component {
   }
 
   navigateToCourse() {
-    this.props.history.push(`${this.props.match.url}/activecourse`)
+    // go course pdf or link
   }
 
   render() {
     return (
       <div className={style.courseBar}>
-        <h3 className={style.title}>My Courses</h3>
+        <h3 className={style.title}>Favorite Courses</h3>
         {
-          courses.map((course, index) => {
+          this.props.courses.map((course, index) => {
             return (
               <div key={index} className={style.selectedCourseContainer}>
                 <a onClick={this.navigateToCourse}>
                   <div className={style.selectedCourseItem}>
-                    <h4><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
-                    <h4 className={style.courseStatusStyle}>{course.status}%</h4>
+                    <div className={style.imgContainer}>
+                      <img className={style.defaultIconStyle} src={img.defaultIcon}/>
+                    </div>
+                    <h4>{course.name}</h4>
+
+                    <IconButton
+                      tooltip="Go to Course"
+                      tooltipPosition="bottom-left"
+                      touch={true}>
+                      <ActionArrow className={style.arrowButton}/>
+                    </IconButton>
                   </div>
                 </a>
               </div>

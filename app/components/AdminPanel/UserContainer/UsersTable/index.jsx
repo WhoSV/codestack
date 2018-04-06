@@ -116,7 +116,9 @@ export default class UsersTable extends React.Component {
                               style={muiStyle.iconButton}
                               className={style.iconButtonStyle}
                               iconStyle={muiStyle.iconDeleteButton}
-                              touch={true}>
+                              touch={true}
+                              tooltip="Delete User"
+                              tooltipPosition="bottom-center">
                                 <ActionDelete/>
                             </IconButton>
                           )

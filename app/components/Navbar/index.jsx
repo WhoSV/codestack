@@ -85,11 +85,7 @@ class Navbar extends React.Component {
               <NavLink
                 to="/addcourse"
                 style={{textDecoration: "none"}}>
-                  <MenuItem primaryText="Add New Course"/></NavLink>
-              <NavLink
-                to="/manage"
-                style={{textDecoration: "none"}}>
-                  <MenuItem primaryText="Manage Courses"/>
+                  <MenuItem primaryText="Add New Course"/>
               </NavLink>
 
               {/* Admin Only */}

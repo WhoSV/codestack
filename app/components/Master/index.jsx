@@ -13,15 +13,11 @@ import Register from '../Register'
 import Dashboard from '../Dashboard'
 import AdminPanel from '../AdminPanel'
 import AddCourse from '../AddCourse'
-import ManageCourses from '../ManageCourses'
 import MyProfile from '../MyProfile'
 import Account from '../Account'
 
 // Component Style
 import style from './style.less'
-
-// HOCs
-import requiresAuth from '../HOCs/requiresAuth'
 
 export default class Master extends Component {
   render() {
@@ -42,7 +38,6 @@ export default class Master extends Component {
 
           {/* Teacher Only */}
           <Route path="/addcourse" component={AddCourse}/>
-          <Route path="/manage" component={ManageCourses}/>
 
           {/* Admin Only */}
           <Route path="/admin" component={AdminPanel}/>

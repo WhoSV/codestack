@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Material UI imports
-import LinearProgress from 'material-ui/LinearProgress'
+import IconButton from 'material-ui/IconButton'
 import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import ActionEdit from 'material-ui/svg-icons/image/edit'
 
@@ -15,23 +15,7 @@ import style from './style.less'
 import {img} from '../../static'
 
 // Component Actions
-import {getUser} from './actions'
-
-const courses = [
-  {
-    title: "C#",
-    status: 54
-  }, {
-    title: "Swift",
-    status: 25
-  }, {
-    title: "Ruby",
-    status: 74
-  }, {
-    title: "JavaScript",
-    status: 12
-  }
-]
+import {getUser, getCourses} from './actions'
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -39,7 +23,8 @@ class MyProfile extends React.Component {
     this.state = {
       id: "",
       name: "",
-      role: ""
+      role: "",
+      courses: []
     }
     this.navigateToCourse = this.navigateToCourse.bind(this)
     this.navigateToEditCourse = this.navigateToEditCourse.bind(this)
@@ -48,6 +33,15 @@ class MyProfile extends React.Component {
   componentWillMount() {
     this.state.id = localStorage.id
     this.activeUser()
+    this.updateCourses()
+  }
+
+  updateCourses() {
+    getCourses((data) => {
+      this.setState({
+        courses: data
+      });
+    })
   }
 
   activeUser() {
@@ -61,11 +55,11 @@ class MyProfile extends React.Component {
   }
 
   navigateToCourse() {
-    this.props.history.push(`/dashboard/activecourse`)
+    // open pdf link
   }
 
   navigateToEditCourse() {
-    this.props.history.push(`/manage`)
+    // Go to edit course
   }
 
   render() {
@@ -81,28 +75,26 @@ class MyProfile extends React.Component {
 
         {/* Only student can see this container */}
         <div className={style.coursesContainer}>
-          <h2>My Courses</h2>
+          <h2>Favorite Courses</h2>
           <div className={style.courses}>
             {
-              courses.map((course, index) => {
+              this.state.courses.map((course, index) => {
                 return (
                   <div key={index} className={style.selectedCourseContainer}>
-                    <a onClick={this.navigateToCourse}>
-                      <div className={style.selectedCourseItem}>
-                        <h4 className={style.courseNameStyle}><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.title}</h4>
+                    <div className={style.selectedCourseItem}>
+                      <h4 className={style.courseNameStyle}>
+                        <img className={style.defaultIconStyle} src={img.defaultIcon}/>
+                        {course.name}
+                      </h4>
 
-                        <LinearProgress
-                          mode="determinate"
-                          className={style.progressStyle}
-                          value={course.status} />
-
-                        <h4 className={style.courseStatusStyle}>
-                          {course.status} %
-                        </h4>
-
+                      <IconButton
+                        onClick={this.navigateToCourse}
+                        tooltip="Go to Course"
+                        tooltipPosition="bottom-left"
+                        touch={true}>
                         <ActionArrow className={style.arrowButton}/>
-                      </div>
-                    </a>
+                      </IconButton>
+                    </div>
                   </div>
                 )
               })
@@ -118,18 +110,22 @@ class MyProfile extends React.Component {
           </div>
           <div className={style.courses}>
             {
-              courses.map((course, index) => {
+              this.state.courses.map((course, index) => {
                 return (
                   <div key={index} className={style.selectedCourseContainer}>
-                    <a onClick={this.navigateToEditCourse}>
-                      <div className={style.selectedCourseItem}>
-                        <h4 className={style.courseNameStyle}>
-                          <img className={style.defaultIconStyle} src={img.defaultIcon}/>
-                          {course.title}
-                        </h4>
-                        <ActionEdit className={style.editButton}/>
-                      </div>
-                    </a>
+                    <div className={style.selectedCourseItem}>
+                      <h4 className={style.courseNameStyle}>
+                        <img className={style.defaultIconStyle} src={img.defaultIcon}/>
+                        {course.name}
+                      </h4>
+                      <IconButton
+                        onClick={this.navigateToEditCourse}
+                        tooltip="Edit"
+                        tooltipPosition="bottom-left"
+                        touch={true}>
+                          <ActionEdit className={style.editButton}/>
+                      </IconButton>
+                    </div>
                   </div>
                 )
               })

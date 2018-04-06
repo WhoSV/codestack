@@ -5,15 +5,31 @@ import {Route, Link} from 'react-router-dom'
 import Navbar from '../Navbar'
 import Courses from './Courses'
 import CourseBar from './CourseBar'
-import ActiveCourse from './ActiveCourse'
 
 // Component Style
 import style from './style.less'
 
+// Component Actions
+import {getCourses} from './actions'
+
 class Dashboard extends React.Component {
   constructor(props) {
     super()
-    this.state = {}
+    this.state = {
+      courses: []
+    }
+  }
+
+  componentWillMount() {
+    this.updateCourses()
+  }
+
+  updateCourses() {
+    getCourses((data) => {
+      this.setState({
+        courses: data
+      });
+    })
   }
 
   render() {
@@ -27,18 +43,20 @@ class Dashboard extends React.Component {
           component={() => (
             <div className={style.container}>
               <div className={style.coursesContainer}>
-                <Courses {...this.props}/>
+                <Courses
+                  courses={this.state.courses}
+                  {...this.props}/>
               </div>
 
               <div className={style.courseBarContainer}>
-                <CourseBar {...this.props}/>
+                <CourseBar
+                  courses={this.state.courses}
+                  {...this.props}/>
               </div>
             </div>
           )}
-        /> 
+        />
 
-        {/* change url to course name */}
-        <Route path={`${this.props.match.url}/activecourse`} component={ActiveCourse}/>
       </div>
     )
   }

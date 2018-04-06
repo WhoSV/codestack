@@ -16,7 +16,7 @@
     .listItem {
       background-color: #fff;
       border-radius: 5px;
-      max-height: 190px;
+      max-height: 480px;
       overflow: hidden;
       margin-bottom: 15px;
 
@@ -33,23 +33,16 @@
       .votesContainer {
         text-align: right;
         width: 50%;
-        margin-top: 5px;
 
-        h5 {
-          display: inline;
-        }
-
-        .voteStyle:hover .voteIconStyle,
-        .voteStyle:hover h5 {
+        .favoriteStyle:hover .favoriteIconStyle {
           color: #30CFD0 !important;
         }
 
-        .voteIconStyle {
-          width: 20px !important;
-          height: 20px !important;
+        .favoriteIconStyle {
+          width: 25px !important;
+          height: 25px !important;
           color: #4A90E2 !important;
           vertical-align: bottom;
-          margin-right: 5px;
         }
       }
 
@@ -102,6 +95,7 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        line-height: 1.8;
         text-overflow: ellipsis;
       }
     }
@@ -112,14 +106,12 @@
 
     @media only screen and (max-width: 500px) {
       .listItem {
-        max-height: 160px;
-
         .listItemTitle {
           h3 {
             font-size: 18px;
           }
 
-          .voteStyle {
+          .favoriteStyle {
             margin: 5px 0 0 auto;
           }
         }

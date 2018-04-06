@@ -37,29 +37,8 @@ const muiStyle = {
   }
 }
 
-const content = [
-  {
-    name: "JavaScript",
-    teacher: "Jon Doe",
-    status: "Active"
-  }, {
-    name: "JavaScript",
-    teacher: "Jon Doe",
-    status: "Passive"
-  }, {
-    name: "JavaScript",
-    teacher: "Jon Doe",
-    status: "Active"
-  }, {
-    name: "JavaScript",
-    teacher: "Jon Doe",
-    status: "Passive"
-  }, {
-    name: "JavaScript",
-    teacher: "Jon Doe",
-    status: "Active"
-  }
-]
+// Component Actions
+import {getCourses} from './actions'
 
 // Component Style
 import style from './style'
@@ -71,25 +50,20 @@ export default class ContentContainer extends React.Component {
       dialogDelete: false,
       dialogBlock: false,
       dialogUnblock: false,
-      deleteContent: {}
+      courses: [],
+      course: {}
     }
   }
 
-  dialogDelete() {
-    this.setState({
-      dialogDelete: true
-    })
+  componentWillMount() {
+    this.updateCourses()
   }
 
-  dialogBlock() {
-    this.setState({
-      dialogBlock: true
-    })
-  }
-
-  dialogUnblock() {
-    this.setState({
-      dialogUnblock: true
+  updateCourses() {
+    getCourses((data) => {
+      this.setState({
+        courses: data
+      });
     })
   }
 
@@ -101,24 +75,24 @@ export default class ContentContainer extends React.Component {
     })
   }
 
-  handleDeleteContent(content) {
+  handleDeleteContent(course) {
     this.setState({
       dialogDelete: true,
-      deleteContent: content
+      course: course
     })
   }
 
-  handleBlockContent(content) {
+  handleBlockContent(course) {
     this.setState({
       dialogBlock: true,
-      deleteContent: content
+      course: course
     })
   }
 
-  handleUnblockContent(content) {
+  handleUnblockContent(course) {
     this.setState({
       dialogUnblock: true,
-      deleteContent: content
+      course: course
     })
   }
 
@@ -197,46 +171,66 @@ export default class ContentContainer extends React.Component {
           </TableHeader>
           <TableBody displayRowCheckbox={false}>
             {
-              content.map((contentItem, index) => {
+              this.state.courses.map((course, index) => {
                 return (
                   <TableRow key={index}>
-                    <TableRowColumn>{contentItem.name}</TableRowColumn>
-                    <TableRowColumn>{contentItem.teacher}</TableRowColumn>
-                    <TableRowColumn>{contentItem.status}</TableRowColumn>
+                    <TableRowColumn>{course.name}</TableRowColumn>
+                    <TableRowColumn>{course.teacher}</TableRowColumn>
+                    <TableRowColumn>
+                      {(() => {
+                        if (course.status === "ACTIVE") {
+                          return (
+                            <span style={{color: "#0080FF"}}>{course.status}</span>
+                          )
+                        }
+                        if (report.status === "BLOCKED") {
+                          return (
+                            <span style={{color: "#F44336"}}>{course.status}</span>
+                          )
+                        }
+                      })()}
+
+                    </TableRowColumn>
                     <TableRowColumn>
                       {
                         (() => {
-                          if (contentItem.status == "Active") {
+                          if (course.status == "ACTIVE") {
                             return (
                               <IconButton
-                                onTouchTap={this.handleBlockContent.bind(this, contentItem)}
+                                onTouchTap={this.handleBlockContent.bind(this, course)}
                                 style={muiStyle.iconButton}
                                 className={style.iconButtonStyle}
                                 iconStyle={muiStyle.iconUnblockButton}
-                                touch={true}>
+                                touch={true}
+                                tooltip="Block Course"
+                                tooltipPosition="bottom-left">
                                   <ActionBlock/>
                               </IconButton>
                             )
                           } else {
                             return (
                               <IconButton
-                                onTouchTap={this.handleUnblockContent.bind(this, contentItem)}
+                                onTouchTap={this.handleUnblockContent.bind(this, course)}
                                 style={muiStyle.iconButton}
                                 className={style.iconButtonStyle}
                                 iconStyle={muiStyle.iconBlockButton}
-                                touch={true}>
-                                <ActionBlock/>
+                                touch={true}
+                                tooltip="Unblock Course"
+                                tooltipPosition="bottom-left">
+                                  <ActionBlock/>
                               </IconButton>
                             )
                           }
                         })()
                       }
                       <IconButton
-                        onTouchTap={this.handleDeleteContent.bind(this, contentItem)}
+                        onTouchTap={this.handleDeleteContent.bind(this, course)}
                         style={muiStyle.iconButton}
                         className={style.iconButtonStyle}
                         iconStyle={muiStyle.iconDeleteButton}
-                        touch={true}>
+                        touch={true}
+                        tooltip="Delete Course"
+                        tooltipPosition="bottom-center">
                           <ActionDelete/>
                       </IconButton>
                     </TableRowColumn>
@@ -257,7 +251,7 @@ export default class ContentContainer extends React.Component {
           onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to delete
             <span className={style.highlight}>
-              This Curse
+              {this.state.course.name}
             </span>
             ?
         </Dialog>
@@ -272,7 +266,7 @@ export default class ContentContainer extends React.Component {
           onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to unblock
             <span className={style.highlight}>
-              This Curse
+              {this.state.course.name}
             </span>
             ?
         </Dialog>
@@ -287,7 +281,7 @@ export default class ContentContainer extends React.Component {
           onRequestClose={this.dialogClose.bind(this)}>
             Do you realy want to block
             <span className={style.highlight}>
-              This Curse
+              {this.state.course.name}
             </span>
             ?
         </Dialog>
