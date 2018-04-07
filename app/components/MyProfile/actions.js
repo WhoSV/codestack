@@ -38,3 +38,20 @@ export function getCourses(scc, err) {
     err(error)
   })
 }
+
+export function deleteCourse(uuid, scc, err) {
+  axios({
+    method: 'delete',
+    headers: {Authorization: "Bearer " + getToken()},
+    responseType: 'json',
+    url: COURSES_URL + "/" + uuid
+  })
+  .then(function (res) {
+    if (res.status < 400) {
+      scc(res.data)
+    }
+  })
+  .catch(function (error) {
+    err(error)
+  })
+}

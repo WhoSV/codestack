@@ -4,6 +4,9 @@ import React from 'react'
 import IconButton from 'material-ui/IconButton'
 import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
 import ActionEdit from 'material-ui/svg-icons/image/edit'
+import ActionDelete from 'material-ui/svg-icons/action/delete'
+import FlatButton from 'material-ui/FlatButton'
+import Dialog from 'material-ui/Dialog'
 
 // Import components
 import Navbar from '../Navbar'
@@ -15,7 +18,7 @@ import style from './style.less'
 import {img} from '../../static'
 
 // Component Actions
-import {getUser, getCourses} from './actions'
+import {getUser, getCourses, deleteCourse} from './actions'
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -24,7 +27,9 @@ class MyProfile extends React.Component {
       id: "",
       name: "",
       role: "",
-      courses: []
+      courses: [],
+      course: {},
+      dialogDelete: false,
     }
     this.navigateToCourse = this.navigateToCourse.bind(this)
     this.navigateToEditCourse = this.navigateToEditCourse.bind(this)
@@ -54,15 +59,57 @@ class MyProfile extends React.Component {
     })
   }
 
+  dialogClose() {
+    this.setState({
+      dialogDelete: false,
+    })
+  }
+
+  confirmDeleteContent() {
+    deleteCourse(this.state.course.id, (res) => {
+
+      this.setState({
+        dialogDelete: false,
+        course: {}
+      })
+      this.updateCourses()
+    })
+  }
+
+  deleteCourse(course) {
+    this.setState({
+      dialogDelete: true,
+      course: course
+    })
+  }
+
   navigateToCourse() {
     // open pdf link
+    console.log("open link");
   }
 
   navigateToEditCourse() {
     // Go to edit course
+    console.log("edit");
   }
 
   render() {
+
+    const deleteActions = [
+      <FlatButton
+        label="Cancel"
+        style={{color: "#747374"}}
+        primary={true}
+        onTouchTap={this.dialogClose.bind(this)}
+      />,
+      <FlatButton
+        label="Delete"
+        style={{color: "#ff0000"}}
+        primary={true}
+        onTouchTap={this.confirmDeleteContent.bind(this)}
+      />
+    ]
+
     return (
       <div className={style.myProfile}>
         <Navbar {...this.props}/>
@@ -89,7 +136,7 @@ class MyProfile extends React.Component {
 
                       <IconButton
                         onClick={this.navigateToCourse}
-                        tooltip="Go to Course"
+                        tooltip="Open"
                         tooltipPosition="bottom-left"
                         touch={true}>
                         <ActionArrow className={style.arrowButton}/>
@@ -125,6 +172,14 @@ class MyProfile extends React.Component {
                         touch={true}>
                           <ActionEdit className={style.editButton}/>
                       </IconButton>
+
+                      <IconButton
+                        onClick={this.deleteCourse.bind(this, course)}
+                        tooltip="Delete"
+                        tooltipPosition="bottom-left"
+                        touch={true}>
+                        <ActionDelete className={style.deleteButton}/>
+                      </IconButton>
                     </div>
                   </div>
                 )
@@ -132,6 +187,21 @@ class MyProfile extends React.Component {
             }
           </div>
         </div>
+
+        {/* Delete Content Dialog */}
+        <Dialog
+          className={style.dialog}
+          title="Delete Course"
+          actions={deleteActions}
+          modal={false}
+          open={this.state.dialogDelete}
+          onRequestClose={this.dialogClose.bind(this)}>
+            Do you realy want to delete
+            <span className={style.highlight}>
+              {this.state.course.name}
+            </span>
+            ?
+        </Dialog>
       </div>
     )
   }

@@ -38,7 +38,7 @@ const muiStyle = {
 }
 
 // Component Actions
-import {getCourses} from './actions'
+import {getCourses, deleteCourse} from './actions'
 
 // Component Style
 import style from './style'
@@ -97,7 +97,14 @@ export default class ContentContainer extends React.Component {
   }
 
   confirmDeleteContent() {
-    console.log("confirm delete");
+    deleteCourse(this.state.course.id, (res) => {
+
+      this.setState({
+        dialogDelete: false,
+        course: {}
+      })
+      this.updateCourses()
+    })
   }
 
   confirmBlockContent() {
@@ -157,7 +164,7 @@ export default class ContentContainer extends React.Component {
 
     return (
       <div className={style.contentContainerStyle}>
-        <h3 className={style.title}>Content Table</h3>
+        <h3 className={style.title}>Courses Table</h3>
         <Table selectable={false}>
           <TableHeader
             displaySelectAll={false}
@@ -202,7 +209,7 @@ export default class ContentContainer extends React.Component {
                                 className={style.iconButtonStyle}
                                 iconStyle={muiStyle.iconUnblockButton}
                                 touch={true}
-                                tooltip="Block Course"
+                                tooltip="Block"
                                 tooltipPosition="bottom-left">
                                   <ActionBlock/>
                               </IconButton>
@@ -215,7 +222,7 @@ export default class ContentContainer extends React.Component {
                                 className={style.iconButtonStyle}
                                 iconStyle={muiStyle.iconBlockButton}
                                 touch={true}
-                                tooltip="Unblock Course"
+                                tooltip="Unblock"
                                 tooltipPosition="bottom-left">
                                   <ActionBlock/>
                               </IconButton>
@@ -229,7 +236,7 @@ export default class ContentContainer extends React.Component {
                         className={style.iconButtonStyle}
                         iconStyle={muiStyle.iconDeleteButton}
                         touch={true}
-                        tooltip="Delete Course"
+                        tooltip="Delete"
                         tooltipPosition="bottom-center">
                           <ActionDelete/>
                       </IconButton>
