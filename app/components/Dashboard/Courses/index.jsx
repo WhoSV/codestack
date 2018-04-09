@@ -50,30 +50,32 @@ class Courses extends React.Component {
         <div className={style.courseList}>
           {
             this.props.courses.map((course, index) => {
-              return (
-                <div key={index} className={style.listItem}>
-                  <div className={style.listItemTitle}>
-                    <a className={style.courseTitle} onClick={this.navigateToCourse}>
-                      <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.name}</h3>
-                    </a>
+              if (course.status === "ACTIVE") {
+                return (
+                  <div key={index} className={style.listItem}>
+                    <div className={style.listItemTitle}>
+                      <a className={style.courseTitle} onClick={this.navigateToCourse}>
+                        <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.name}</h3>
+                      </a>
 
-                    <div className={style.votesContainer}>
-                      <IconButton
-                        tooltip="Add to Favorite"
-                        tooltipPosition="bottom-left"
-                        touch={true}
-                        className={style.favoriteStyle}
-                        onClick={this.addFavorite}>
-                        <FavoriteIcon className={style.favoriteIconStyle}/>
-                      </IconButton>
+                      <div className={style.votesContainer}>
+                        <IconButton
+                          tooltip="Add to Favorite"
+                          tooltipPosition="bottom-left"
+                          touch={true}
+                          className={style.favoriteStyle}
+                          onClick={this.addFavorite}>
+                          <FavoriteIcon className={style.favoriteIconStyle}/>
+                        </IconButton>
+                      </div>
+
                     </div>
-
+                    <h5 className={style.listItemTeacher}>By: {course.teacher}</h5>
+                    <h5 className={style.listItemDate}>Date: {course.created_at}</h5>
+                    <p className={style.listItemDescription}>{course.description}</p>
                   </div>
-                  <h5 className={style.listItemTeacher}>By: {course.teacher}</h5>
-                  <h5 className={style.listItemDate}>Date: {course.created_at}</h5>
-                  <p className={style.listItemDescription}>{course.description}</p>
-                </div>
-              )
+                )
+              }
             })
           }
         </div>
