@@ -22,12 +22,30 @@ export function getCourses(scc, err) {
   })
 }
 
-export function deleteCourse(uuid, scc, err) {
+export function deleteCourse(id, scc, err) {
   axios({
     method: 'delete',
     headers: {Authorization: "Bearer " + getToken()},
     responseType: 'json',
-    url: COURSES_URL + "/" + uuid
+    url: COURSES_URL + "/" + id
+  })
+  .then(function (res) {
+    if (res.status < 400) {
+      scc(res.data)
+    }
+  })
+  .catch(function (error) {
+    err(error)
+  })
+}
+
+export function updateCourseStatus(courseData, scc, err) {
+  axios({
+    method: 'PATCH',
+    headers: {Authorization: "Bearer " + getToken()},
+    responseType: 'json',
+    url: COURSES_URL + "/" + courseData.id,
+    data:  courseData
   })
   .then(function (res) {
     if (res.status < 400) {

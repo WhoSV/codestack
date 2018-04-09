@@ -132,6 +132,8 @@ class Account extends React.Component {
   }
 
   changeAccountInfo(event) {
+    // Call preventDefault() on the event to prevent the browser's default
+    // action of submitting the form.
     event.preventDefault();
 
     this.setState({

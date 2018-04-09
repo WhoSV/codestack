@@ -38,7 +38,7 @@ const muiStyle = {
 }
 
 // Component Actions
-import {getCourses, deleteCourse} from './actions'
+import {getCourses, deleteCourse, updateCourseStatus} from './actions'
 
 // Component Style
 import style from './style'
@@ -108,11 +108,55 @@ export default class ContentContainer extends React.Component {
   }
 
   confirmBlockContent() {
-    console.log("confirm block");
+    // Call preventDefault() on the event to prevent the browser's default
+    // action of submitting the form.
+    event.preventDefault();
+
+    const id = this.state.course.id;
+    let status = "BLOCKED";
+
+    let reqInputs = [id, status];
+
+    if (reqInputs) {
+      let formData = {
+        id: id,
+        status: status
+      }
+
+      updateCourseStatus(formData, () => {
+        this.setState({
+          dialogBlock: false,
+          course: {}
+        })
+        this.updateCourses()
+      })
+    }
   }
 
   confirmUnblockContent() {
-    console.log("confirm Unblock");
+    // Call preventDefault() on the event to prevent the browser's default
+    // action of submitting the form.
+    event.preventDefault();
+
+    const id = this.state.course.id;
+    let status = "ACTIVE";
+
+    let reqInputs = [id, status];
+
+    if (reqInputs) {
+      let formData = {
+        id: id,
+        status: status
+      }
+
+      updateCourseStatus(formData, () => {
+        this.setState({
+          dialogUnblock: false,
+          course: {}
+        })
+        this.updateCourses()
+      })
+    }
   }
 
   render() {
@@ -190,7 +234,7 @@ export default class ContentContainer extends React.Component {
                             <span style={{color: "#0080FF"}}>{course.status}</span>
                           )
                         }
-                        if (report.status === "BLOCKED") {
+                        if (course.status === "BLOCKED") {
                           return (
                             <span style={{color: "#F44336"}}>{course.status}</span>
                           )

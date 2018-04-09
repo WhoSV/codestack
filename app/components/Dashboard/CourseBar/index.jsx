@@ -37,7 +37,7 @@ class CourseBar extends React.Component {
                     <h4>{course.name}</h4>
 
                     <IconButton
-                      tooltip="Go to Course"
+                      tooltip="Open"
                       tooltipPosition="bottom-left"
                       touch={true}>
                       <ActionArrow className={style.arrowButton}/>
