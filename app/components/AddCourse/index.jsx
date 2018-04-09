@@ -46,6 +46,10 @@ import style from './style.less'
 class AddCourse extends React.Component {
   constructor(props) {
     super()
+
+    var today = new Date(),
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
     this.state = {
       id: "",
       teacherName: "",
@@ -55,7 +59,8 @@ class AddCourse extends React.Component {
       fileName: "",
       status: "ACTIVE",
       fileData: null,
-      dialogAlert: false
+      dialogAlert: false,
+      date: date
     }
     this.handleCourseNameChange = this.handleCourseNameChange.bind(this)
     this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(this)
@@ -128,6 +133,7 @@ class AddCourse extends React.Component {
     const link = this.state.fileLink
     const teacher = this.state.teacherName
     const status = this.state.status
+    const date = this.state.date
     const that = this
     // const fileData = this.state.fileData
 
@@ -143,8 +149,8 @@ class AddCourse extends React.Component {
     //
     // Check to be sent just link or just file
     //
-    
-    let reqInputs = [name, description, link, teacher, status]
+
+    let reqInputs = [name, description, link, teacher, status, date]
 
     if (validateForm(reqInputs)) {
       let formData = {
@@ -152,7 +158,8 @@ class AddCourse extends React.Component {
         description: description,
         link: link,
         teacher: teacher,
-        status: status
+        status: status,
+        created_at: date
       }
 
       createCourse(formData, () => {

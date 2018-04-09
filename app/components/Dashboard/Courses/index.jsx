@@ -70,7 +70,7 @@ class Courses extends React.Component {
 
                   </div>
                   <h5 className={style.listItemTeacher}>By: {course.teacher}</h5>
-                  <h5 className={style.listItemDate}>Date: {course.date}</h5>
+                  <h5 className={style.listItemDate}>Date: {course.created_at}</h5>
                   <p className={style.listItemDescription}>{course.description}</p>
                 </div>
               )
