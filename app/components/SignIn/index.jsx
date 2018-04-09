@@ -119,7 +119,7 @@ class Signin extends React.Component {
         <div className={style.signinContainer}>
           <div className={style.intro}>
             <h1>Learn to code</h1>
-            <h3>Interactive platform for online learning programming languages.</h3>
+            <h3>A platform for online learning programming languages.</h3>
           </div>
 
           <div className={style.signin}>
