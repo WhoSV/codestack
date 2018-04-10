@@ -15,6 +15,7 @@ import AdminPanel from '../AdminPanel'
 import AddCourse from '../AddCourse'
 import MyProfile from '../MyProfile'
 import Account from '../Account'
+import EditCourse from '../EditCourse'
 
 // Component Style
 import style from './style.less'
@@ -38,6 +39,7 @@ export default class Master extends Component {
 
           {/* Teacher Only */}
           <Route path="/addcourse" component={AddCourse}/>
+          <Route path="/editcourse" component={EditCourse}/>
 
           {/* Admin Only */}
           <Route path="/admin" component={AdminPanel}/>

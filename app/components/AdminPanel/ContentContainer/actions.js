@@ -44,7 +44,7 @@ export function updateCourseStatus(courseData, scc, err) {
     method: 'PATCH',
     headers: {Authorization: "Bearer " + getToken()},
     responseType: 'json',
-    url: COURSES_URL + "/" + courseData.id,
+    url: COURSES_URL + "/" + courseData.id + "/status",
     data:  courseData
   })
   .then(function (res) {

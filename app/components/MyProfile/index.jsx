@@ -32,7 +32,6 @@ class MyProfile extends React.Component {
       dialogDelete: false,
     }
     this.navigateToCourse = this.navigateToCourse.bind(this)
-    this.navigateToEditCourse = this.navigateToEditCourse.bind(this)
   }
 
   componentWillMount() {
@@ -88,9 +87,9 @@ class MyProfile extends React.Component {
     console.log("open link");
   }
 
-  navigateToEditCourse() {
-    // Go to edit course
-    console.log("edit");
+  navigateToEditCourse(course) {
+    localStorage.courseId = course.id
+    this.props.history.push('/editcourse')
   }
 
   render() {
@@ -166,7 +165,7 @@ class MyProfile extends React.Component {
                         {course.name}
                       </h4>
                       <IconButton
-                        onClick={this.navigateToEditCourse}
+                        onClick={this.navigateToEditCourse.bind(this, course)}
                         tooltip="Edit"
                         tooltipPosition="bottom-left"
                         touch={true}>
