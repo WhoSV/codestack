@@ -52,14 +52,12 @@ class EditCourse extends React.Component {
       courseid: null,
       courseName: "",
       courseDescription: "",
-      fileLink: "",
       fileName: "",
       fileData: null,
       dialogAlert: false,
     }
     this.handleCourseNameChange = this.handleCourseNameChange.bind(this)
     this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(this)
-    this.handleFileLinkChange = this.handleFileLinkChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.uploadFile = this.uploadFile.bind(this)
     this.handleBack = this.handleBack.bind(this)
@@ -93,26 +91,14 @@ class EditCourse extends React.Component {
     })
   }
 
-  handleFileLinkChange(event) {
-    this.setState ({
-      fileLink: event.target.value
-    })
-  }
-
   uploadFile(event) {
     let file = event.target.files[0];
+
+    // log file
     console.log(file);
 
-    if (file) {
-      let data = new FormData();
-      data.append('file', file);
-      // axios.post('/files', data)...
-      // this.setState({
-      //   fileData: data
-      // })
-    }
-
     this.setState({
+      fileData: file,
       fileName: file.name
     })
   }
@@ -131,7 +117,7 @@ class EditCourse extends React.Component {
     const description = this.state.courseDescription;
     const link = this.state.fileLink;
     const id = this.state.courseid;
-    // const fileData = this.state.fileData
+    const fileData = this.state.fileData
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -142,29 +128,21 @@ class EditCourse extends React.Component {
       return true
     }
 
-    //
-    // Check to be sent just link or just file
-    //
-
-    let reqInputs = [id, name, description, link]
+    let reqInputs = [id, name, description, fileData]
 
     if (validateForm(reqInputs)) {
       let formData = {
         id: id,
         name: name,
         description: description,
-        link: link
+        file: fileData,
       }
 
-      updateCourse(formData, () => {
-        this.setState({
-          dialogAlert: true
-        })
-      }, (error) => {
-				that.setState({
-					inputError: "Error."
-				})
-  		})
+      // updateCourse(formData, () => {
+      //   this.setState({
+      //     dialogAlert: true
+      //   })
+      // })
 
     } else {
       this.setState({
@@ -206,19 +184,25 @@ class EditCourse extends React.Component {
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
             className={style.textFieldStyle}/>
 
-          <p>Description</p>
-          <textarea
-            name="message"
-            // errorText={this.state.inputError}
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            type="text"
+            floatingLabelText="Description"
+            floatingLabelFixed={true}
             value={this.state.courseDescription}
+            errorText={this.state.inputError}
             onChange={this.handleCourseDescriptionChange}
-            className={style.description}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            className={style.textFieldStyle}
+            multiLine={true}
+            rows={5}
+            rowsMax={10}/>
 
           <br/>
           <h4>Attention!</h4>
           <h5><span>-</span> All course should be in one <span>PDF</span> file!</h5>
           <h5><span>-</span> Please upload a <span>PDF</span> file!</h5>
-          <h5><span>-</span> Or, insert an online, active <span>PDF</span> link!</h5>
           <br/>
 
           <RaisedButton
@@ -231,19 +215,7 @@ class EditCourse extends React.Component {
           </RaisedButton>
 
           <br/><br/>
-          <h4 className={style.fileNameStyle}>File name: {this.state.fileName}</h4>
-
-          <TextField
-            autoCorrect="none"
-            autoCapitalize="none"
-            type="text"
-            floatingLabelText="PDF link"
-            floatingLabelFixed={true}
-            errorText={this.state.inputError}
-            value={this.state.fileLink}
-            onChange={this.handleFileLinkChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-            className={style.textFieldStyle}/>
+          <h5>File name: <span className={style.fileNameStyle}>{this.state.fileName}</span></h5>
 
           <RaisedButton
             type="submit"

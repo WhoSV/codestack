@@ -55,18 +55,16 @@ class AddCourse extends React.Component {
       teacherName: "",
       courseName: "",
       courseDescription: "",
-      fileLink: "",
       fileName: "",
       status: "ACTIVE",
       fileData: null,
       dialogAlert: false,
-      date: date
+      date: date,
     }
     this.handleCourseNameChange = this.handleCourseNameChange.bind(this)
     this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(this)
-    this.handleFileLinkChange = this.handleFileLinkChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.uploadFile = this.uploadFile.bind(this)
+    this.handleUploadFile = this.handleUploadFile.bind(this)
     this.handleBack = this.handleBack.bind(this)
   }
 
@@ -95,26 +93,14 @@ class AddCourse extends React.Component {
     })
   }
 
-  handleFileLinkChange(event) {
-    this.setState ({
-      fileLink: event.target.value
-    })
-  }
-
-  uploadFile(event) {
+  handleUploadFile(event) {
     let file = event.target.files[0];
+
+    // log file
     console.log(file);
 
-    if (file) {
-      let data = new FormData();
-      data.append('file', file);
-      // axios.post('/files', data)...
-      // this.setState({
-      //   fileData: data
-      // })
-    }
-
     this.setState({
+      fileData: file,
       fileName: file.name
     })
   }
@@ -130,12 +116,10 @@ class AddCourse extends React.Component {
 
     const name = this.state.courseName
     const description = this.state.courseDescription
-    const link = this.state.fileLink
     const teacher = this.state.teacherName
     const status = this.state.status
     const date = this.state.date
-    const that = this
-    // const fileData = this.state.fileData
+    const fileData = this.state.fileData
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -146,31 +130,29 @@ class AddCourse extends React.Component {
       return true
     }
 
-    //
-    // Check to be sent just link or just file
-    //
-
-    let reqInputs = [name, description, link, teacher, status, date]
+    let reqInputs = [name, description, teacher, status, date, fileData]
 
     if (validateForm(reqInputs)) {
       let formData = {
         name: name,
         description: description,
-        link: link,
         teacher: teacher,
         status: status,
-        created_at: date
+        created_at: date,
+        file: fileData
       }
 
-      createCourse(formData, () => {
-        this.setState({
-          dialogAlert: true
-        })
-      })
+      console.log(formData);
+
+      // createCourse(formData, () => {
+      //   this.setState({
+      //     dialogAlert: true
+      //   })
+      // })
 
     } else {
       this.setState({
-        inputError: "All fields must be filled.",
+        inputError: "All fields must be filled."
       })
     }
   }
@@ -208,19 +190,25 @@ class AddCourse extends React.Component {
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
             className={style.textFieldStyle}/>
 
-          <p>Description</p>
-          <textarea
-            name="message"
-            // errorText={this.state.inputError}
+          <TextField
+            autoCorrect="none"
+            autoCapitalize="none"
+            type="text"
+            floatingLabelText="Description"
+            floatingLabelFixed={true}
             value={this.state.courseDescription}
+            errorText={this.state.inputError}
             onChange={this.handleCourseDescriptionChange}
-            className={style.description}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            className={style.textFieldStyle}
+            multiLine={true}
+            rows={5}
+            rowsMax={10}/>
 
           <br/>
           <h4>Attention!</h4>
           <h5><span>-</span> All course should be in one <span>PDF</span> file!</h5>
           <h5><span>-</span> Please upload a <span>PDF</span> file!</h5>
-          <h5><span>-</span> Or, insert an online, active <span>PDF</span> link!</h5>
           <br/>
 
           <RaisedButton
@@ -228,24 +216,12 @@ class AddCourse extends React.Component {
             style={muiStyle.uploadButtonStyle}
             icon={<ContentAdd/>}
             containerElement="label"
-            onChange={this.uploadFile}>
+            onChange={this.handleUploadFile}>
               <input type="file" style={muiStyle.uploadInputStyle}/>
           </RaisedButton>
 
           <br/><br/>
-          <h4 className={style.fileNameStyle}>File name: {this.state.fileName}</h4>
-
-          <TextField
-            autoCorrect="none"
-            autoCapitalize="none"
-            type="text"
-            floatingLabelText="PDF link"
-            floatingLabelFixed={true}
-            errorText={this.state.inputError}
-            value={this.state.fileLink}
-            onChange={this.handleFileLinkChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-            className={style.textFieldStyle}/>
+          <h5>File name: <span className={style.fileNameStyle}>{this.state.fileName}</span></h5>
 
           <RaisedButton
             type="submit"
