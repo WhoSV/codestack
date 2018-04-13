@@ -1,16 +1,17 @@
 import axios from 'axios';
-import { USERS_URL, COURSES_URL } from '../../config/consts';
+import { FAVORITE_URL } from '../../../config/consts';
 
 function getToken() {
   return localStorage.token;
 }
 
-export function getUser(id, scc, err) {
+export function addToFavorite(userData, scc, err) {
   axios({
-    method: 'get',
+    method: 'POST',
     headers: { Authorization: 'Bearer ' + getToken() },
     responseType: 'json',
-    url: USERS_URL + '/' + id
+    url: FAVORITE_URL,
+    data: userData
   })
     .then(function(res) {
       if (res.status < 400) {
@@ -22,29 +23,12 @@ export function getUser(id, scc, err) {
     });
 }
 
-export function getCourses(scc, err) {
-  axios({
-    method: 'get',
-    headers: { Authorization: 'Bearer ' + getToken() },
-    responseType: 'json',
-    url: COURSES_URL
-  })
-    .then(function(res) {
-      if (res.status < 400) {
-        scc(res.data);
-      }
-    })
-    .catch(function(error) {
-      err(error);
-    });
-}
-
-export function deleteCourse(uuid, scc, err) {
+export function deleteFavorite(uuid, scc, err) {
   axios({
     method: 'delete',
     headers: { Authorization: 'Bearer ' + getToken() },
     responseType: 'json',
-    url: COURSES_URL + '/' + uuid
+    url: FAVORITE_URL + '/' + uuid
   })
     .then(function(res) {
       if (res.status < 400) {

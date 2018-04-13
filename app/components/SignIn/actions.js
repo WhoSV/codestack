@@ -1,5 +1,5 @@
-import axios from 'axios'
-import { AUTH_URL } from '../../config/consts'
+import axios from 'axios';
+import { AUTH_URL } from '../../config/consts';
 
 export function authUser(email, password, scc, err) {
   axios({
@@ -12,16 +12,16 @@ export function authUser(email, password, scc, err) {
       password: password
     }
   })
-  .then(function (res){
-    localStorage.token = res.data.token;
-    localStorage.id = res.data.id;
-    scc()
-  })
-  .catch(function (error) {
-    err(error)
-  })
+    .then(function(res) {
+      localStorage.token = res.data.token;
+      localStorage.id = res.data.id;
+      scc();
+    })
+    .catch(function(error) {
+      err(error);
+    });
 }
 
 export function getToken() {
-    return localStorage.token
+  return localStorage.token;
 }

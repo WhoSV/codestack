@@ -1,24 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 // Material UI imports
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // Instant TapEvents for React requires for 'material-ui'
-import injectTapEventPlugin from 'react-tap-event-plugin'
+import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 // Import components
-import Master from './components/Master'
+import Master from './components/Master';
 
 const App = () => (
   <div>
     <MuiThemeProvider>
-      <Master/>
+      <Master />
     </MuiThemeProvider>
   </div>
-)
-
-ReactDOM.render(
-  <App/>, document.getElementById('root')
 );
+
+ReactDOM.render(<App />, document.getElementById('root'));

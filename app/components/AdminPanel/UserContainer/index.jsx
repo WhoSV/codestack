@@ -1,50 +1,49 @@
-import React from 'react'
+import React from 'react';
 
 // Component's paths
-import CreateUserForm from './CreateUserForm'
-import UsersTable from './UsersTable'
+import CreateUserForm from './CreateUserForm';
+import UsersTable from './UsersTable';
 
 // Component Style
-import style from './style'
+import style from './style';
 
 // Component Actions
-import {getUsers} from './actions'
+import { getUsers } from './actions';
 
 export default class UserContainer extends React.Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       users: []
-    }
+    };
   }
 
   componentWillMount() {
-    this.updateUsers()
+    this.updateUsers();
   }
 
   changeOnUserList() {
-    this.updateUsers()
+    this.updateUsers();
   }
 
   updateUsers() {
-    getUsers((data) => {
+    getUsers(data => {
       this.setState({
         users: data
       });
-    })
+    });
   }
 
   render() {
     return (
       <div className={style.userContainerStyle}>
-        <CreateUserForm
-          changeOnUserList={this.changeOnUserList.bind(this)}/>
+        <CreateUserForm changeOnUserList={this.changeOnUserList.bind(this)} />
 
         <UsersTable
           users={this.state.users}
-          changeOnUserList={this.changeOnUserList.bind(this)}/>
+          changeOnUserList={this.changeOnUserList.bind(this)}
+        />
       </div>
-    )
+    );
   }
 }

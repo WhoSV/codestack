@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import TextField from 'material-ui/TextField'
-import FlatButton from 'material-ui/FlatButton'
-import Paper from 'material-ui/Paper'
-import MenuItem from 'material-ui/MenuItem'
-import Dialog from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
+import MenuItem from 'material-ui/MenuItem';
+import Dialog from 'material-ui/Dialog';
 
 // Material UI Styles
 const muiStyle = {
@@ -27,60 +27,60 @@ const muiStyle = {
     textAlign: 'center'
   },
   dialogTitleStyle: {
-    color: '#4CAF50',
+    color: '#4CAF50'
   }
-}
+};
 
 // Component Actions
-import {createUser} from './actions'
+import { createUser } from './actions';
 
 // Component Style
-import style from './style.less'
+import style from './style.less';
 
 // Import static Resources
-import {img} from '../../static'
+import { img } from '../../static';
 
 class Register extends React.Component {
   constructor(props) {
-    super()
+    super();
     this.state = {
-      full_name: "",
-      mail: "",
-      role: "STUDENT",
-      password: "",
-      confPassword: "",
+      full_name: '',
+      mail: '',
+      role: 'STUDENT',
+      password: '',
+      confPassword: '',
       dialogAlert: false
-    }
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleMailChange = this.handleMailChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this)
-    this.handleCreateUser = this.handleCreateUser.bind(this)
-    this.handleBack = this.handleBack.bind(this)
+    };
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleMailChange = this.handleMailChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleConfPasswordChange = this.handleConfPasswordChange.bind(this);
+    this.handleCreateUser = this.handleCreateUser.bind(this);
+    this.handleBack = this.handleBack.bind(this);
   }
 
   handleNameChange(event) {
     this.setState({
       full_name: event.target.value
-    })
+    });
   }
 
   handleMailChange(event) {
     this.setState({
       mail: event.target.value
-    })
+    });
   }
 
   handlePasswordChange(event) {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   handleConfPasswordChange(event) {
     this.setState({
       confPassword: event.target.value
-    })
+    });
   }
 
   handleCreateUser(event) {
@@ -89,10 +89,10 @@ class Register extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputError: "",
-      passwordError: "",
-      emailInputError: ""
-    })
+      inputError: '',
+      passwordError: '',
+      emailInputError: ''
+    });
 
     const full_name = this.state.full_name;
     const mail = this.state.mail;
@@ -103,12 +103,12 @@ class Register extends React.Component {
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == null || arr[i] == "") {
-          return false
+        if (arr[i] == null || arr[i] == '') {
+          return false;
         }
       }
-      return true
-    }
+      return true;
+    };
 
     if (password == confPassword) {
       let reqInputs = [full_name, mail, role, password];
@@ -119,55 +119,58 @@ class Register extends React.Component {
           email: mail,
           role: role,
           password: password
-        }
+        };
 
-        createUser(formData, () => {
-          this.setState({
-            full_name: "",
-            mail: "",
-            password: "",
-            confPassword: "",
-            dialogAlert: true
-          })
-        }, (error) => {
-  				that.setState({
-  					emailInputError: "Email must be unique."
-  				})
-    		})
-
+        createUser(
+          formData,
+          () => {
+            this.setState({
+              full_name: '',
+              mail: '',
+              password: '',
+              confPassword: '',
+              dialogAlert: true
+            });
+          },
+          error => {
+            that.setState({
+              emailInputError: 'Email must be unique.'
+            });
+          }
+        );
       } else {
         this.setState({
-          inputError: "All fields must be filled.",
-          passwordError: "All fields must be filled.",
-          emailInputError: "All fields must be filled."
-        })
+          inputError: 'All fields must be filled.',
+          passwordError: 'All fields must be filled.',
+          emailInputError: 'All fields must be filled.'
+        });
       }
     } else {
       this.setState({
-        passwordError: "Passwords are not identical"
-      })
+        passwordError: 'Passwords are not identical'
+      });
     }
   }
 
   handleBack() {
-    this.props.history.push('/signout')
+    this.props.history.push('/signout');
   }
 
   render() {
     const alertActions = [
       <FlatButton
         label="Continue"
-        style={{color: "#4CAF50"}}
+        style={{ color: '#4CAF50' }}
         primary={true}
         onTouchTap={this.handleBack}
       />
-    ]
+    ];
 
     return (
       <div className={style.bgStyle}>
         <div className={style.register}>
           <Paper zDepth={5}>
-            <img className={style.logoImg} src={img.logo}/>
+            <img className={style.logoImg} src={img.logo} />
             <h3 className={style.title}>Register New Account</h3>
 
             <form onSubmit={this.handleCreateUser}>
@@ -181,7 +184,8 @@ class Register extends React.Component {
                 value={this.state.full_name}
                 className={style.textFieldStyle}
                 onChange={this.handleNameChange}
-                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+              />
 
               <TextField
                 autoCorrect="none"
@@ -193,7 +197,8 @@ class Register extends React.Component {
                 value={this.state.mail}
                 className={style.textFieldStyle}
                 onChange={this.handleMailChange}
-                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+              />
 
               <TextField
                 autoCorrect="none"
@@ -205,7 +210,8 @@ class Register extends React.Component {
                 value={this.state.password}
                 className={style.textFieldStyle}
                 onChange={this.handlePasswordChange}
-                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+              />
 
               <TextField
                 autoCorrect="none"
@@ -217,18 +223,25 @@ class Register extends React.Component {
                 value={this.state.confPassword}
                 className={style.textFieldStyle}
                 onChange={this.handleConfPasswordChange}
-                floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
-              <br/>
+                floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+              />
+              <br />
 
               <FlatButton
                 type="submit"
                 label="Register"
                 backgroundColor="#F3F3F3"
                 style={muiStyle.submitButton}
-                labelStyle={muiStyle.submitButtonText}/>
+                labelStyle={muiStyle.submitButtonText}
+              />
             </form>
 
-            <h6>If you want to register as a Teacher, please contact <br/><a href="mailto:codeestacks@gmail.com" target="_top">Support Team</a></h6>
+            <h6>
+              If you want to register as a Teacher, please contact <br />
+              <a href="mailto:codeestacks@gmail.com" target="_top">
+                Support Team
+              </a>
+            </h6>
 
             <div className={style.backContainer}>
               <FlatButton
@@ -236,9 +249,9 @@ class Register extends React.Component {
                 label="Back"
                 style={muiStyle.backButton}
                 onClick={this.handleBack}
-                labelStyle={muiStyle.backButtonText}/>
+                labelStyle={muiStyle.backButtonText}
+              />
             </div>
-
           </Paper>
         </div>
 
@@ -248,12 +261,13 @@ class Register extends React.Component {
           titleStyle={muiStyle.dialogTitleStyle}
           actions={alertActions}
           modal={false}
-          open={this.state.dialogAlert}>
-            User created successfully, please login to continue!.
+          open={this.state.dialogAlert}
+        >
+          User created successfully, please login to continue!.
         </Dialog>
       </div>
-    )
+    );
   }
 }
 
-export default Register
+export default Register;

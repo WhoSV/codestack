@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
-import ContentAdd from 'material-ui/svg-icons/content/add'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 // Import components
-import Navbar from '../Navbar'
+import Navbar from '../Navbar';
 
 // Import static icons
-import {img} from '../../static'
+import { img } from '../../static';
 
 // Component Actions
-import {getCourse, updateCourse} from './actions'
+import { getCourse, updateCourse } from './actions';
 
 // Material UI Styles
 const muiStyle = {
@@ -33,62 +33,64 @@ const muiStyle = {
     opacity: 0
   },
   addButtonStyle: {
-    width: "250px",
+    width: '250px'
   },
   dialogTitleStyle: {
-    color: '#4A90E2',
+    color: '#4A90E2'
   }
-}
+};
 
 // Component Style
-import style from './style.less'
+import style from './style.less';
 
 class EditCourse extends React.Component {
   constructor(props) {
-    super()
+    super();
 
     this.state = {
-      id: "",
+      id: '',
       courseid: null,
-      courseName: "",
-      courseDescription: "",
-      fileName: "",
+      courseName: '',
+      courseDescription: '',
+      fileName: '',
       fileData: null,
-      dialogAlert: false,
-    }
-    this.handleCourseNameChange = this.handleCourseNameChange.bind(this)
-    this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.uploadFile = this.uploadFile.bind(this)
-    this.handleBack = this.handleBack.bind(this)
+      dialogAlert: false
+    };
+    this.handleCourseNameChange = this.handleCourseNameChange.bind(this);
+    this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(
+      this
+    );
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
+    this.handleBack = this.handleBack.bind(this);
   }
 
   componentWillMount() {
-    this.state.id = localStorage.courseId
-    this.activeCourse()
+    this.state.id = localStorage.courseId;
+    this.activeCourse();
   }
 
   activeCourse() {
-    getCourse(this.state.id, (data) => {
+    getCourse(this.state.id, data => {
       this.setState({
         courseid: data.id,
         courseName: data.name,
         courseDescription: data.description,
         fileLink: data.link
       });
-    })
+    });
   }
 
   handleCourseNameChange(event) {
     this.setState({
       courseName: event.target.value
-    })
+    });
   }
 
   handleCourseDescriptionChange(event) {
     this.setState({
       courseDescription: event.target.value
-    })
+    });
   }
 
   uploadFile(event) {
@@ -100,7 +102,7 @@ class EditCourse extends React.Component {
     this.setState({
       fileData: file,
       fileName: file.name
-    })
+    });
   }
 
   handleSubmit(event) {
@@ -109,65 +111,64 @@ class EditCourse extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputError: ""
-    })
+      inputError: ''
+    });
 
     const that = this;
     const name = this.state.courseName;
     const description = this.state.courseDescription;
     const link = this.state.fileLink;
     const id = this.state.courseid;
-    const fileData = this.state.fileData
+    const fileData = this.state.fileData;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == null || arr[i] == "") {
-          return false
+        if (arr[i] == null || arr[i] == '') {
+          return false;
         }
       }
-      return true
-    }
+      return true;
+    };
 
-    let reqInputs = [id, name, description, fileData]
-
+    let reqInputs = [id, name, description];
+    //fileData
     if (validateForm(reqInputs)) {
       let formData = {
         id: id,
         name: name,
-        description: description,
-        file: fileData,
-      }
+        description: description
+        // file: fileData
+      };
 
-      // updateCourse(formData, () => {
-      //   this.setState({
-      //     dialogAlert: true
-      //   })
-      // })
-
+      updateCourse(formData, () => {
+        this.setState({
+          dialogAlert: true
+        });
+      });
     } else {
       this.setState({
-        inputError: "All fields must be filled.",
-      })
+        inputError: 'All fields must be filled.'
+      });
     }
   }
 
   handleBack() {
-    this.props.history.push('/profile')
+    this.props.history.push('/profile');
   }
 
   render() {
     const alertActions = [
       <FlatButton
         label="Continue"
-        style={{color: "#4A90E2"}}
+        style={{ color: '#4A90E2' }}
         primary={true}
         onTouchTap={this.handleBack}
       />
-    ]
+    ];
 
     return (
       <div className={style.addCourse}>
-        <Navbar {...this.props}/>
+        <Navbar {...this.props} />
 
         <div className={style.container}>
           <h3>Edit Course</h3>
@@ -182,7 +183,8 @@ class EditCourse extends React.Component {
             errorText={this.state.inputError}
             onChange={this.handleCourseNameChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
-            className={style.textFieldStyle}/>
+            className={style.textFieldStyle}
+          />
 
           <TextField
             autoCorrect="none"
@@ -197,25 +199,35 @@ class EditCourse extends React.Component {
             className={style.textFieldStyle}
             multiLine={true}
             rows={5}
-            rowsMax={10}/>
+            rowsMax={10}
+          />
 
-          <br/>
+          <br />
           <h4>Attention!</h4>
-          <h5><span>-</span> All course should be in one <span>PDF</span> file!</h5>
-          <h5><span>-</span> Please upload a <span>PDF</span> file!</h5>
-          <br/>
+          <h5>
+            <span>-</span> All course should be in one <span>PDF</span> file!
+          </h5>
+          <h5>
+            <span>-</span> Please upload a <span>PDF</span> file!
+          </h5>
+          <br />
 
           <RaisedButton
             label="Upload file"
             style={muiStyle.uploadButtonStyle}
-            icon={<ContentAdd/>}
+            icon={<ContentAdd />}
             containerElement="label"
-            onChange={this.uploadFile}>
-              <input type="file" style={muiStyle.uploadInputStyle}/>
+            onChange={this.uploadFile}
+          >
+            <input type="file" style={muiStyle.uploadInputStyle} />
           </RaisedButton>
 
-          <br/><br/>
-          <h5>File name: <span className={style.fileNameStyle}>{this.state.fileName}</span></h5>
+          <br />
+          <br />
+          <h5>
+            File name:{' '}
+            <span className={style.fileNameStyle}>{this.state.fileName}</span>
+          </h5>
 
           <RaisedButton
             type="submit"
@@ -223,7 +235,8 @@ class EditCourse extends React.Component {
             onClick={this.handleSubmit}
             style={muiStyle.addButtonStyle}
             className={style.addButtonStyle}
-            primary={true}/>
+            primary={true}
+          />
         </div>
 
         {/* Update Course Dialog */}
@@ -232,12 +245,13 @@ class EditCourse extends React.Component {
           titleStyle={muiStyle.dialogTitleStyle}
           actions={alertActions}
           modal={false}
-          open={this.state.dialogAlert}>
-            Your course has been successfully Updated!.
+          open={this.state.dialogAlert}
+        >
+          Your course has been successfully Updated!.
         </Dialog>
       </div>
-    )
+    );
   }
 }
 
-export default EditCourse
+export default EditCourse;

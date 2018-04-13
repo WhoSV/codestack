@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import IconButton from 'material-ui/IconButton'
-import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right'
+import IconButton from 'material-ui/IconButton';
+import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 
 // Component Style
-import style from './style.less'
+import style from './style.less';
 
 // Import static Resources
-import {img} from '../../../static'
+import { img } from '../../../static';
 
 class CourseBar extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
-    this.navigateToCourse = this.navigateToCourse.bind(this)
+    super(props);
+    this.state = {};
+    this.navigateToCourse = this.navigateToCourse.bind(this);
   }
 
   navigateToCourse() {
@@ -25,32 +25,40 @@ class CourseBar extends React.Component {
     return (
       <div className={style.courseBar}>
         <h3 className={style.title}>Favorite Courses</h3>
-        {
-          this.props.courses.map((course, index) => {
-            return (
-              <div key={index} className={style.selectedCourseContainer}>
-                <a onClick={this.navigateToCourse}>
-                  <div className={style.selectedCourseItem}>
-                    <div className={style.imgContainer}>
-                      <img className={style.defaultIconStyle} src={img.defaultIcon}/>
-                    </div>
-                    <h4>{course.name}</h4>
+        {this.props.favorites.map((favorite, index) => {
+          if (this.props.activeUser === favorite.user_id) {
+            return this.props.courses.map((course, index) => {
+              if (favorite.course_id === course.id) {
+                return (
+                  <div key={index} className={style.selectedCourseContainer}>
+                    <a onClick={this.navigateToCourse}>
+                      <div className={style.selectedCourseItem}>
+                        <div className={style.imgContainer}>
+                          <img
+                            className={style.defaultIconStyle}
+                            src={img.defaultIcon}
+                          />
+                        </div>
+                        <h4>{course.name}</h4>
 
-                    <IconButton
-                      tooltip="Open"
-                      tooltipPosition="bottom-left"
-                      touch={true}>
-                      <ActionArrow className={style.arrowButton}/>
-                    </IconButton>
+                        <IconButton
+                          tooltip="Open"
+                          tooltipPosition="bottom-left"
+                          touch={true}
+                        >
+                          <ActionArrow className={style.arrowButton} />
+                        </IconButton>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-            )
-          })
-        }
+                );
+              }
+            });
+          }
+        })}
       </div>
-    )
+    );
   }
 }
 
-export default CourseBar
+export default CourseBar;

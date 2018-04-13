@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import FlatButton from 'material-ui/FlatButton'
-import TextField from 'material-ui/TextField'
-import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import Dialog from 'material-ui/Dialog';
 
 // Import components
-import Navbar from '../Navbar'
+import Navbar from '../Navbar';
 
 // Import static icons
-import {img} from '../../static'
+import { img } from '../../static';
 
 // Material UI Styles
 const muiStyle = {
@@ -32,103 +32,105 @@ const muiStyle = {
   uploadButtonLabelStyle: {
     color: '#4A4A4A'
   }
-}
+};
 
 // Component Style
-import style from './style.less'
+import style from './style.less';
 
 // Component Actions
-import {deleteUser, updateUser, getUser, updateUserPassword} from './actions'
+import { deleteUser, updateUser, getUser, updateUserPassword } from './actions';
 
 class Account extends React.Component {
   constructor(props) {
-    super()
+    super();
     this.state = {
-      id: "",
-      name: "",
-      email: "",
-      password: "",
-      confPassword: "",
-      oldPassword: "",
+      id: '',
+      name: '',
+      email: '',
+      password: '',
+      confPassword: '',
+      oldPassword: '',
       dialogDelete: false,
       deleteUser: {},
       dialogSuccess: false
-    }
-    this.changeAccountInfo = this.changeAccountInfo.bind(this)
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
-    this.changePasswordAction = this.changePasswordAction.bind(this)
-    this.handleDeleteAccount = this.handleDeleteAccount.bind(this)
-    this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this)
-    this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(this)
-    this.handleOldPassword = this.handleOldPassword.bind(this)
-    this.handleSignOut = this.handleSignOut.bind(this)
+    };
+    this.changeAccountInfo = this.changeAccountInfo.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.changePasswordAction = this.changePasswordAction.bind(this);
+    this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
+    this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
+    this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(
+      this
+    );
+    this.handleOldPassword = this.handleOldPassword.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   componentWillMount() {
-    this.state.id = localStorage.id
-    this.activeUser()
+    this.state.id = localStorage.id;
+    this.activeUser();
   }
 
   activeUser() {
-    getUser(this.state.id, (data) => {
+    getUser(this.state.id, data => {
       this.setState({
         id: data.id,
         name: data.full_name,
         email: data.email
       });
-    })
+    });
   }
 
   handleNameChange(event) {
     this.setState({
       name: event.target.value
-    })
+    });
   }
 
   handleEmailChange(event) {
     this.setState({
       email: event.target.value
-    })
+    });
   }
 
   handleNewPasswordChange(event) {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   handleNewConfPasswordChange(event) {
     this.setState({
       confPassword: event.target.value
-    })
+    });
   }
 
   handleOldPassword(event) {
     this.setState({
       oldPassword: event.target.value
-    })
+    });
   }
 
   handleDeleteAccount() {
     this.setState({
       dialogDelete: true
-    })
+    });
   }
 
   dialogClose() {
     this.setState({
       dialogDelete: false
-    })
+    });
   }
 
   confirmDeleteAccount() {
-    deleteUser(this.state.id, (res) => {
+    deleteUser(this.state.id, res => {
       this.setState({
         deleteUser: {}
-      })
-      this.props.history.push('/signout')
-    })
+      });
+      this.props.history.push('/signout');
+    });
   }
 
   changeAccountInfo(event) {
@@ -137,9 +139,9 @@ class Account extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputAccError: "",
-      emailInputError: ""
-    })
+      inputAccError: '',
+      emailInputError: ''
+    });
 
     const id = this.state.id;
     const name = this.state.name;
@@ -148,12 +150,12 @@ class Account extends React.Component {
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == null || arr[i] == "") {
-          return false
+        if (arr[i] == null || arr[i] == '') {
+          return false;
         }
       }
-      return true
-    }
+      return true;
+    };
 
     let reqInputs = [id, name, email];
 
@@ -162,21 +164,22 @@ class Account extends React.Component {
         id: id,
         full_name: name,
         email: email
-      }
+      };
 
-    updateUser(formData, () => {
-
-    }, (error) => {
-      that.setState({
-        emailInputError: "Email must be unique."
-      })
-    })
-
+      updateUser(
+        formData,
+        () => {},
+        error => {
+          that.setState({
+            emailInputError: 'Email must be unique.'
+          });
+        }
+      );
     } else {
       this.setState({
-        inputAccError: "All fields must be filled.",
-        emailInputError: "All fields must be filled."
-      })
+        inputAccError: 'All fields must be filled.',
+        emailInputError: 'All fields must be filled.'
+      });
     }
   }
 
@@ -186,10 +189,10 @@ class Account extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputError: "",
-      passwordError: "",
-      oldPasswordError: ""
-    })
+      inputError: '',
+      passwordError: '',
+      oldPasswordError: ''
+    });
 
     const id = this.state.id;
     const password = this.state.password;
@@ -198,23 +201,23 @@ class Account extends React.Component {
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == null || arr[i] == "") {
-          return false
+        if (arr[i] == null || arr[i] == '') {
+          return false;
         }
       }
-      return true
-    }
+      return true;
+    };
 
     if (password != confPassword) {
       this.setState({
-        passwordError: "Passwords are not identical"
-      })
+        passwordError: 'Passwords are not identical'
+      });
     }
 
     if (!oldPassword) {
       this.setState({
-        oldPasswordError: "All fields must be filled."
-      })
+        oldPasswordError: 'All fields must be filled.'
+      });
     }
 
     let reqInputs = [id, oldPassword, password];
@@ -224,55 +227,54 @@ class Account extends React.Component {
         id: id,
         new_password: password,
         password: oldPassword
-      }
+      };
 
       updateUserPassword(formData, () => {
         this.setState({
           dialogSuccess: true
-        })
-      })
-
+        });
+      });
     } else {
       this.setState({
-        inputError: "All fields must be filled.",
-        passwordError: "All fields must be filled.",
-        oldPasswordError: "All fields must be filled."
-      })
+        inputError: 'All fields must be filled.',
+        passwordError: 'All fields must be filled.',
+        oldPasswordError: 'All fields must be filled.'
+      });
     }
   }
 
   handleSignOut() {
-    this.props.history.push('/signout')
+    this.props.history.push('/signout');
   }
 
   render() {
     const deleteActions = [
       <FlatButton
         label="Cancel"
-        style={{color: "#747374"}}
+        style={{ color: '#747374' }}
         primary={true}
         onTouchTap={this.dialogClose.bind(this)}
       />,
       <FlatButton
         label="Delete"
-        style={{color: "#ff0000"}}
+        style={{ color: '#ff0000' }}
         primary={true}
         onTouchTap={this.confirmDeleteAccount.bind(this)}
       />
-    ]
+    ];
 
     const successActions = [
       <FlatButton
         label="Continue"
-        style={{color: "#4CAF50"}}
+        style={{ color: '#4CAF50' }}
         primary={true}
         onTouchTap={this.handleSignOut}
       />
-    ]
+    ];
 
     return (
       <div className={style.account}>
-        <Navbar {...this.props}/>
+        <Navbar {...this.props} />
 
         <div className={style.container}>
           <h3>Account Information</h3>
@@ -287,7 +289,8 @@ class Account extends React.Component {
             value={this.state.name}
             className={style.textFieldStyle}
             onChange={this.handleNameChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+          />
 
           <TextField
             autoCorrect="none"
@@ -299,18 +302,22 @@ class Account extends React.Component {
             value={this.state.email}
             className={style.textFieldStyle}
             onChange={this.handleEmailChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+          />
 
           <FlatButton
             label="SAVE CHANGES"
-            style={{color: "#fff",marginTop: "30px"}}
+            style={{ color: '#fff', marginTop: '30px' }}
             backgroundColor="#37BDD5"
-            onClick={this.changeAccountInfo}/>
+            onClick={this.changeAccountInfo}
+          />
         </div>
 
         <div className={style.container}>
           <h3>Change Password</h3>
-          <p>Please insert new password, confirmation and your current password.</p>
+          <p>
+            Please insert new password, confirmation and your current password.
+          </p>
 
           <TextField
             autoCorrect="none"
@@ -322,7 +329,8 @@ class Account extends React.Component {
             value={this.state.password}
             className={style.textFieldStyle}
             onChange={this.handleNewPasswordChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+          />
 
           <TextField
             autoCorrect="none"
@@ -334,7 +342,8 @@ class Account extends React.Component {
             value={this.state.confPassword}
             className={style.textFieldStyle}
             onChange={this.handleNewConfPasswordChange}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+          />
 
           <TextField
             autoCorrect="none"
@@ -346,23 +355,29 @@ class Account extends React.Component {
             value={this.state.oldPassword}
             className={style.textFieldStyle}
             onChange={this.handleOldPassword}
-            floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+            floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+          />
 
           <FlatButton
             label="CHANGE PASSWORD"
-            style={{color: "#fff", marginTop: "30px"}}
+            style={{ color: '#fff', marginTop: '30px' }}
             backgroundColor="#37BDD5"
-            onClick={this.changePasswordAction}/>
+            onClick={this.changePasswordAction}
+          />
         </div>
 
         <div className={style.container}>
           <h3>Delete Account</h3>
-          <p>You may delete your account at any time. However, this action is irreversibile.</p>
+          <p>
+            You may delete your account at any time. However, this action is
+            irreversibile.
+          </p>
           <FlatButton
             label="I UNDERSTAND, DELETE MY ACCOUNT"
-            style={{color: "#fff", marginTop: "20px"}}
+            style={{ color: '#fff', marginTop: '20px' }}
             backgroundColor="#f00"
-            onClick={this.handleDeleteAccount}/>
+            onClick={this.handleDeleteAccount}
+          />
         </div>
 
         {/* Delete account dialog */}
@@ -372,8 +387,9 @@ class Account extends React.Component {
           actions={deleteActions}
           modal={false}
           open={this.state.dialogDelete}
-          onRequestClose={this.dialogClose.bind(this)}>
-            Do you realy want to delete your account?
+          onRequestClose={this.dialogClose.bind(this)}
+        >
+          Do you realy want to delete your account?
         </Dialog>
 
         {/* Updated User Password Dialog */}
@@ -382,12 +398,14 @@ class Account extends React.Component {
           titleStyle={muiStyle.dialogTitleStyle}
           actions={successActions}
           modal={false}
-          open={this.state.dialogSuccess}>
-            Your password has been updated successfully, please login to continue!.
+          open={this.state.dialogSuccess}
+        >
+          Your password has been updated successfully, please login to
+          continue!.
         </Dialog>
       </div>
-    )
+    );
   }
 }
 
-export default Account
+export default Account;

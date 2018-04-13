@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import IconButton from 'material-ui/IconButton'
-import FavoriteIcon from 'material-ui/svg-icons/action/favorite'
+import IconButton from 'material-ui/IconButton';
+import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 
 // Material UI Styles
 const muiStyle = {
@@ -16,28 +16,47 @@ const muiStyle = {
   submitButtonLabelStyle: {
     padding: 0
   }
-}
+};
 
 // Component Style
-import style from './style.less'
+import style from './style.less';
 
 // Import static Resources
-import {img} from '../../../static'
+import { img } from '../../../static';
+
+// Component Actions
+import { addToFavorite, deleteFavorite } from './actions';
 
 class Courses extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
-    this.navigateToCourse = this.navigateToCourse.bind(this)
-    this.addFavorite = this.addFavorite.bind(this)
+    super(props);
+    this.state = {};
   }
 
   navigateToCourse() {
     // open pdf link
   }
 
-  addFavorite() {
-    // add course to favorite
+  addFavorite(course) {
+    const userId = this.props.activeUser;
+    const courseId = course.id;
+
+    if (userId && courseId) {
+      let formData = {
+        user_id: userId,
+        course_id: courseId
+      };
+
+      addToFavorite(formData, () => {
+        this.props.updateDashboard();
+      });
+    }
+  }
+
+  removeFavorite(favorite) {
+    deleteFavorite(favorite.id, res => {
+      this.props.updateDashboard();
+    });
   }
 
   render() {
@@ -48,40 +67,81 @@ class Courses extends React.Component {
         </div>
 
         <div className={style.courseList}>
-          {
-            this.props.courses.map((course, index) => {
-              if (course.status === "ACTIVE") {
-                return (
-                  <div key={index} className={style.listItem}>
-                    <div className={style.listItemTitle}>
-                      <a className={style.courseTitle} onClick={this.navigateToCourse}>
-                        <h3><img className={style.defaultIconStyle} src={img.defaultIcon}/>{course.name}</h3>
-                      </a>
-
-                      <div className={style.votesContainer}>
-                        <IconButton
-                          tooltip="Add to Favorite"
-                          tooltipPosition="bottom-left"
-                          touch={true}
-                          className={style.favoriteStyle}
-                          onClick={this.addFavorite}>
-                          <FavoriteIcon className={style.favoriteIconStyle}/>
-                        </IconButton>
-                      </div>
-
-                    </div>
-                    <h5 className={style.listItemTeacher}>By: {course.teacher}</h5>
-                    <h5 className={style.listItemDate}>Date: {course.created_at}</h5>
-                    <p className={style.listItemDescription}>{course.description}</p>
+          {this.props.courses.map((course, index) => {
+            if (course.status === 'ACTIVE') {
+              return (
+                <div key={index} className={style.listItem}>
+                  <div className={style.listItemTitle}>
+                    <a
+                      className={style.courseTitle}
+                      onClick={this.navigateToCourse.bind(this)}
+                    >
+                      <h3>
+                        <img
+                          className={style.defaultIconStyle}
+                          src={img.defaultIcon}
+                        />
+                        {course.name}
+                      </h3>
+                    </a>
+                    {this.props.favorites.map((favorite, index) => {
+                      console.log(favorite);
+                      console.log(course.id);
+                      if (
+                        course.id === favorite.course_id &&
+                        this.props.activeUser === favorite.user_id
+                      ) {
+                        return (
+                          <div key={index} className={style.votesContainer}>
+                            <IconButton
+                              tooltip="Add to Favorite"
+                              tooltipPosition="bottom-left"
+                              touch={true}
+                              className={style.favoriteStyle}
+                              onClick={this.removeFavorite.bind(this, favorite)}
+                            >
+                              <FavoriteIcon
+                                className={style.likedfavoriteIconStyle}
+                              />
+                            </IconButton>
+                          </div>
+                        );
+                      } else {
+                        return (
+                          <div key={index} className={style.votesContainer}>
+                            <IconButton
+                              tooltip="Remove from Favorite"
+                              tooltipPosition="bottom-left"
+                              touch={true}
+                              className={style.favoriteStyle}
+                              onClick={this.addFavorite.bind(this, course)}
+                            >
+                              <FavoriteIcon
+                                className={style.favoriteIconStyle}
+                              />
+                            </IconButton>
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
-                )
-              }
-            })
-          }
+                  <h5 className={style.listItemTeacher}>
+                    By: {course.teacher}
+                  </h5>
+                  <h5 className={style.listItemDate}>
+                    Date: {course.created_at}
+                  </h5>
+                  <p className={style.listItemDescription}>
+                    {course.description}
+                  </p>
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Courses
+export default Courses;

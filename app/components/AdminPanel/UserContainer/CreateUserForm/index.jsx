@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 // Material UI imports
-import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
-import ContentAdd from 'material-ui/svg-icons/content/add'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 // Material UI Styles
 const muiStyle = {
@@ -18,52 +18,52 @@ const muiStyle = {
   errorStyle: {
     textAlign: 'center'
   }
-}
+};
 
 // Component Actions
-import {createUser} from './actions'
+import { createUser } from './actions';
 
 // Component Style
-import style from './style'
+import style from './style';
 
 export default class CreateUserForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      full_name: "",
-      mail: "",
-      role: "",
-      password: "",
-    }
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleMailChange = this.handleMailChange.bind(this)
-    this.handleRoleChange = this.handleRoleChange.bind(this)
-    this.handlePasswordChange = this.handlePasswordChange.bind(this)
-    this.handleCreateUser = this.handleCreateUser.bind(this)
+      full_name: '',
+      mail: '',
+      role: '',
+      password: ''
+    };
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleMailChange = this.handleMailChange.bind(this);
+    this.handleRoleChange = this.handleRoleChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleCreateUser = this.handleCreateUser.bind(this);
   }
 
   handleNameChange(event) {
     this.setState({
       full_name: event.target.value
-    })
+    });
   }
 
   handleMailChange(event) {
     this.setState({
       mail: event.target.value
-    })
+    });
   }
 
   handleRoleChange(event, index, value) {
     this.setState({
       role: value
-    })
+    });
   }
 
   handlePasswordChange(event) {
     this.setState({
       password: event.target.value
-    })
+    });
   }
 
   handleCreateUser(event) {
@@ -72,9 +72,9 @@ export default class CreateUserForm extends React.Component {
     event.preventDefault();
 
     this.setState({
-      inputError: "",
-      emailInputError: ""
-    })
+      inputError: '',
+      emailInputError: ''
+    });
 
     const full_name = this.state.full_name;
     const mail = this.state.mail;
@@ -84,12 +84,12 @@ export default class CreateUserForm extends React.Component {
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (arr[i] == null || arr[i] == "") {
-          return false
+        if (arr[i] == null || arr[i] == '') {
+          return false;
         }
       }
-      return true
-    }
+      return true;
+    };
 
     let reqInputs = [full_name, mail, password, role];
 
@@ -99,27 +99,30 @@ export default class CreateUserForm extends React.Component {
         email: mail,
         role: role,
         password: password
-      }
+      };
 
-      createUser(formData, (res) => {
-        this.setState({
-          full_name: "",
-          mail: "",
-          role: "",
-          password: ""
-        })
-        this.props.changeOnUserList();
-      }, (error) => {
-				that.setState({
-					emailInputError: "Email must be unique."
-				})
-  		})
-
+      createUser(
+        formData,
+        res => {
+          this.setState({
+            full_name: '',
+            mail: '',
+            role: '',
+            password: ''
+          });
+          this.props.changeOnUserList();
+        },
+        error => {
+          that.setState({
+            emailInputError: 'Email must be unique.'
+          });
+        }
+      );
     } else {
       this.setState({
-        inputError: "All fields must be filled.",
-        emailInputError: "All fields must be filled."
-      })
+        inputError: 'All fields must be filled.',
+        emailInputError: 'All fields must be filled.'
+      });
     }
   }
 
@@ -127,10 +130,7 @@ export default class CreateUserForm extends React.Component {
     return (
       <div className={style.createUserStyle}>
         <h3 className={style.title}>Create User</h3>
-        <form
-          onSubmit={this.handleCreateUser}
-          className={style.formStyle}>
-
+        <form onSubmit={this.handleCreateUser} className={style.formStyle}>
           <div className={style.container}>
             <TextField
               autoCorrect="none"
@@ -142,7 +142,8 @@ export default class CreateUserForm extends React.Component {
               value={this.state.full_name}
               className={style.textFieldStyle}
               onChange={this.handleNameChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            />
 
             <TextField
               autoCorrect="none"
@@ -154,7 +155,8 @@ export default class CreateUserForm extends React.Component {
               value={this.state.mail}
               className={style.textFieldStyle}
               onChange={this.handleMailChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            />
           </div>
 
           <div className={style.container}>
@@ -168,7 +170,8 @@ export default class CreateUserForm extends React.Component {
               value={this.state.password}
               className={style.textFieldStyle}
               onChange={this.handlePasswordChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}/>
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            />
 
             <SelectField
               floatingLabelText="Role"
@@ -177,22 +180,24 @@ export default class CreateUserForm extends React.Component {
               errorText={this.state.inputError}
               errorStyle={muiStyle.errorStyle}
               onChange={this.handleRoleChange}
-              floatingLabelStyle={muiStyle.floatingLabelTextStyle}>
-                <MenuItem value="STUDENT" primaryText="Student"/>
-                <MenuItem value="TEACHER" primaryText="Teacher"/>
-                <MenuItem value="ADMIN" primaryText="Admin"/>
+              floatingLabelStyle={muiStyle.floatingLabelTextStyle}
+            >
+              <MenuItem value="STUDENT" primaryText="Student" />
+              <MenuItem value="TEACHER" primaryText="Teacher" />
+              <MenuItem value="ADMIN" primaryText="Admin" />
             </SelectField>
           </div>
 
           <RaisedButton
             type="submit"
             label="Create"
-            icon={<ContentAdd/>}
+            icon={<ContentAdd />}
             labelColor="#fff"
             backgroundColor="#37BDD5"
-            style={muiStyle.createButtonStyle}/>
+            style={muiStyle.createButtonStyle}
+          />
         </form>
       </div>
-    )
+    );
   }
 }
