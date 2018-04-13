@@ -57,9 +57,7 @@ class EditCourse extends React.Component {
       dialogAlert: false
     };
     this.handleCourseNameChange = this.handleCourseNameChange.bind(this);
-    this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(
-      this
-    );
+    this.handleCourseDescrChange = this.handleCourseDescrChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
     this.handleBack = this.handleBack.bind(this);
@@ -87,7 +85,7 @@ class EditCourse extends React.Component {
     });
   }
 
-  handleCourseDescriptionChange(event) {
+  handleCourseDescrChange(event) {
     this.setState({
       courseDescription: event.target.value
     });
@@ -194,7 +192,7 @@ class EditCourse extends React.Component {
             floatingLabelFixed={true}
             value={this.state.courseDescription}
             errorText={this.state.inputError}
-            onChange={this.handleCourseDescriptionChange}
+            onChange={this.handleCourseDescrChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
             className={style.textFieldStyle}
             multiLine={true}
@@ -225,7 +223,7 @@ class EditCourse extends React.Component {
           <br />
           <br />
           <h5>
-            File name:{' '}
+            File name:
             <span className={style.fileNameStyle}>{this.state.fileName}</span>
           </h5>
 

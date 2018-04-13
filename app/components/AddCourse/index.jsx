@@ -236,7 +236,7 @@ class AddCourse extends React.Component {
           <br />
           <br />
           <h5>
-            File name:{' '}
+            File name:
             <span className={style.fileNameStyle}>{this.state.fileName}</span>
           </h5>
 

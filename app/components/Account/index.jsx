@@ -60,9 +60,7 @@ class Account extends React.Component {
     this.changePasswordAction = this.changePasswordAction.bind(this);
     this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
     this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
-    this.handleNewConfPasswordChange = this.handleNewConfPasswordChange.bind(
-      this
-    );
+    this.handleNewConfPassChange = this.handleNewConfPassChange.bind(this);
     this.handleOldPassword = this.handleOldPassword.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
   }
@@ -100,7 +98,7 @@ class Account extends React.Component {
     });
   }
 
-  handleNewConfPasswordChange(event) {
+  handleNewConfPassChange(event) {
     this.setState({
       confPassword: event.target.value
     });
@@ -341,7 +339,7 @@ class Account extends React.Component {
             errorText={this.state.passwordError}
             value={this.state.confPassword}
             className={style.textFieldStyle}
-            onChange={this.handleNewConfPasswordChange}
+            onChange={this.handleNewConfPassChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
           />
 
