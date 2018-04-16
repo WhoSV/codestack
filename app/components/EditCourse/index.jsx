@@ -74,7 +74,8 @@ class EditCourse extends React.Component {
         courseid: data.id,
         courseName: data.name,
         courseDescription: data.description,
-        fileLink: data.link
+        fileLink: data.link,
+        fileName: data.file_name
       });
     });
   }
@@ -92,14 +93,34 @@ class EditCourse extends React.Component {
   }
 
   uploadFile(event) {
-    let file = event.target.files[0];
+    let selectedFile = event.target.files;
+    let file = '';
+    let fileName = '';
+    let that = this;
 
-    // log file
-    console.log(file);
+    //Check File is not Empty
+    if (selectedFile.length > 0) {
+      // Select the very first file from list
+      let fileToLoad = selectedFile[0];
+      fileName = fileToLoad.name;
+
+      // FileReader function for read the file.
+      let fileReader = new FileReader();
+
+      // Onload of file read the file content
+      fileReader.onload = function(fileLoadedEvent) {
+        file = fileLoadedEvent.target.result;
+        that.setState({
+          file: file
+        });
+      };
+
+      // Convert data to base64
+      fileReader.readAsDataURL(fileToLoad);
+    }
 
     this.setState({
-      fileData: file,
-      fileName: file.name
+      fileName: fileName
     });
   }
 
@@ -112,12 +133,12 @@ class EditCourse extends React.Component {
       inputError: ''
     });
 
-    const that = this;
     const name = this.state.courseName;
     const description = this.state.courseDescription;
     const link = this.state.fileLink;
     const id = this.state.courseid;
-    const fileData = this.state.fileData;
+    const file = this.state.file;
+    const fileName = this.state.fileName;
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -128,14 +149,15 @@ class EditCourse extends React.Component {
       return true;
     };
 
-    let reqInputs = [id, name, description];
+    let reqInputs = [id, name, description, file, fileName];
     //fileData
     if (validateForm(reqInputs)) {
       let formData = {
         id: id,
         name: name,
-        description: description
-        // file: fileData
+        description: description,
+        file_body: file,
+        file_name: fileName
       };
 
       updateCourse(formData, () => {
@@ -224,7 +246,7 @@ class EditCourse extends React.Component {
           <br />
           <h5>
             File name:
-            <span className={style.fileNameStyle}>{this.state.fileName}</span>
+            <span className={style.fileNameStyle}> {this.state.fileName}</span>
           </h5>
 
           <RaisedButton

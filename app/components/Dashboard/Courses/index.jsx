@@ -85,8 +85,8 @@ class Courses extends React.Component {
                       </h3>
                     </a>
                     {this.props.favorites.map((favorite, index) => {
-                      console.log(favorite);
-                      console.log(course.id);
+                      // console.log(favorite);
+                      // console.log(course.id);
                       if (
                         course.id === favorite.course_id &&
                         this.props.activeUser === favorite.user_id
