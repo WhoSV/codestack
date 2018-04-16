@@ -62,14 +62,12 @@ class AddCourse extends React.Component {
       courseDescription: '',
       fileName: '',
       status: 'ACTIVE',
-      fileData: null,
+      file: '',
       dialogAlert: false,
       date: date
     };
     this.handleCourseNameChange = this.handleCourseNameChange.bind(this);
-    this.handleCourseDescriptionChange = this.handleCourseDescriptionChange.bind(
-      this
-    );
+    this.handleCourseDescrChange = this.handleCourseDescrChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUploadFile = this.handleUploadFile.bind(this);
     this.handleBack = this.handleBack.bind(this);
@@ -94,21 +92,41 @@ class AddCourse extends React.Component {
     });
   }
 
-  handleCourseDescriptionChange(event) {
+  handleCourseDescrChange(event) {
     this.setState({
       courseDescription: event.target.value
     });
   }
 
   handleUploadFile(event) {
-    let file = event.target.files[0];
+    let selectedFile = event.target.files;
+    let file = '';
+    let fileName = '';
+    let that = this;
 
-    // log file
-    console.log(file);
+    //Check File is not Empty
+    if (selectedFile.length > 0) {
+      // Select the very first file from list
+      let fileToLoad = selectedFile[0];
+      fileName = fileToLoad.name;
+
+      // FileReader function for read the file.
+      let fileReader = new FileReader();
+
+      // Onload of file read the file content
+      fileReader.onload = function(fileLoadedEvent) {
+        file = fileLoadedEvent.target.result;
+        that.setState({
+          file: file
+        });
+      };
+
+      // Convert data to base64
+      fileReader.readAsDataURL(fileToLoad);
+    }
 
     this.setState({
-      fileData: file,
-      fileName: file.name
+      fileName: fileName
     });
   }
 
@@ -126,7 +144,8 @@ class AddCourse extends React.Component {
     const teacher = this.state.teacherName;
     const status = this.state.status;
     const date = this.state.date;
-    const fileData = this.state.fileData;
+    const file = this.state.file;
+    console.log(file);
 
     let validateForm = function(arr) {
       for (var i = 0; i < arr.length; i++) {
@@ -137,16 +156,16 @@ class AddCourse extends React.Component {
       return true;
     };
 
-    let reqInputs = [name, description, teacher, status, date];
-    //fileData
+    let reqInputs = [name, description, teacher, status, date, file];
+
     if (validateForm(reqInputs)) {
       let formData = {
         name: name,
         description: description,
         teacher: teacher,
         status: status,
-        created_at: date
-        // file: fileData
+        created_at: date,
+        file_body: file
       };
 
       console.log(formData);
@@ -205,7 +224,7 @@ class AddCourse extends React.Component {
             floatingLabelFixed={true}
             value={this.state.courseDescription}
             errorText={this.state.inputError}
-            onChange={this.handleCourseDescriptionChange}
+            onChange={this.handleCourseDescrChange}
             floatingLabelStyle={muiStyle.floatingLabelTextStyle}
             className={style.textFieldStyle}
             multiLine={true}
@@ -237,7 +256,7 @@ class AddCourse extends React.Component {
           <br />
           <h5>
             File name:
-            <span className={style.fileNameStyle}>{this.state.fileName}</span>
+            <span className={style.fileNameStyle}> {this.state.fileName}</span>
           </h5>
 
           <RaisedButton
