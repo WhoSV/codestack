@@ -169,8 +169,6 @@ class AddCourse extends React.Component {
         file_name: fileName
       };
 
-      console.log(formData);
-
       createCourse(formData, () => {
         this.setState({
           dialogAlert: true
