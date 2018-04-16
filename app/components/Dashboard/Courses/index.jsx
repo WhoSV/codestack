@@ -94,7 +94,7 @@ class Courses extends React.Component {
                         return (
                           <div key={index} className={style.votesContainer}>
                             <IconButton
-                              tooltip="Add to Favorite"
+                              tooltip="Remove from Favorite"
                               tooltipPosition="bottom-left"
                               touch={true}
                               className={style.favoriteStyle}
@@ -110,7 +110,7 @@ class Courses extends React.Component {
                         return (
                           <div key={index} className={style.votesContainer}>
                             <IconButton
-                              tooltip="Remove from Favorite"
+                              tooltip="Add to Favorite"
                               tooltipPosition="bottom-left"
                               touch={true}
                               className={style.favoriteStyle}
