@@ -25,7 +25,7 @@ import style from './style.less';
 import { img } from '../../../static';
 
 // Component Actions
-import { addToFavorite, deleteFavorite } from './actions';
+import { addToFavorite, deleteFavorite, getOpenCourse } from './actions';
 
 class Courses extends React.Component {
   constructor(props) {
@@ -33,8 +33,18 @@ class Courses extends React.Component {
     this.state = {};
   }
 
-  navigateToCourse() {
-    // open pdf link
+  navigateToCourse(course) {
+    getOpenCourse(course.id, data => {
+      let link = 'data:application/pdf;base64,' + data;
+      var iframe =
+        "<iframe width='100%' height='100%' src='" +
+        link +
+        "' style='border: none; margin: 0; padding: 0;'></iframe>";
+      var x = window.open();
+      x.document.open();
+      x.document.write(iframe);
+      x.document.close();
+    });
   }
 
   addFavorite(course) {
@@ -74,7 +84,7 @@ class Courses extends React.Component {
                   <div className={style.listItemTitle}>
                     <a
                       className={style.courseTitle}
-                      onClick={this.navigateToCourse.bind(this)}
+                      onClick={this.navigateToCourse.bind(this, course)}
                     >
                       <h3>
                         <img

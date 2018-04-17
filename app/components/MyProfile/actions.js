@@ -55,3 +55,20 @@ export function deleteCourse(uuid, scc, err) {
       err(error);
     });
 }
+
+export function getOpenCourse(id, scc, err) {
+  axios({
+    method: 'get',
+    headers: { Authorization: 'Bearer ' + getToken() },
+    responseType: 'json',
+    url: COURSES_URL + '/' + id + '/open'
+  })
+    .then(function(res) {
+      if (res.status < 400) {
+        scc(res.data);
+      }
+    })
+    .catch(function(error) {
+      err(error);
+    });
+}

@@ -10,15 +10,27 @@ import style from './style.less';
 // Import static Resources
 import { img } from '../../../static';
 
+// Component Actions
+import { getOpenCourse } from './actions';
+
 class CourseBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.navigateToCourse = this.navigateToCourse.bind(this);
   }
 
-  navigateToCourse() {
-    // go course pdf or link
+  navigateToCourse(course) {
+    getOpenCourse(course.id, data => {
+      let link = 'data:application/pdf;base64,' + data;
+      var iframe =
+        "<iframe width='100%' height='100%' src='" +
+        link +
+        "' style='border: none; margin: 0; padding: 0;'></iframe>";
+      var x = window.open();
+      x.document.open();
+      x.document.write(iframe);
+      x.document.close();
+    });
   }
 
   render() {
@@ -31,7 +43,7 @@ class CourseBar extends React.Component {
               if (favorite.course_id === course.id) {
                 return (
                   <div key={index} className={style.selectedCourseContainer}>
-                    <a onClick={this.navigateToCourse}>
+                    <a onClick={this.navigateToCourse.bind(this, course)}>
                       <div className={style.selectedCourseItem}>
                         <div className={style.imgContainer}>
                           <img

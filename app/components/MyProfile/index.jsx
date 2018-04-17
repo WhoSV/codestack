@@ -18,7 +18,7 @@ import style from './style.less';
 import { img } from '../../static';
 
 // Component Actions
-import { getUser, getCourses, deleteCourse } from './actions';
+import { getUser, getCourses, deleteCourse, getOpenCourse } from './actions';
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -31,7 +31,6 @@ class MyProfile extends React.Component {
       course: {},
       dialogDelete: false
     };
-    this.navigateToCourse = this.navigateToCourse.bind(this);
   }
 
   componentWillMount() {
@@ -81,9 +80,18 @@ class MyProfile extends React.Component {
     });
   }
 
-  navigateToCourse() {
-    // open pdf link
-    console.log('open link');
+  navigateToCourse(course) {
+    getOpenCourse(course.id, data => {
+      let link = 'data:application/pdf;base64,' + data;
+      var iframe =
+        "<iframe width='100%' height='100%' src='" +
+        link +
+        "' style='border: none; margin: 0; padding: 0;'></iframe>";
+      var x = window.open();
+      x.document.open();
+      x.document.write(iframe);
+      x.document.close();
+    });
   }
 
   navigateToEditCourse(course) {
@@ -134,7 +142,7 @@ class MyProfile extends React.Component {
                     </h4>
 
                     <IconButton
-                      onClick={this.navigateToCourse}
+                      onClick={this.navigateToCourse.bind(this, course)}
                       tooltip="Open"
                       tooltipPosition="bottom-left"
                       touch={true}
