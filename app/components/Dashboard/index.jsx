@@ -75,7 +75,6 @@ class Dashboard extends React.Component {
                   favorites={this.state.favorites}
                   activeUser={this.state.activeUser}
                   courses={this.state.courses}
-                  {...this.props}
                 />
               </div>
 
@@ -84,7 +83,6 @@ class Dashboard extends React.Component {
                   favorites={this.state.favorites}
                   activeUser={this.state.activeUser}
                   courses={this.state.courses}
-                  {...this.props}
                 />
               </div>
             </div>
