@@ -98,19 +98,17 @@ class Survey extends React.Component {
 
     if (validateForm(reqInputs)) {
       let formData = {
-        course_id: courseId,
-        first: first,
-        second: second,
-        third: third,
-        fourth: fourth,
-        fifth: fifth
+        course_id: parseInt(courseId, 10),
+        first: parseInt(first, 10),
+        second: parseInt(second, 10),
+        third: parseInt(third, 10),
+        fourth: parseInt(fourth, 10),
+        fifth: parseInt(fifth, 10)
       };
 
       createSurvey(formData, () => {
         this.props.history.push('/dashboard');
       });
-
-      console.log(formData);
     }
   }
 
@@ -122,7 +120,7 @@ class Survey extends React.Component {
         <Paper className={style.paper} zDepth={2}>
           <h1>{localStorage.course_name} Course Survey</h1>
           <div className={style.questionContainer}>
-            <h4>1. The course objectives were clear?</h4>
+            <h4>1. Where course objectives clear?</h4>
             <RadioButtonGroup
               name="q1"
               className={style.buttonsContainer}
@@ -161,7 +159,7 @@ class Survey extends React.Component {
             </RadioButtonGroup>
           </div>
           <div className={style.questionContainer}>
-            <h4>2. The course textbooks were clear and well written?</h4>
+            <h4>2. Were the course textnotes clear and well written?</h4>
             <RadioButtonGroup
               name="q2"
               className={style.buttonsContainer}
@@ -201,7 +199,7 @@ class Survey extends React.Component {
           </div>
           <div className={style.questionContainer}>
             <h4>
-              3. The assignments were appropriate for the level of this class?
+              3. Where the assignments appropriate for the level of this class?
             </h4>
             <RadioButtonGroup
               name="q3"
@@ -241,7 +239,7 @@ class Survey extends React.Component {
             </RadioButtonGroup>
           </div>
           <div className={style.questionContainer}>
-            <h4>4. The course increased my interest in the subject?</h4>
+            <h4>4. Have this course increased my interest in the subject?</h4>
             <RadioButtonGroup
               name="q4"
               className={style.buttonsContainer}
@@ -280,7 +278,7 @@ class Survey extends React.Component {
             </RadioButtonGroup>
           </div>
           <div className={style.questionContainer}>
-            <h4>5. The course corresponded to my expectations?</h4>
+            <h4>5. Is this course corresponded to my expectations?</h4>
             <RadioButtonGroup
               name="q5"
               className={style.buttonsContainer}

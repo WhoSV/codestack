@@ -8,6 +8,7 @@ function getToken() {
 export function createSurvey(userData, scc, err) {
   axios({
     method: 'POST',
+    headers: { Authorization: 'Bearer ' + getToken() },
     responseType: 'json',
     url: SURVEY_URL,
     data: userData

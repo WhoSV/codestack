@@ -4,9 +4,12 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import ActionEdit from 'material-ui/svg-icons/image/edit';
+import SadIcon from 'material-ui/svg-icons/social/sentiment-dissatisfied';
+import ChartIcon from 'material-ui/svg-icons/editor/insert-chart';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
+import LinearProgress from 'material-ui/LinearProgress';
 
 // Import components
 import Navbar from '../Navbar';
@@ -17,8 +20,21 @@ import style from './style.less';
 // Import static icons
 import { img } from '../../static';
 
+// Material UI Styles
+const muiStyle = {
+  dialogTitleStyle: {
+    color: '#30CFD0'
+  }
+};
+
 // Component Actions
-import { getUser, getCourses, deleteCourse, getOpenCourse } from './actions';
+import {
+  getUser,
+  getCourses,
+  deleteCourse,
+  getOpenCourse,
+  getSurveys
+} from './actions';
 
 class MyProfile extends React.Component {
   constructor(props) {
@@ -29,7 +45,9 @@ class MyProfile extends React.Component {
       role: '',
       courses: [],
       course: {},
-      dialogDelete: false
+      surveys: [],
+      dialogDelete: false,
+      dialogStatistics: false
     };
   }
 
@@ -37,12 +55,21 @@ class MyProfile extends React.Component {
     this.state.id = localStorage.id;
     this.activeUser();
     this.updateCourses();
+    this.updateStatistics();
   }
 
   updateCourses() {
     getCourses(data => {
       this.setState({
         courses: data
+      });
+    });
+  }
+
+  updateStatistics() {
+    getSurveys(data => {
+      this.setState({
+        surveys: data
       });
     });
   }
@@ -59,7 +86,8 @@ class MyProfile extends React.Component {
 
   dialogClose() {
     this.setState({
-      dialogDelete: false
+      dialogDelete: false,
+      dialogStatistics: false
     });
   }
 
@@ -99,6 +127,58 @@ class MyProfile extends React.Component {
     this.props.history.push('/editcourse');
   }
 
+  navigateToStatistics(course) {
+    let firstStats = 0;
+    let secondStats = 0;
+    let thirdStats = 0;
+    let fourthStats = 0;
+    let fifthStats = 0;
+    let counter = 0;
+
+    this.state.surveys.map((survey, index) => {
+      if (survey.course_id === course.id) {
+        firstStats = firstStats + survey.first;
+        secondStats = secondStats + survey.second;
+        thirdStats = thirdStats + survey.third;
+        fourthStats = fourthStats + survey.fourth;
+        fifthStats = fifthStats + survey.fifth;
+        counter++;
+      }
+    });
+
+    firstStats = firstStats * 10 / counter;
+    secondStats = secondStats * 10 / counter;
+    thirdStats = thirdStats * 10 / counter;
+    fourthStats = fourthStats * 10 / counter;
+    fifthStats = fifthStats * 10 / counter;
+
+    if (
+      !firstStats &&
+      !secondStats &&
+      !thirdStats &&
+      !fourthStats &&
+      !fifthStats
+    ) {
+      this.setState({
+        noStats: true
+      });
+    } else {
+      this.setState({
+        noStats: false
+      });
+    }
+
+    this.setState({
+      dialogStatistics: true,
+      firstStats: firstStats,
+      secondStats: secondStats,
+      thirdStats: thirdStats,
+      fourthStats: fourthStats,
+      fifthStats: fifthStats,
+      courseName: course.name + ' Course Statistics'
+    });
+  }
+
   render() {
     const deleteActions = [
       <FlatButton
@@ -112,6 +192,15 @@ class MyProfile extends React.Component {
         style={{ color: '#ff0000' }}
         primary={true}
         onTouchTap={this.confirmDeleteContent.bind(this)}
+      />
+    ];
+
+    const statisticsAction = [
+      <FlatButton
+        label="OK"
+        style={{ color: '#37bdd5' }}
+        primary={true}
+        onTouchTap={this.dialogClose.bind(this)}
       />
     ];
 
@@ -174,6 +263,15 @@ class MyProfile extends React.Component {
                       {course.name}
                     </h4>
                     <IconButton
+                      onClick={this.navigateToStatistics.bind(this, course)}
+                      tooltip="Statistics"
+                      tooltipPosition="bottom-left"
+                      touch={true}
+                    >
+                      <ChartIcon className={style.chartButton} />
+                    </IconButton>
+
+                    <IconButton
                       onClick={this.navigateToEditCourse.bind(this, course)}
                       tooltip="Edit"
                       tooltipPosition="bottom-left"
@@ -209,6 +307,92 @@ class MyProfile extends React.Component {
           Do you realy want to delete
           <span className={style.highlight}>{this.state.course.name}</span>
           ?
+        </Dialog>
+
+        {/* Statistics Dialog */}
+        <Dialog
+          className={style.dialog}
+          title={this.state.courseName}
+          titleStyle={muiStyle.dialogTitleStyle}
+          actions={statisticsAction}
+          modal={false}
+          open={this.state.dialogStatistics}
+          onRequestClose={this.dialogClose.bind(this)}
+        >
+          {(() => {
+            if (!this.state.noStats) {
+              return (
+                <div>
+                  <h5>This dialog shows averrage statistics.</h5>
+                  <ol>
+                    <li>
+                      Where course objectives clear?
+                      <div className={style.progressContainer}>
+                        <LinearProgress
+                          mode="determinate"
+                          className={style.progress}
+                          value={this.state.firstStats}
+                        />
+                        <h4>{this.state.firstStats}%</h4>
+                      </div>
+                    </li>
+                    <li>
+                      Were the course textnotes clear and well written?
+                      <div className={style.progressContainer}>
+                        <LinearProgress
+                          mode="determinate"
+                          className={style.progress}
+                          value={this.state.secondStats}
+                        />
+                        <h4>{this.state.secondStats}%</h4>
+                      </div>
+                    </li>
+                    <li>
+                      Where the assignments appropriate for the level of this
+                      class?
+                      <div className={style.progressContainer}>
+                        <LinearProgress
+                          mode="determinate"
+                          className={style.progress}
+                          value={this.state.thirdStats}
+                        />
+                        <h4>{this.state.thirdStats}%</h4>
+                      </div>
+                    </li>
+                    <li>
+                      Have this course increased my interest in the subject?
+                      <div className={style.progressContainer}>
+                        <LinearProgress
+                          mode="determinate"
+                          className={style.progress}
+                          value={this.state.fourthStats}
+                        />
+                        <h4>{this.state.fourthStats}%</h4>
+                      </div>
+                    </li>
+                    <li>
+                      Is this course corresponded to my expectations?
+                      <div className={style.progressContainer}>
+                        <LinearProgress
+                          mode="determinate"
+                          className={style.progress}
+                          value={this.state.fifthStats}
+                        />
+                        <h4>{this.state.fifthStats}%</h4>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+              );
+            } else {
+              return (
+                <div className={style.noStatsStyle}>
+                  <SadIcon className={style.sadIcon} />
+                  <h4>Sorry, insufficient surveys passed to show statistics</h4>
+                </div>
+              );
+            }
+          })()}
         </Dialog>
       </div>
     );
