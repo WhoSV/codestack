@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { USERS_URL, COURSES_URL, SURVEY_URL } from '../../config/consts';
+import {
+  USERS_URL,
+  COURSES_URL,
+  SURVEY_URL,
+  FAVORITE_URL
+} from '../../config/consts';
 
 function getToken() {
   return localStorage.token;
@@ -79,6 +84,23 @@ export function getSurveys(scc, err) {
     headers: { Authorization: 'Bearer ' + getToken() },
     responseType: 'json',
     url: SURVEY_URL
+  })
+    .then(function(res) {
+      if (res.status < 400) {
+        scc(res.data);
+      }
+    })
+    .catch(function(error) {
+      err(error);
+    });
+}
+
+export function getFavorites(scc, err) {
+  axios({
+    method: 'get',
+    headers: { Authorization: 'Bearer ' + getToken() },
+    responseType: 'json',
+    url: FAVORITE_URL
   })
     .then(function(res) {
       if (res.status < 400) {

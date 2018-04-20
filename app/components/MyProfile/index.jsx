@@ -33,7 +33,8 @@ import {
   getCourses,
   deleteCourse,
   getOpenCourse,
-  getSurveys
+  getSurveys,
+  getFavorites
 } from './actions';
 
 class MyProfile extends React.Component {
@@ -47,7 +48,8 @@ class MyProfile extends React.Component {
       course: {},
       surveys: [],
       dialogDelete: false,
-      dialogStatistics: false
+      dialogStatistics: false,
+      favorites: []
     };
   }
 
@@ -56,12 +58,21 @@ class MyProfile extends React.Component {
     this.activeUser();
     this.updateCourses();
     this.updateStatistics();
+    this.updateFavorites();
   }
 
   updateCourses() {
     getCourses(data => {
       this.setState({
         courses: data
+      });
+    });
+  }
+
+  updateFavorites() {
+    getFavorites(data => {
+      this.setState({
+        favorites: data
       });
     });
   }
@@ -218,29 +229,38 @@ class MyProfile extends React.Component {
         <div className={style.coursesContainer}>
           <h2>Favorite Courses</h2>
           <div className={style.courses}>
-            {this.state.courses.map((course, index) => {
-              return (
-                <div key={index} className={style.selectedCourseContainer}>
-                  <div className={style.selectedCourseItem}>
-                    <h4 className={style.courseNameStyle}>
-                      <img
-                        className={style.defaultIconStyle}
-                        src={img.defaultIcon}
-                      />
-                      {course.name}
-                    </h4>
+            {this.state.favorites.map((favorite, index) => {
+              if (this.state.id === favorite.user_id) {
+                return this.state.courses.map((course, index) => {
+                  if (favorite.course_id === course.id) {
+                    return (
+                      <div
+                        key={index}
+                        className={style.selectedCourseContainer}
+                      >
+                        <div className={style.selectedCourseItem}>
+                          <h4 className={style.courseNameStyle}>
+                            <img
+                              className={style.defaultIconStyle}
+                              src={img.defaultIcon}
+                            />
+                            {course.name}
+                          </h4>
 
-                    <IconButton
-                      onClick={this.navigateToCourse.bind(this, course)}
-                      tooltip="Open"
-                      tooltipPosition="bottom-left"
-                      touch={true}
-                    >
-                      <ActionArrow className={style.arrowButton} />
-                    </IconButton>
-                  </div>
-                </div>
-              );
+                          <IconButton
+                            onClick={this.navigateToCourse.bind(this, course)}
+                            tooltip="Open"
+                            tooltipPosition="bottom-left"
+                            touch={true}
+                          >
+                            <ActionArrow className={style.arrowButton} />
+                          </IconButton>
+                        </div>
+                      </div>
+                    );
+                  }
+                });
+              }
             })}
           </div>
         </div>
