@@ -11,6 +11,9 @@ import Navbar from '../Navbar';
 // Component Style
 import style from './style.less';
 
+// Component Actions
+import { createSurvey } from './actions';
+
 // Material UI Styles
 const muiStyle = {
   radioLabelStyle: {
@@ -80,10 +83,35 @@ class Survey extends React.Component {
     let third = this.state.third;
     let fourth = this.state.fourth;
     let fifth = this.state.fifth;
+    let courseId = localStorage.surveyCourseId;
 
-    let reqInputs = [first, second, third, fourth, fifth];
+    let validateForm = function(arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] == null || arr[i] == '') {
+          return false;
+        }
+      }
+      return true;
+    };
 
-    console.log(reqInputs);
+    let reqInputs = [courseId, first, second, third, fourth, fifth];
+
+    if (validateForm(reqInputs)) {
+      let formData = {
+        course_id: courseId,
+        first: first,
+        second: second,
+        third: third,
+        fourth: fourth,
+        fifth: fifth
+      };
+
+      createSurvey(formData, () => {
+        this.props.history.push('/dashboard');
+      });
+
+      console.log(formData);
+    }
   }
 
   render() {

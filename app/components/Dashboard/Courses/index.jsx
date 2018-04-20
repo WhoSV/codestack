@@ -34,7 +34,8 @@ class Courses extends React.Component {
     super();
     this.state = {
       dialogAlert: false,
-      courseName: ''
+      courseName: '',
+      surveyCourseId: null
       // courseList: [
       // {
       //   id: '',
@@ -142,7 +143,8 @@ class Courses extends React.Component {
 
     this.setState({
       dialogAlert: true,
-      courseName: course.name
+      courseName: course.name,
+      surveyCourseId: course.id
     });
   }
 
@@ -169,6 +171,7 @@ class Courses extends React.Component {
   }
 
   confirmPassSurvey() {
+    localStorage.surveyCourseId = this.state.surveyCourseId;
     localStorage.course_name = this.state.courseName;
     this.props.goToSurvey();
   }

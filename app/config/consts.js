@@ -12,3 +12,6 @@ export const COURSES_URL = `${API_ROOT}/courses`;
 
 // FAVORITE
 export const FAVORITE_URL = `${API_ROOT}/favorite`;
+
+// SURVEY
+export const SURVEY_URL = `${API_ROOT}/survey`;
