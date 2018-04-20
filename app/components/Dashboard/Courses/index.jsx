@@ -31,7 +31,7 @@ import { addToFavorite, deleteFavorite, getOpenCourse } from './actions';
 
 class Courses extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       dialogAlert: false,
       courseName: ''
@@ -169,7 +169,8 @@ class Courses extends React.Component {
   }
 
   confirmPassSurvey() {
-    console.log('pass');
+    localStorage.course_name = this.state.courseName;
+    this.props.goToSurvey();
   }
 
   dialogClose() {

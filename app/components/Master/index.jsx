@@ -12,6 +12,7 @@ import AddCourse from '../AddCourse';
 import MyProfile from '../MyProfile';
 import Account from '../Account';
 import EditCourse from '../EditCourse';
+import Survey from '../Survey';
 
 // Component Style
 import style from './style.less';
@@ -31,6 +32,7 @@ export default class Master extends Component {
           <Route path="/register" component={Register} />
           <Route path="/account" component={Account} />
           <Route path="/profile" component={MyProfile} />
+          <Route path="/survey" component={Survey} />
 
           {/* Teacher Only */}
           <Route path="/addcourse" component={AddCourse} />

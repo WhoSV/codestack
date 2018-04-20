@@ -59,6 +59,10 @@ class Dashboard extends React.Component {
     });
   }
 
+  goToSurvey() {
+    this.props.history.push('/survey');
+  }
+
   render() {
     return (
       <div className={style.dashboard}>
@@ -71,6 +75,7 @@ class Dashboard extends React.Component {
             <div className={style.container}>
               <div className={style.coursesContainer}>
                 <Courses
+                  goToSurvey={this.goToSurvey.bind(this)}
                   updateDashboard={this.updateDashboard.bind(this)}
                   favorites={this.state.favorites}
                   activeUser={this.state.activeUser}
