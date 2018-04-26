@@ -353,7 +353,7 @@ class MyProfile extends React.Component {
                           className={style.progress}
                           value={this.state.firstStats}
                         />
-                        <h4>{this.state.firstStats}%</h4>
+                        <h4>{Math.round(this.state.firstStats).toFixed(0)}%</h4>
                       </div>
                     </li>
                     <li>
@@ -364,7 +364,9 @@ class MyProfile extends React.Component {
                           className={style.progress}
                           value={this.state.secondStats}
                         />
-                        <h4>{this.state.secondStats}%</h4>
+                        <h4>
+                          {Math.round(this.state.secondStats).toFixed(0)}%
+                        </h4>
                       </div>
                     </li>
                     <li>
@@ -376,7 +378,7 @@ class MyProfile extends React.Component {
                           className={style.progress}
                           value={this.state.thirdStats}
                         />
-                        <h4>{this.state.thirdStats}%</h4>
+                        <h4>{Math.round(this.state.thirdStats).toFixed(0)}%</h4>
                       </div>
                     </li>
                     <li>
@@ -387,7 +389,9 @@ class MyProfile extends React.Component {
                           className={style.progress}
                           value={this.state.fourthStats}
                         />
-                        <h4>{this.state.fourthStats}%</h4>
+                        <h4>
+                          {Math.round(this.state.fourthStats).toFixed(0)}%
+                        </h4>
                       </div>
                     </li>
                     <li>
@@ -398,7 +402,7 @@ class MyProfile extends React.Component {
                           className={style.progress}
                           value={this.state.fifthStats}
                         />
-                        <h4>{this.state.fifthStats}%</h4>
+                        <h4>{Math.round(this.state.fifthStats).toFixed(0)}%</h4>
                       </div>
                     </li>
                   </ol>
