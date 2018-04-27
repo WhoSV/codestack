@@ -2,7 +2,7 @@ import React from 'react';
 
 // Material UI imports
 import IconButton from 'material-ui/IconButton';
-import ActionArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
+import ActionRemove from 'material-ui/svg-icons/content/remove-circle-outline';
 
 // Component Style
 import style from './style.less';
@@ -11,7 +11,7 @@ import style from './style.less';
 import { img } from '../../../static';
 
 // Component Actions
-import { getOpenCourse } from './actions';
+import { getOpenCourse, deleteFavorite } from './actions';
 
 class CourseBar extends React.Component {
   constructor(props) {
@@ -33,6 +33,12 @@ class CourseBar extends React.Component {
     });
   }
 
+  removeFavorite(favorite) {
+    deleteFavorite(favorite.id, res => {
+      this.props.updateDashboard();
+    });
+  }
+
   render() {
     return (
       <div className={style.courseBar}>
@@ -43,25 +49,29 @@ class CourseBar extends React.Component {
               if (favorite.course_id === course.id) {
                 return (
                   <div key={index} className={style.selectedCourseContainer}>
-                    <a onClick={this.navigateToCourse.bind(this, course)}>
-                      <div className={style.selectedCourseItem}>
-                        <div className={style.imgContainer}>
-                          <img
-                            className={style.defaultIconStyle}
-                            src={img.defaultIcon}
-                          />
-                        </div>
-                        <h4>{course.name}</h4>
-
-                        <IconButton
-                          tooltip="Open"
-                          tooltipPosition="bottom-left"
-                          touch={true}
-                        >
-                          <ActionArrow className={style.arrowButton} />
-                        </IconButton>
+                    <div className={style.selectedCourseItem}>
+                      <div
+                        onClick={this.navigateToCourse.bind(this, course)}
+                        className={style.imgContainer}
+                      >
+                        <img
+                          className={style.defaultIconStyle}
+                          src={img.defaultIcon}
+                        />
                       </div>
-                    </a>
+                      <h4 onClick={this.navigateToCourse.bind(this, course)}>
+                        {course.name}
+                      </h4>
+
+                      <IconButton
+                        tooltip="Remove Favorite"
+                        tooltipPosition="bottom-left"
+                        touch={true}
+                        onClick={this.removeFavorite.bind(this, favorite)}
+                      >
+                        <ActionRemove className={style.removeButton} />
+                      </IconButton>
+                    </div>
                   </div>
                 );
               }

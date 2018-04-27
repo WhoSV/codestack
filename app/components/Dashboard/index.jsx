@@ -85,6 +85,7 @@ class Dashboard extends React.Component {
 
               <div className={style.courseBarContainer}>
                 <CourseBar
+                  updateDashboard={this.updateDashboard.bind(this)}
                   favorites={this.state.favorites}
                   activeUser={this.state.activeUser}
                   courses={this.state.courses}
