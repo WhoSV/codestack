@@ -215,57 +215,10 @@ class MyProfile extends React.Component {
       />
     ];
 
-    return (
-      <div className={style.myProfile}>
-        <Navbar {...this.props} />
-
-        <div className={style.headerStyle}>
-          <img className={style.imgStyle} src={img.defaultUser} />
-          <h2>{this.state.name}</h2>
-          <h4>{this.state.role}</h4>
-        </div>
-
-        {/* Only student can see this container */}
-        <div className={style.coursesContainer}>
-          <h2>Favorite Courses</h2>
-          <div className={style.courses}>
-            {this.state.favorites.map((favorite, index) => {
-              if (this.state.id === favorite.user_id) {
-                return this.state.courses.map((course, index) => {
-                  if (favorite.course_id === course.id) {
-                    return (
-                      <div
-                        key={index}
-                        className={style.selectedCourseContainer}
-                      >
-                        <div className={style.selectedCourseItem}>
-                          <h4 className={style.courseNameStyle}>
-                            <img
-                              className={style.defaultIconStyle}
-                              src={img.defaultIcon}
-                            />
-                            {course.name}
-                          </h4>
-
-                          <IconButton
-                            onClick={this.navigateToCourse.bind(this, course)}
-                            tooltip="Open"
-                            tooltipPosition="bottom-left"
-                            touch={true}
-                          >
-                            <ActionArrow className={style.arrowButton} />
-                          </IconButton>
-                        </div>
-                      </div>
-                    );
-                  }
-                });
-              }
-            })}
-          </div>
-        </div>
-
-        {/* only teacher can see this container */}
+    let profileData = <div />;
+    let role = localStorage.user_role;
+    if (role === 'TEACHER') {
+      profileData = (
         <div className={style.coursesContainer}>
           <div>
             <h2>Added Courses</h2>
@@ -314,6 +267,61 @@ class MyProfile extends React.Component {
             })}
           </div>
         </div>
+      );
+    } else if (role === 'STUDENT') {
+      profileData = (
+        <div className={style.coursesContainer}>
+          <h2>Favorite Courses</h2>
+          <div className={style.courses}>
+            {this.state.favorites.map((favorite, index) => {
+              if (this.state.id === favorite.user_id) {
+                return this.state.courses.map((course, index) => {
+                  if (favorite.course_id === course.id) {
+                    return (
+                      <div
+                        key={index}
+                        className={style.selectedCourseContainer}
+                      >
+                        <div className={style.selectedCourseItem}>
+                          <h4 className={style.courseNameStyle}>
+                            <img
+                              className={style.defaultIconStyle}
+                              src={img.defaultIcon}
+                            />
+                            {course.name}
+                          </h4>
+
+                          <IconButton
+                            onClick={this.navigateToCourse.bind(this, course)}
+                            tooltip="Open"
+                            tooltipPosition="bottom-left"
+                            touch={true}
+                          >
+                            <ActionArrow className={style.arrowButton} />
+                          </IconButton>
+                        </div>
+                      </div>
+                    );
+                  }
+                });
+              }
+            })}
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={style.myProfile}>
+        <Navbar {...this.props} />
+
+        <div className={style.headerStyle}>
+          <img className={style.imgStyle} src={img.defaultUser} />
+          <h2>{this.state.name}</h2>
+          <h4>{this.state.role}</h4>
+        </div>
+
+        {profileData}
 
         {/* Delete Content Dialog */}
         <Dialog

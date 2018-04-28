@@ -15,6 +15,7 @@ export function authUser(email, password, scc, err) {
     .then(function(res) {
       localStorage.token = res.data.token;
       localStorage.id = res.data.id;
+      localStorage.user_role = res.data.user_role;
       scc();
     })
     .catch(function(error) {

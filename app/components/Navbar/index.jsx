@@ -58,6 +58,68 @@ class Navbar extends React.Component {
       actionHome = <div />;
     }
 
+    // Navigation buttons according to user role
+    let navButtons = <div />;
+    let role = localStorage.user_role;
+    if (role === 'ADMIN') {
+      navButtons = (
+        <div>
+          <NavLink to="/admin" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="Admin Panel" />
+          </NavLink>
+
+          <NavLink to="/account" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="My Account" />
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/signout" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="Log Out" />
+          </NavLink>
+        </div>
+      );
+    } else if (role === 'TEACHER') {
+      navButtons = (
+        <div>
+          <NavLink to="/profile" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="View My Profile" />
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/addcourse" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="Add New Course" />
+          </NavLink>
+
+          <NavLink to="/account" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="My Account" />
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/signout" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="Log Out" />
+          </NavLink>
+        </div>
+      );
+    } else if (role === 'STUDENT') {
+      navButtons = (
+        <div>
+          <NavLink to="/profile" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="View My Profile" />
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/account" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="My Account" />
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/signout" style={{ textDecoration: 'none' }}>
+            <MenuItem primaryText="Log Out" />
+          </NavLink>
+        </div>
+      );
+    }
+
     return (
       <div className={style.navbarContainer}>
         <AppBar
@@ -76,30 +138,7 @@ class Navbar extends React.Component {
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              {/* All Users */}
-              <NavLink to="/profile" style={{ textDecoration: 'none' }}>
-                <MenuItem primaryText="View My Profile" />
-              </NavLink>
-              <Divider />
-
-              {/* Teacher Only */}
-              <NavLink to="/addcourse" style={{ textDecoration: 'none' }}>
-                <MenuItem primaryText="Add New Course" />
-              </NavLink>
-
-              {/* Admin Only */}
-              <NavLink to="/admin" style={{ textDecoration: 'none' }}>
-                <MenuItem primaryText="Admin Panel" />
-              </NavLink>
-
-              <NavLink to="/account" style={{ textDecoration: 'none' }}>
-                <MenuItem primaryText="My Account" />
-              </NavLink>
-              <Divider />
-
-              <NavLink to="/signout" style={{ textDecoration: 'none' }}>
-                <MenuItem primaryText="Log Out" />
-              </NavLink>
+              {navButtons}
             </IconMenu>
           }
         />
