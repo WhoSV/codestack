@@ -225,9 +225,6 @@ class MyProfile extends React.Component {
           </div>
           <div className={style.courses}>
             {this.state.courses.map((course, index) => {
-              console.log(course.teacher_id);
-              console.log(this.state.id);
-
               if (this.state.id.toString() === course.teacher_id) {
                 return (
                   <div key={index} className={style.selectedCourseContainer}>
