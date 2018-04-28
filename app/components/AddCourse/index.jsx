@@ -142,6 +142,7 @@ class AddCourse extends React.Component {
     const name = this.state.courseName;
     const description = this.state.courseDescription;
     const teacher = this.state.teacherName;
+    const teacherId = this.state.id;
     const status = this.state.status;
     const date = this.state.date;
     const file = this.state.file;
@@ -156,13 +157,23 @@ class AddCourse extends React.Component {
       return true;
     };
 
-    let reqInputs = [name, description, teacher, status, date, file, fileName];
+    let reqInputs = [
+      name,
+      description,
+      teacher,
+      status,
+      date,
+      file,
+      fileName,
+      teacherId
+    ];
 
     if (validateForm(reqInputs)) {
       let formData = {
         name: name,
         description: description,
         teacher: teacher,
+        teacher_id: teacherId,
         status: status,
         created_at: date,
         file_body: file,

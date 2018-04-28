@@ -225,45 +225,50 @@ class MyProfile extends React.Component {
           </div>
           <div className={style.courses}>
             {this.state.courses.map((course, index) => {
-              return (
-                <div key={index} className={style.selectedCourseContainer}>
-                  <div className={style.selectedCourseItem}>
-                    <h4 className={style.courseNameStyle}>
-                      <img
-                        className={style.defaultIconStyle}
-                        src={img.defaultIcon}
-                      />
-                      {course.name}
-                    </h4>
-                    <IconButton
-                      onClick={this.navigateToStatistics.bind(this, course)}
-                      tooltip="Statistics"
-                      tooltipPosition="bottom-left"
-                      touch={true}
-                    >
-                      <ChartIcon className={style.chartButton} />
-                    </IconButton>
+              console.log(course.teacher_id);
+              console.log(this.state.id);
 
-                    <IconButton
-                      onClick={this.navigateToEditCourse.bind(this, course)}
-                      tooltip="Edit"
-                      tooltipPosition="bottom-left"
-                      touch={true}
-                    >
-                      <ActionEdit className={style.editButton} />
-                    </IconButton>
+              if (this.state.id.toString() === course.teacher_id) {
+                return (
+                  <div key={index} className={style.selectedCourseContainer}>
+                    <div className={style.selectedCourseItem}>
+                      <h4 className={style.courseNameStyle}>
+                        <img
+                          className={style.defaultIconStyle}
+                          src={img.defaultIcon}
+                        />
+                        {course.name}
+                      </h4>
+                      <IconButton
+                        onClick={this.navigateToStatistics.bind(this, course)}
+                        tooltip="Statistics"
+                        tooltipPosition="bottom-left"
+                        touch={true}
+                      >
+                        <ChartIcon className={style.chartButton} />
+                      </IconButton>
 
-                    <IconButton
-                      onClick={this.deleteCourse.bind(this, course)}
-                      tooltip="Delete"
-                      tooltipPosition="bottom-left"
-                      touch={true}
-                    >
-                      <ActionDelete className={style.deleteButton} />
-                    </IconButton>
+                      <IconButton
+                        onClick={this.navigateToEditCourse.bind(this, course)}
+                        tooltip="Edit"
+                        tooltipPosition="bottom-left"
+                        touch={true}
+                      >
+                        <ActionEdit className={style.editButton} />
+                      </IconButton>
+
+                      <IconButton
+                        onClick={this.deleteCourse.bind(this, course)}
+                        tooltip="Delete"
+                        tooltipPosition="bottom-left"
+                        touch={true}
+                      >
+                        <ActionDelete className={style.deleteButton} />
+                      </IconButton>
+                    </div>
                   </div>
-                </div>
-              );
+                );
+              }
             })}
           </div>
         </div>
