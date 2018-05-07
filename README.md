@@ -1,6 +1,6 @@
 # CodeStack
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/mit)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](ttps://github.com/WhoSV/codestack)
 
 ![alternativetext](public/img/screenshot.png)
 
