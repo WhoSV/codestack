@@ -1,10 +1,11 @@
 # CodeStack
 
+Online Learning Programming Languages Web Application
+
+[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/WhoSV/codestack)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](ttps://github.com/WhoSV/codestack)
 
 ![alternativetext](public/img/screenshot.png)
-
-Online Learning Programming Languages Web Application
 
 ## Getting started
 
