@@ -2,7 +2,7 @@
 
 <!-- v1.0.0 -->
 
-Online Learning Programming Languages Web Application
+Online Learning Programming Languages Web Application.
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](ttps://github.com/WhoSV/codestack)
 
