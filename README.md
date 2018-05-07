@@ -5,6 +5,7 @@
 Online Learning Programming Languages Web Application.
 
 [![GitHub version](https://badge.fury.io/gh/WhoSV%2Fcodestack.svg)](https://badge.fury.io/gh/WhoSV%2Fcodestack)
+[![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)](https://github.com/WhoSV/codestack)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](ttps://github.com/WhoSV/codestack)
 
 ![alternativetext](public/img/screenshot.png)
