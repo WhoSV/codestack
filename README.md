@@ -1,5 +1,9 @@
 # CodeStack
 
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/mit)
+
+![alternativetext](public/img/screenshot.png)
+
 Online Learning Programming Languages Web Application
 
 ## Getting started
