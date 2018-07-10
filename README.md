@@ -1,8 +1,8 @@
-# CodeStack
+# CodeStack React.js Web Application
 
 <!-- v1.0.0 -->
 
-Online Learning Programming Languages Web Application.
+Online Learning Programming Languages Web Application build with React.js
 
 [![GitHub version](https://badge.fury.io/gh/WhoSV%2Fcodestack.svg)](https://badge.fury.io/gh/WhoSV%2Fcodestack)
 [![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)](https://github.com/WhoSV/codestack)
@@ -14,12 +14,12 @@ Online Learning Programming Languages Web Application.
 
 **Clone the repo**
 
-    `$ git clone <repo>`
-    `$ cd codestack`
+    $ git clone <repo>
+    $ cd codestack
 
 **Install dependencies**
 
-    `$ npm install`
+    $ npm install
 
 **Start Run**
 
